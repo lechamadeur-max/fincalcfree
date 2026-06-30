@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — FinCalcFree</title>
+<meta name="description" content="Read our privacy policy. FinCalcFree does not collect, store, or track any personal or financial data. All computations run securely in your browser.">
+
+<!-- Theme Script to avoid flash of light/dark background -->
+<script>
+  (function() {
+    const t = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+
+<!-- Fonts -->
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,600,700&f[]=cabinet-grotesk@400,500,700,800&display=swap" rel="stylesheet">
+
+<style>
+/* ======= CSS IMPORTED FROM MAIN SETUP ======= */
+:root, [data-theme="light"] {
+  --text-xs:   clamp(0.75rem,  0.7rem  + 0.25vw, 0.875rem);
+  --text-sm:   clamp(0.875rem, 0.8rem  + 0.35vw, 1rem);
+  --text-base: clamp(1rem,     0.95rem + 0.25vw, 1.125rem);
+  --text-lg:   clamp(1.125rem, 1rem    + 0.75vw, 1.5rem);
+  --text-xl:   clamp(1.5rem,   1.2rem  + 1.25vw, 2.25rem);
+  --text-2xl:  clamp(2rem,     1.2rem  + 2.5vw,  3.5rem);
+
+  --space-1:0.25rem;--space-2:0.5rem;--space-3:0.75rem;--space-4:1rem;
+  --space-5:1.25rem;--space-6:1.5rem;--space-8:2rem;--space-10:2.5rem;
+  --space-12:3rem;--space-16:4rem;--space-20:5rem;--space-24:6rem;
+
+  --color-bg:#f7f6f2;
+  --color-surface:#f9f8f5;
+  --color-surface-2:#fbfbf9;
+  --color-surface-offset:#f3f0ec;
+  --color-surface-offset-2:#edeae5;
+  --color-surface-dynamic:#e6e4df;
+  --color-divider:#dcd9d5;
+  --color-border:#d4d1ca;
+  --color-text:#28251d;
+  --color-text-muted:#7a7974;
+  --color-text-faint:#bab9b4;
+  --color-text-inverse:#f9f8f4;
+  --color-primary:#01696f;
+  --color-primary-hover:#0c4e54;
+  --color-primary-active:#0f3638;
+  --color-primary-highlight:#cedcd8;
+  --color-success:#437a22;
+  --color-success-hover:#2e5c10;
+  --color-success-highlight:#d4dfcc;
+  --color-warning:#964219;
+  --color-warning-highlight:#ddcfc6;
+  --color-error:#a12c7b;
+  --color-gold:#d19900;
+  --color-gold-hover:#a37700;
+  --color-gold-active:#7a5900;
+  --color-gold-highlight:#e9e0c6;
+  --color-blue:#006494;
+  --color-blue-hover:#004b70;
+  --color-blue-active:#00334d;
+  --color-blue-highlight:#c6d8e4;
+
+  --radius-sm:0.375rem;--radius-md:0.5rem;--radius-lg:0.75rem;
+  --radius-xl:1rem;--radius-2xl:1.5rem;--radius-full:9999px;
+  --transition-interactive:180ms cubic-bezier(0.16, 1, 0.3, 1);
+  --shadow-sm:0 1px 2px oklch(0.2 0.01 80 / 0.06);
+  --shadow-md:0 4px 12px oklch(0.2 0.01 80 / 0.08);
+  --shadow-lg:0 12px 32px oklch(0.2 0.01 80 / 0.12);
+
+  --font-display: 'Cabinet Grotesk', 'Helvetica Neue', sans-serif;
+  --font-body: 'Satoshi', 'Helvetica Neue', sans-serif;
+  --content-narrow:640px;--content-default:960px;--content-wide:1200px;
+}
+
+[data-theme="dark"] {
+  --color-bg:#171614;--color-surface:#1c1b19;--color-surface-2:#201f1d;
+  --color-surface-offset:#1d1c1a;--color-surface-offset-2:#22211f;
+  --color-surface-dynamic:#2d2c2a;--color-divider:#262523;--color-border:#393836;
+  --color-text:#f5f4f2;--color-text-muted:#b0aeb3;--color-text-faint:#88868c;
+  --color-text-inverse:#2b2a28;
+  --color-primary:#4f98a3;--color-primary-hover:#227f8b;--color-primary-active:#1a626b;
+  --color-primary-highlight:#313b3b;
+  --color-success:#6daa45;--color-success-hover:#4d8f25;--color-success-highlight:#3a4435;
+  --color-warning:#bb653b;--color-warning-highlight:#564942;
+  --color-error:#d163a7;
+  --color-gold:#e8af34;--color-gold-hover:#c28f1b;--color-gold-active:#9c710f;--color-gold-highlight:#4d4332;
+  --color-blue:#5591c7;--color-blue-hover:#3d79b0;--color-blue-active:#2b5e8c;--color-blue-highlight:#3a4550;
+  --shadow-sm:0 1px 2px oklch(0 0 0 / 0.2);
+  --shadow-md:0 4px 12px oklch(0 0 0 / 0.3);
+  --shadow-lg:0 12px 32px oklch(0 0 0 / 0.4);
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{min-height:100dvh;line-height:1.6;font-family:var(--font-body);font-size:var(--text-base);color:var(--color-text);background:var(--color-bg);-webkit-font-smoothing:antialiased}
+.container{max-width:var(--content-wide);margin-inline:auto;padding-inline:var(--space-4)}
+@media(min-width:768px){.container{padding-inline:var(--space-8)}}
+
+/* NAVBAR */
+.navbar{position:sticky;top:0;z-index:100;background:color-mix(in oklch,var(--color-surface) 92%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid oklch(from var(--color-text) l c h / 0.08);padding-block:var(--space-3)}
+.navbar-inner{display:flex;align-items:center;justify-content:space-between;gap:var(--space-4)}
+.logo{display:flex;align-items:center;gap:var(--space-2);text-decoration:none;color:var(--color-text)}
+.logo-text{font-family:var(--font-display);font-weight:800;font-size:var(--text-lg);letter-spacing:-0.02em}
+.logo-text span{color:var(--color-primary)}
+.logo-text .logo-free{color:#ffffff}
+[data-theme="light"] .logo-text .logo-free{color:#28251d}
+.nav-links{display:flex;align-items:center;gap:var(--space-1)}
+.calc-nav-item{display:flex;align-items:center;gap:var(--space-1);font-size:var(--text-xs);font-weight:600;padding:var(--space-2) var(--space-3);border-radius:var(--radius-md);color:var(--color-text-muted);text-decoration:none}
+.calc-nav-item .nav-icon{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2}
+.calc-nav-item:hover{background:var(--color-surface-offset);color:var(--color-text)}
+.calc-nav-item.active{background:var(--color-primary-highlight);color:var(--color-primary)}
+.nav-actions{display:flex;align-items:center;gap:var(--space-2)}
+.theme-toggle{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:var(--radius-md);color:var(--color-text-muted);cursor:pointer}
+.theme-toggle:hover{background:var(--color-surface-offset);color:var(--color-text)}
+.mobile-menu-btn{display:none;align-items:center;justify-content:center;width:40px;height:40px;border-radius:var(--radius-md);color:var(--color-text-muted);cursor:pointer}
+.mobile-menu-btn:hover{background:var(--color-surface-offset)}
+@media(max-width:767px){
+  .nav-links{display:none}.nav-links.open{display:flex;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:var(--color-surface);border-bottom:1px solid var(--color-border);padding:var(--space-3);gap:var(--space-1);z-index:99}
+  .calc-nav-item{width:100%}
+  .mobile-menu-btn{display:flex}
+}
+
+/* CONTENT PAGE */
+.text-container{max-width:var(--content-narrow);margin-inline:auto;padding-block:var(--space-12)}
+.text-card{background:var(--color-surface);border:1px solid oklch(from var(--color-text) l c h / 0.08);border-radius:var(--radius-xl);padding:var(--space-8);box-shadow:var(--shadow-sm)}
+.text-card h1{font-family:var(--font-display);font-size:var(--text-xl);font-weight:800;color:var(--color-text);margin-bottom:var(--space-4);letter-spacing:-0.02em}
+.text-card h2{font-family:var(--font-display);font-size:var(--text-lg);font-weight:700;color:var(--color-text);margin-top:var(--space-8);margin-bottom:var(--space-3)}
+.text-card p{font-size:var(--text-sm);line-height:1.6;color:var(--color-text-muted);margin-bottom:var(--space-4)}
+.text-card ul{list-style-type:disc;padding-left:var(--space-5);margin-bottom:var(--space-4);font-size:var(--text-sm);color:var(--color-text-muted)}
+.text-card li{margin-bottom:var(--space-2)}
+
+/* FOOTER */
+footer{border-top:1px solid var(--color-divider);padding:var(--space-6) 0 var(--space-8) 0;margin-top:var(--space-8)}
+.footer-inner{display:flex;flex-wrap:wrap;gap:var(--space-6);justify-content:space-between;align-items:baseline;margin-top:-6pt}
+.footer-logo{font-family:var(--font-display);font-weight:800;font-size:var(--text-base);letter-spacing:-0.02em}
+.footer-logo span{color:var(--color-primary)}
+.footer-logo .logo-free{color:var(--color-text)}
+.footer-text{font-size:var(--text-xs);color:var(--color-text-faint)}
+.footer-links{display:flex;gap:var(--space-4)}
+.footer-links a{font-size:var(--text-xs);color:var(--color-text-muted);text-decoration:none}
+.footer-links a:hover{color:var(--color-primary)}
+.footer-links a.active{font-weight:700;color:var(--color-primary)}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar" role="banner">
+  <div class="container navbar-inner">
+    <a href="index.html" class="logo" aria-label="FinCalcFree Home">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <rect width="32" height="32" rx="8" fill="currentColor" style="color:var(--color-primary)"/>
+        <path d="M9 20L13 15L17 18L23 11" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="23" cy="11" r="2" fill="white"/>
+        <path d="M9 24h14" stroke="white" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+      </svg>
+      <span class="logo-text">Fin<span>Calc</span><span class="logo-free">Free</span></span>
+    </a>
+    <nav class="nav-links" id="main-nav" role="navigation" aria-label="Calculator navigation">
+      <a href="index.html" class="calc-nav-item">
+        <svg class="nav-icon" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+        Mortgage
+      </a>
+      <a href="investment.html" class="calc-nav-item">
+        <svg class="nav-icon" viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+        Investment
+      </a>
+      <a href="retirement.html" class="calc-nav-item">
+        <svg class="nav-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Retirement
+      </a>
+      <a href="loan.html" class="calc-nav-item">
+        <svg class="nav-icon" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        Loan
+      </a>
+    </nav>
+    <div class="nav-actions">
+      <button class="theme-toggle" data-theme-toggle aria-label="Switch to dark mode">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <div class="text-container">
+    <article class="text-card">
+      <h1>Privacy Policy</h1>
+      <p>Last updated: June 30, 2026</p>
+      
+      <p>At FinCalcFree, accessible from fincalcfree.com, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by FinCalcFree and how we use it.</p>
+      
+      <h2>No Personal Data Collection</h2>
+      <p>Unlike many other online utility sites, FinCalcFree runs entirely in your web browser. All calculations, numbers, and inputs are processed locally on your computer or device using client-side JavaScript. We do not collect, store, transmit, or share any of the numbers you enter into our Mortgage, Investment, Retirement, or Loan calculators.</p>
+      
+      <h2>Log Files</h2>
+      <p>FinCalcFree follows a standard procedure of using log files. These files log visitors when they visit websites. All hosting companies do this and a part of hosting services' analytics. The information collected by log files includes internet protocol (IP) addresses, browser type, Internet Service Provider (ISP), date and time stamp, referring/exit pages, and possibly the number of clicks. These are not linked to any information that is personally identifiable. The purpose of the information is for analyzing trends, administering the site, tracking users' movement on the website, and gathering demographic information.</p>
+      
+      <h2>Google DoubleClick DART Cookie</h2>
+      <p>Google is one of a third-party vendor on our site. It also uses cookies, known as DART cookies, to serve ads to our site visitors based upon their visit to fincalcfree.com and other sites on the internet. However, visitors may choose to decline the use of DART cookies by visiting the Google ad and content network Privacy Policy at the following URL – <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener noreferrer">https://policies.google.com/technologies/ads</a></p>
+      
+      <h2>Our Advertising Partners</h2>
+      <p>Some of advertisers on our site may use cookies and web beacons. Our advertising partners include:</p>
+      <ul>
+        <li>Google AdSense</li>
+      </ul>
+      <p>These third-party ad servers or ad networks use technologies like cookies, JavaScript, or Web Beacons that are used in their respective advertisements and links that appear on FinCalcFree, which are sent directly to users' browser. They automatically receive your IP address when this occurs. These technologies are used to measure the effectiveness of their advertising campaigns and/or to personalize the advertising content that you see on websites that you visit.</p>
+      <p>Note that FinCalcFree has no access to or control over these cookies that are used by third-party advertisers.</p>
+      
+      <h2>Third Party Privacy Policies</h2>
+      <p>FinCalcFree's Privacy Policy does not apply to other advertisers or websites. Thus, we are advising you to consult the respective Privacy Policies of these third-party ad servers for more detailed information. It may include their practices and instructions about how to opt-out of certain options.</p>
+      <p>You can choose to disable cookies through your individual browser options. To know more detailed information about cookie management with specific web browsers, it can be found at the browsers' respective websites.</p>
+      
+      <h2>Children's Information</h2>
+      <p>Another part of our priority is adding protection for children while using the internet. We encourage parents and guardians to observe, participate in, and/or monitor and guide their online activity.</p>
+      <p>FinCalcFree does not knowingly collect any Personal Identifiable Information from children under the age of 13. If you think that your child provided this kind of information on our website, we strongly encourage you to contact us immediately and we will do our best efforts to promptly remove such information from our records.</p>
+    </article>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer role="contentinfo">
+  <div class="container">
+    <div class="footer-logo" style="margin-bottom:var(--space-2)">Fin<span>Calc</span><span class="logo-free">Free</span></div>
+    <div class="footer-inner">
+      <p class="footer-text">Free financial calculators for everyone.</p>
+      <div class="footer-links">
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact Us</a>
+        <a href="privacy.html" class="active">Privacy Policy</a>
+        <a href="disclaimer.html">Disclaimer</a>
+      </div>
+      <p class="footer-text">Results are estimates only. Consult a financial advisor for advice.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ===== THEME TOGGLE =====
+(function(){
+  const t=document.querySelector('[data-theme-toggle]'),r=document.documentElement;
+  let d=localStorage.getItem('theme') || 'light';
+  r.setAttribute('data-theme',d);
+  const sunIcon='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>';
+  const moonIcon='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+  if(t){
+    t.innerHTML=d==='dark'?sunIcon:moonIcon;
+    t.addEventListener('click',()=>{
+      d=d==='dark'?'light':'dark';
+      r.setAttribute('data-theme',d);
+      localStorage.setItem('theme',d);
+      t.innerHTML=d==='dark'?sunIcon:moonIcon;
+    });
+  }
+})();
+
+// ===== MOBILE MENU =====
+document.getElementById('mobile-menu-btn').addEventListener('click',function(){
+  const nav=document.getElementById('main-nav');
+  nav.classList.toggle('open');
+  this.setAttribute('aria-expanded', nav.classList.contains('open'));
+});
+</script>
+</body>
+</html>
