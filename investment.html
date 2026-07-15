@@ -6,6 +6,98 @@
 <title>Investment Returns Calculator — FinCalcFree</title>
 <meta name="description" content="Project compound investment returns over time with custom monthly contributions, compounding frequencies, inflation adjustments, and visual growth charts.">
 
+<!-- Schema.org JSON-LD Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "FinCalcFree Investment Returns Calculator",
+  "description": "Project compound investment returns over time with custom monthly contributions, compounding frequencies, inflation adjustments, and visual growth charts.",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "All",
+  "browserRequirements": "Requires JavaScript. Requires HTML5.",
+  "url": "https://fincalcfree.com/investment"
+}
+</script>
+
+<!-- FAQPage Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is compound interest and how does it work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Compound interest is interest calculated on both the initial principal and all previously accumulated interest. Unlike simple interest (calculated only on the original amount), compound interest creates exponential growth because you earn interest on your interest. Over long periods, this snowball effect dramatically accelerates wealth growth."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the Rule of 72?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The Rule of 72 is a quick mental math shortcut to estimate how long it takes your money to double. Divide 72 by your expected annual return rate. At 8% returns, your money doubles in approximately 9 years (72 ÷ 8 = 9). At 6%, it takes about 12 years. At 12%, roughly 6 years."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a realistic annual rate of return for investments?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The S&P 500 has returned an average of about 10% per year (nominal) since 1928. Adjusted for inflation, the real return is approximately 7%. For conservative financial planning, many advisors recommend using 6% to 8% to account for market fluctuations and fees."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does compounding frequency affect my returns?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "More frequent compounding (daily vs. monthly vs. annually) produces slightly higher returns because interest is calculated and reinvested more often. On a $10,000 investment at 7% over 20 years, annual compounding yields $38,697, monthly compounding yields $40,387, and daily compounding yields $40,552. The difference is most significant with larger balances and higher rates."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is dollar-cost averaging?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Dollar-cost averaging (DCA) is the strategy of investing a fixed amount at regular intervals regardless of market conditions. When prices are low, your fixed amount buys more shares; when prices are high, you buy fewer. Over time, this tends to lower your average cost per share and removes the emotional pressure of trying to time the market."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is starting to invest early so important?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Because compound interest is exponential, time is your most powerful advantage. An investor who starts at age 25 contributing $300/month at 7% returns will have approximately $948,000 by age 65. Someone starting at 35 with the same contributions will have only about $441,000 — less than half, despite only a 10-year difference."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between tax-advantaged and taxable investment accounts?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tax-advantaged accounts (401(k), IRA, Roth IRA) let your investments grow tax-deferred or tax-free, significantly boosting long-term returns. Taxable brokerage accounts offer more flexibility but require you to pay capital gains taxes on profits each year. Maximize tax-advantaged accounts first before investing in taxable accounts."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does inflation affect my investment returns?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Inflation erodes purchasing power over time. A 7% nominal return with 3% inflation gives you only about 4% in real (inflation-adjusted) returns. Over 20 years at 3% inflation, $1 today is worth only about $0.55. Always consider real returns when planning long-term goals to ensure your money maintains its buying power."
+      }
+    }
+  ]
+}
+</script>
+
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8213059222433705"
+     crossorigin="anonymous"></script>
+
 <!-- Theme Script to avoid flash of light/dark background -->
 <script>
   (function() {
@@ -348,6 +440,10 @@ footer{border-top:1px solid var(--color-divider);padding:var(--space-6) 0 var(--
         <svg class="nav-icon" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
         Loan
       </a>
+      <a href="learn.html" class="calc-nav-item">
+        <svg class="nav-icon" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        Learn
+      </a>
     </nav>
     <div class="nav-actions">
       <button class="theme-toggle" data-theme-toggle aria-label="Switch to dark mode">
@@ -456,13 +552,13 @@ footer{border-top:1px solid var(--color-divider);padding:var(--space-6) 0 var(--
 
     <!-- Investment Guide -->
     <div class="calc-guide-content">
-      <h2>Comprehensive Guide to Investment Returns & Wealth Growth</h2>
+      <h2>Comprehensive Guide to Investment Returns &amp; Wealth Growth</h2>
       <div class="calc-guide-grid">
         <div>
-          <h3>Understanding Compound Interest</h3>
-          <p>Compound interest is the mechanism that powers long-term wealth creation. Unlike simple interest, which is calculated only on the principal amount, compound interest is calculated on the initial principal <em>plus</em> all of the accumulated interest from previous periods.</p>
-          <p>Essentially, you earn interest on your interest. Over long periods, this creates an exponential growth curve (the "J-curve") where your money begins to grow faster and faster, even if you stop making new contributions.</p>
-          <p><strong>The Impact of Inflation:</strong> While your nominal balance grows, inflation decreases the purchasing power of your money over time. It is crucial to calculate your "Real Value" (inflation-adjusted balance) to understand what your future balance will actually be worth in today's dollars.</p>
+          <h3>The Power of Compound Interest</h3>
+          <p>Albert Einstein reportedly called compound interest the "eighth wonder of the world," adding: "He who understands it, earns it; he who doesn't, pays it." Whether or not Einstein actually said it, the math behind compound interest truly is remarkable.</p>
+          <p>Unlike <strong>simple interest</strong>, which is calculated only on your original principal, <strong>compound interest</strong> is calculated on your principal <em>plus</em> all previously accumulated interest. You earn interest on your interest — and over time, this creates the exponential "J-curve" where your money accelerates faster and faster, even if you stop adding new contributions.</p>
+          <p><strong>Real-world example:</strong> Invest $10,000 today at 7% annual return with $500/month contributions. After 20 years, you'll have roughly <strong>$271,000</strong> — but only $130,000 of that came from your own contributions. The remaining <strong>$141,000 is pure compound growth</strong>. That's your money making money, which then makes <em>more</em> money.</p>
         </div>
         <div>
           <div class="formula-card">
@@ -478,29 +574,179 @@ footer{border-top:1px solid var(--color-divider);padding:var(--space-6) 0 var(--
               • <strong>PMT</strong> = Monthly contribution amount
             </div>
           </div>
+          <!-- Did You Know Callout -->
+          <div style="background:var(--color-success-highlight);border:1px solid var(--color-success);border-radius:var(--radius-md);padding:var(--space-4);margin-top:var(--space-4)">
+            <div style="font-weight:700;color:var(--color-success);font-size:var(--text-xs);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:var(--space-2)">🧠 Did You Know?</div>
+            <p style="font-size:var(--text-xs);line-height:1.5;margin-bottom:0;color:var(--color-text-muted)">An investor who starts at age 25 contributing $300/month at 7% will have roughly <strong>$948,000</strong> by age 65. Starting at 35 — just 10 years later — with the same contributions yields only about <strong>$441,000</strong>. Time is your most powerful investing asset.</p>
+          </div>
         </div>
       </div>
-      
+
+      <!-- SIMPLE VS COMPOUND TABLE -->
+      <h3>Simple Interest vs. Compound Interest</h3>
+      <p>The difference between simple and compound interest may seem subtle, but over decades it creates a massive gap in wealth. Here's how $10,000 grows at 7% with no additional contributions:</p>
+      <div style="overflow-x:auto;margin-bottom:var(--space-4)">
+        <table class="amort-table" style="min-width:500px">
+          <thead>
+            <tr><th style="text-align:left">Year</th><th>Simple Interest (7%)</th><th>Compound Interest (7%)</th><th>Difference</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>5</td><td>$13,500</td><td>$14,026</td><td style="color:var(--color-success);font-weight:600">+$526</td></tr>
+            <tr><td>10</td><td>$17,000</td><td>$19,672</td><td style="color:var(--color-success);font-weight:600">+$2,672</td></tr>
+            <tr><td>20</td><td>$24,000</td><td>$38,697</td><td style="color:var(--color-success);font-weight:600">+$14,697</td></tr>
+            <tr><td>30</td><td>$31,000</td><td>$76,123</td><td style="color:var(--color-success);font-weight:600">+$45,123</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>After 30 years, compound interest produces <strong>more than double</strong> the result of simple interest — on the exact same initial investment with the exact same rate. This is the J-curve in action.</p>
+
+      <!-- COMPOUNDING FREQUENCY -->
+      <h3>How Compounding Frequency Affects Your Returns</h3>
+      <p>Compounding frequency determines how often earned interest is calculated and added back to your balance. More frequent compounding means you start earning interest on your new interest sooner. Here's how $10,000 at 7% grows over 20 years with different frequencies (no contributions):</p>
+      <div style="overflow-x:auto;margin-bottom:var(--space-4)">
+        <table class="amort-table" style="min-width:450px">
+          <thead>
+            <tr><th style="text-align:left">Compounding</th><th>Periods/Year</th><th>Balance After 20 Years</th><th>Effective Annual Rate</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Annually</td><td>1</td><td>$38,697</td><td>7.000%</td></tr>
+            <tr><td>Quarterly</td><td>4</td><td>$39,855</td><td>7.186%</td></tr>
+            <tr><td>Monthly</td><td>12</td><td>$40,387</td><td>7.229%</td></tr>
+            <tr><td>Daily</td><td>365</td><td style="color:var(--color-success);font-weight:600">$40,552</td><td style="color:var(--color-success);font-weight:600">7.250%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>The difference between annual and daily compounding on $10,000 is about $1,855 over 20 years. With larger balances and higher rates, this gap widens considerably. Most savings accounts and bonds compound daily or monthly; this calculator lets you model any frequency.</p>
+
+      <!-- DOLLAR-COST AVERAGING -->
+      <h3>Dollar-Cost Averaging: Consistency Over Timing</h3>
+      <p><strong>Dollar-cost averaging (DCA)</strong> is the strategy of investing a fixed amount at regular intervals — say, $500 every month — regardless of whether the market is up or down. This is precisely what the "Monthly Contribution" field in our calculator models.</p>
+      <p>DCA works because when prices drop, your fixed contribution buys more shares. When prices rise, you buy fewer. Over time, your average cost per share tends to be lower than the average market price. More importantly, DCA removes the emotional paralysis of trying to "time the market" — which even professional fund managers fail to do consistently.</p>
+      <p>Research from <a href="https://www.investor.gov/introduction-investing/getting-started" target="_blank" rel="noopener noreferrer">SEC Investor.gov</a> consistently shows that steady, disciplined investing outperforms the strategy of waiting for the "perfect" moment to invest.</p>
+
+      <!-- HISTORICAL CONTEXT -->
+      <h3>Historical S&amp;P 500 Returns: What History Tells Us</h3>
+      <p>The S&amp;P 500 — a broad index of 500 large U.S. companies — has been the benchmark for "stock market returns" for nearly a century. Here's the context you need for realistic planning:</p>
+      <p><strong>Nominal average return:</strong> ~10% per year since 1928. This is the number before adjusting for inflation.</p>
+      <p><strong>Real (inflation-adjusted) return:</strong> ~7% per year. This is what your money is <em>actually</em> worth in purchasing power, and it's the more honest number to use for planning.</p>
+      <p><strong>The range is wide:</strong> Individual years have ranged from -37% (2008) to +53% (1954). The 10% average smooths over enormous volatility. Any single year can be dramatically different from the average.</p>
+      <p>For conservative long-term planning, using <strong>6%–8%</strong> as your expected annual return accounts for market fluctuations, investment fees, and the reality that past performance doesn't guarantee future results. Current data is available from the <a href="https://www.federalreserve.gov/" target="_blank" rel="noopener noreferrer">Federal Reserve</a>.</p>
+
+      <!-- INFLATION -->
+      <h3>The Impact of Inflation on Your Returns</h3>
+      <p>Inflation is the silent thief of wealth. While your portfolio balance grows in nominal terms, inflation steadily erodes what each dollar can buy. This is why our calculator includes an inflation adjustment field.</p>
+      <p><strong>Example:</strong> If your portfolio grows to $500,000 over 25 years, but inflation averaged 3% per year, the <em>real purchasing power</em> of that $500,000 is only about <strong>$239,000</strong> in today's dollars. You still have $500,000, but it buys roughly what $239,000 buys today.</p>
+      <p>This is why it's critical to invest in assets that <em>outpace</em> inflation. Historically, equities have done this comfortably, while cash savings accounts and many bonds have barely kept pace.</p>
+
+      <!-- TAX-ADVANTAGED ACCOUNTS -->
+      <h3>Tax-Advantaged vs. Taxable Accounts</h3>
+      <p>Where you hold your investments matters almost as much as what you invest in. Here's a quick overview:</p>
+      <div style="overflow-x:auto;margin-bottom:var(--space-4)">
+        <table class="amort-table" style="min-width:550px">
+          <thead>
+            <tr><th style="text-align:left">Account Type</th><th style="text-align:left">Tax Treatment</th><th style="text-align:left">2025 Contribution Limit</th><th style="text-align:left">Best For</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>401(k) / 403(b)</td><td>Tax-deferred (pay taxes on withdrawal)</td><td>$23,500 ($31,000 if 50+)</td><td>Employer-match maximization</td></tr>
+            <tr><td>Traditional IRA</td><td>Tax-deferred (may be deductible)</td><td>$7,000 ($8,000 if 50+)</td><td>Additional tax-deferred growth</td></tr>
+            <tr><td>Roth IRA</td><td style="color:var(--color-success);font-weight:600">Tax-free growth &amp; withdrawals</td><td>$7,000 ($8,000 if 50+)</td><td>Younger investors, tax diversification</td></tr>
+            <tr><td>Taxable Brokerage</td><td>Capital gains taxed annually</td><td>No limit</td><td>Flexibility, short/mid-term goals</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p><strong>Priority order:</strong> Get the full employer 401(k) match first (it's free money), then max out a Roth IRA, then go back and max the 401(k), then use a taxable brokerage for anything beyond. For current limits, see <a href="https://www.irs.gov/retirement-plans" target="_blank" rel="noopener noreferrer">IRS retirement plan resources</a>.</p>
+
+      <!-- RULE OF 72 -->
+      <h3>The Rule of 72: A Quick Mental Math Shortcut</h3>
+      <p>Want to know how long it takes your money to double? Just divide 72 by your expected annual return rate:</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:var(--space-3);margin-bottom:var(--space-4)">
+        <div style="background:var(--color-surface-offset);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:var(--space-4);text-align:center">
+          <div style="font-size:var(--text-xs);color:var(--color-text-muted);font-weight:600">At 4%</div>
+          <div style="font-family:var(--font-display);font-size:var(--text-lg);font-weight:800;color:var(--color-text)">18 years</div>
+        </div>
+        <div style="background:var(--color-surface-offset);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:var(--space-4);text-align:center">
+          <div style="font-size:var(--text-xs);color:var(--color-text-muted);font-weight:600">At 6%</div>
+          <div style="font-family:var(--font-display);font-size:var(--text-lg);font-weight:800;color:var(--color-text)">12 years</div>
+        </div>
+        <div style="background:var(--color-surface-offset);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:var(--space-4);text-align:center">
+          <div style="font-size:var(--text-xs);color:var(--color-text-muted);font-weight:600">At 8%</div>
+          <div style="font-family:var(--font-display);font-size:var(--text-lg);font-weight:800;color:var(--color-success)">9 years</div>
+        </div>
+        <div style="background:var(--color-surface-offset);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:var(--space-4);text-align:center">
+          <div style="font-size:var(--text-xs);color:var(--color-text-muted);font-weight:600">At 12%</div>
+          <div style="font-family:var(--font-display);font-size:var(--text-lg);font-weight:800;color:var(--color-success)">6 years</div>
+        </div>
+      </div>
+      <p>The Rule of 72 also works in reverse: at 3% inflation, your money's purchasing power is <em>halved</em> in 24 years (72 ÷ 3 = 24). This underscores why sitting in cash long-term can actually cost you money.</p>
+
+      <!-- 5 COMMON MISTAKES -->
+      <h3>5 Common Investment Mistakes Beginners Make</h3>
+      <div style="display:grid;gap:var(--space-3);margin-bottom:var(--space-4)">
+        <div style="background:var(--color-surface-offset);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:var(--space-4)">
+          <p style="font-weight:700;color:var(--color-text);margin-bottom:var(--space-1);font-size:var(--text-sm)">1. Trying to time the market</p>
+          <p style="font-size:var(--text-xs);color:var(--color-text-muted);margin-bottom:0;line-height:1.5">Research consistently shows that "time <em>in</em> the market" beats "timing the market." Missing even the 10 best trading days over a 20-year period can cut your returns by more than half.</p>
+        </div>
+        <div style="background:var(--color-surface-offset);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:var(--space-4)">
+          <p style="font-weight:700;color:var(--color-text);margin-bottom:var(--space-1);font-size:var(--text-sm)">2. Ignoring fees and expense ratios</p>
+          <p style="font-size:var(--text-xs);color:var(--color-text-muted);margin-bottom:0;line-height:1.5">A 1% annual fee may sound small, but it can consume over 25% of your total returns over 30 years. Choose low-cost index funds with expense ratios under 0.20% whenever possible.</p>
+        </div>
+        <div style="background:var(--color-surface-offset);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:var(--space-4)">
+          <p style="font-weight:700;color:var(--color-text);margin-bottom:var(--space-1);font-size:var(--text-sm)">3. Not diversifying</p>
+          <p style="font-size:var(--text-xs);color:var(--color-text-muted);margin-bottom:0;line-height:1.5">Putting all your money in one stock, sector, or asset class exposes you to unnecessary risk. Broad index funds instantly give you exposure to hundreds or thousands of companies.</p>
+        </div>
+        <div style="background:var(--color-surface-offset);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:var(--space-4)">
+          <p style="font-weight:700;color:var(--color-text);margin-bottom:var(--space-1);font-size:var(--text-sm)">4. Panic-selling during downturns</p>
+          <p style="font-size:var(--text-xs);color:var(--color-text-muted);margin-bottom:0;line-height:1.5">Every major market crash in history has been followed by a full recovery and new highs. Selling during a crash locks in losses and means you miss the recovery. Stay the course.</p>
+        </div>
+        <div style="background:var(--color-surface-offset);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:var(--space-4)">
+          <p style="font-weight:700;color:var(--color-text);margin-bottom:var(--space-1);font-size:var(--text-sm)">5. Waiting to start until you "have enough"</p>
+          <p style="font-size:var(--text-xs);color:var(--color-text-muted);margin-bottom:0;line-height:1.5">There is no minimum amount needed to begin investing. Many brokerages have zero minimums and offer fractional shares. Even $50/month at 7% grows to over $26,000 in 20 years. The best time to start is always <em>now</em>.</p>
+        </div>
+      </div>
+
+      <!-- EXPANDED FAQ -->
       <div class="faq-section">
         <h3>Frequently Asked Questions (FAQ)</h3>
         <div class="faq-grid">
           <div class="faq-item">
-            <div class="faq-question">What is compounding frequency?</div>
-            <div class="faq-answer">Compounding frequency determines how often interest is calculated and added back to your balance. The more frequently interest compounds (e.g., daily or monthly vs. annually), the faster your money grows, as you earn interest on your interest sooner.</div>
+            <div class="faq-question">What is compound interest and how does it work?</div>
+            <div class="faq-answer">Compound interest is interest calculated on both the initial principal and all previously accumulated interest. Unlike simple interest (calculated only on the original amount), compound interest creates exponential growth because you earn interest on your interest. Over long periods, this snowball effect dramatically accelerates wealth growth.</div>
           </div>
           <div class="faq-item">
             <div class="faq-question">What is a realistic annual rate of return?</div>
-            <div class="faq-answer">Historically, the S&P 500 stock index has returned an average of about 10% per year before adjusting for inflation. For conservative planning, many financial advisors recommend using a 6% to 8% return assumption to account for market fluctuations.</div>
+            <div class="faq-answer">The S&amp;P 500 has returned an average of about 10% per year (nominal) since 1928. Adjusted for inflation, the real return is approximately 7%. For conservative financial planning, many advisors recommend using 6%–8% to account for market fluctuations and investment fees.</div>
           </div>
           <div class="faq-item">
-            <div class="faq-question">What is the "Rule of 72"?</div>
-            <div class="faq-answer">The Rule of 72 is a quick mental math shortcut to estimate how long it takes your money to double. Simply divide 72 by your expected annual return rate. For example, at an 8% return rate, your investment will double in approximately 9 years (72 / 8 = 9).</div>
+            <div class="faq-question">What is the Rule of 72?</div>
+            <div class="faq-answer">The Rule of 72 is a quick shortcut to estimate how long it takes your money to double. Divide 72 by your expected annual return rate. At 8%, your money doubles in approximately 9 years (72 ÷ 8 = 9). At 6%, it takes about 12 years. At 12%, roughly 6 years.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">How does compounding frequency matter?</div>
+            <div class="faq-answer">More frequent compounding (daily vs. monthly vs. annually) produces slightly higher returns because interest is reinvested sooner. On $10,000 at 7% over 20 years, annual compounding yields $38,697 while daily compounding yields $40,552 — a difference of $1,855. The effect is more pronounced with larger balances.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">What is dollar-cost averaging?</div>
+            <div class="faq-answer">Dollar-cost averaging (DCA) is investing a fixed amount at regular intervals, regardless of market conditions. When prices are low, you buy more shares; when high, you buy fewer. Over time, this lowers your average cost and removes the emotional pressure of market timing. It's exactly what regular monthly contributions achieve.</div>
           </div>
           <div class="faq-item">
             <div class="faq-question">Why is starting early so important?</div>
-            <div class="faq-answer">Because compounding is exponential, time is your most valuable asset. An individual who starts saving $200 a month at age 25 will end up with significantly more retirement money than someone who starts saving $400 a month at age 35, even though both contributed similar totals.</div>
+            <div class="faq-answer">Because compounding is exponential, time is your most valuable asset. Starting 10 years earlier can more than double your final balance — even if the late starter contributes more money per month. For example, $300/month from age 25–65 at 7% yields ~$948,000, while the same contributions from 35–65 yield only ~$441,000.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">Should I use a Roth IRA or Traditional IRA?</div>
+            <div class="faq-answer">With a Traditional IRA, you get a tax deduction now but pay taxes on withdrawals in retirement. With a Roth IRA, you contribute after-tax dollars but all growth and withdrawals are tax-free. If you expect to be in a higher tax bracket in retirement (or are young with decades of growth ahead), a Roth IRA is generally the better choice.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">How does inflation affect my investment returns?</div>
+            <div class="faq-answer">Inflation erodes purchasing power. A 7% nominal return with 3% inflation gives you only about 4% in real returns. Over 25 years at 3% inflation, a $500,000 portfolio has the purchasing power of only ~$239,000 in today's dollars. Always consider "real" (inflation-adjusted) returns when planning long-term goals.</div>
           </div>
         </div>
+      </div>
+
+      <!-- Sources & Methodology -->
+      <div style="margin-top:var(--space-8);padding-top:var(--space-6);border-top:1px solid var(--color-divider)">
+        <h3 style="font-size:var(--text-sm);margin-top:0">Sources &amp; Methodology</h3>
+        <p style="font-size:var(--text-xs);line-height:1.6;color:var(--color-text-faint)">Calculations on this page use standard compound interest formulas. Historical S&amp;P 500 return data referenced from publicly available market records. For current interest rate data, visit the <a href="https://www.federalreserve.gov/" target="_blank" rel="noopener noreferrer">Federal Reserve</a>. For investing fundamentals, see <a href="https://www.investor.gov/introduction-investing" target="_blank" rel="noopener noreferrer">SEC Investor.gov</a>. For retirement account contribution limits, see the <a href="https://www.irs.gov/retirement-plans" target="_blank" rel="noopener noreferrer">IRS retirement plan resources</a>. This calculator is for educational purposes only — consult a qualified financial advisor before making investment decisions.</p>
       </div>
     </div>
   </section>

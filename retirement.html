@@ -6,6 +6,20 @@
 <title>Retirement Planner Calculator — FinCalcFree</title>
 <meta name="description" content="Plan your retirement savings timeline, target nest egg growth, employer match options, and drawdown phase with life expectancy charts.">
 
+<!-- WebApplication Schema -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"FinCalcFree Retirement Planner","description":"Plan your retirement with contribution projections, employer match calculations, safe withdrawal rates, and interactive growth charts.","applicationCategory":"FinanceApplication","operatingSystem":"All","browserRequirements":"Requires JavaScript. Requires HTML5.","url":"https://fincalcfree.com/retirement"}
+</script>
+
+<!-- FAQPage Schema -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is the 4% rule in retirement planning?","acceptedAnswer":{"@type":"Answer","text":"The 4% rule comes from the 1998 Trinity Study. It states that if you withdraw 4% of your portfolio in the first year of retirement, then adjust that amount for inflation each subsequent year, your savings have a high probability of lasting at least 30 years. To use it, multiply your desired annual retirement income by 25 to find your savings target."}},{"@type":"Question","name":"How much money do I need to retire?","acceptedAnswer":{"@type":"Answer","text":"Using the 4% rule, multiply your expected annual expenses by 25. For example, if you need $50,000 per year, you need $1,250,000 saved. If you need $80,000 per year, you need $2,000,000. Adjust upward if you plan for a longer retirement or want a more conservative withdrawal rate."}},{"@type":"Question","name":"What is the difference between a 401(k), Traditional IRA, and Roth IRA?","acceptedAnswer":{"@type":"Answer","text":"A 401(k) is an employer-sponsored plan with high contribution limits ($23,500 in 2025) and possible employer matching. A Traditional IRA offers tax-deductible contributions but has lower limits ($7,000 in 2025). A Roth IRA uses after-tax dollars but offers tax-free withdrawals in retirement, also with $7,000 limits."}},{"@type":"Question","name":"When should I start claiming Social Security?","acceptedAnswer":{"@type":"Answer","text":"You can claim as early as age 62 with reduced benefits (about 30% less), at your full retirement age (67 for most people) for full benefits, or delay until age 70 for a roughly 24% increase. Delaying generally pays off if you expect to live past your late 70s."}},{"@type":"Question","name":"How does employer matching work?","acceptedAnswer":{"@type":"Answer","text":"Employer matching means your employer contributes additional money to your retirement account based on your contributions. A common match is 50% of your contributions up to 6% of your salary. For example, if you earn $70,000 and contribute 6% ($4,200), your employer adds $2,100 — that is a 50% instant return on your money."}},{"@type":"Question","name":"What are catch-up contributions?","acceptedAnswer":{"@type":"Answer","text":"Workers aged 50 and older can contribute additional money beyond standard limits. For 2025, the 401(k) catch-up amount is $7,500 (total $31,000), and the IRA catch-up is $1,000 (total $8,000). Starting in 2025, workers aged 60-63 get a super catch-up of $11,250 for 401(k) plans."}},{"@type":"Question","name":"How does inflation affect retirement savings?","acceptedAnswer":{"@type":"Answer","text":"Inflation erodes purchasing power over time. At 3% annual inflation, $50,000 today will only buy about $23,880 worth of goods in 25 years. This means you need to either save significantly more or plan for inflation-adjusted withdrawals in retirement."}},{"@type":"Question","name":"Is the 4% rule still valid today?","acceptedAnswer":{"@type":"Answer","text":"The 4% rule remains a useful starting guideline, but many financial planners now recommend a more conservative 3.3% to 3.5% withdrawal rate due to lower expected bond returns and longer life expectancies. Dynamic withdrawal strategies that adjust spending based on portfolio performance are also gaining popularity."}}]}
+</script>
+
+<!-- AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8213059222433705" crossorigin="anonymous"></script>
+
+
 <!-- Theme Script to avoid flash of light/dark background -->
 <script>
   (function() {
@@ -348,6 +362,10 @@ footer{border-top:1px solid var(--color-divider);padding:var(--space-6) 0 var(--
         <svg class="nav-icon" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
         Loan
       </a>
+      <a href="learn.html" class="calc-nav-item">
+        <svg class="nav-icon" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        Learn
+      </a>
     </nav>
     <div class="nav-actions">
       <button class="theme-toggle" data-theme-toggle aria-label="Switch to dark mode">
@@ -460,48 +478,163 @@ footer{border-top:1px solid var(--color-divider);padding:var(--space-6) 0 var(--
 
     <!-- Retirement Guide -->
     <div class="calc-guide-content">
-      <h2>Comprehensive Guide to Retirement Planning & Safe Withdrawal</h2>
+      <h2>Comprehensive Guide to Retirement Planning &amp; Safe Withdrawal</h2>
+
+      <!-- 4% Rule Section -->
       <div class="calc-guide-grid">
         <div>
-          <h3>How to Estimate Your Retirement Needs</h3>
-          <p>Planning for retirement involves two main phases: the <strong>Accumulation Phase</strong> (saving and growing your assets) and the <strong>Distribution Phase</strong> (drawing down your nest egg to pay for living expenses).</p>
-          <p>The goal is to build a large enough nest egg so that you can live off your savings without running out of money before the end of your life expectancy.</p>
-          <p><strong>The Safe Withdrawal Rate (The 4% Rule):</strong> A common benchmark in retirement planning is the 4% Rule. It states that you can withdraw 4% of your total retirement nest egg in the first year of retirement, and then adjust that amount annually for inflation, with a high probability that your savings will last at least 30 years.</p>
+          <h3>The 4% Rule: Origin, How It Works, and Modern Alternatives</h3>
+          <p>The 4% rule is one of the most widely cited guidelines in retirement planning. It originated from the <strong>Trinity Study</strong>, a 1998 research paper by three finance professors at Trinity University in San Antonio, Texas. The study analyzed historical stock and bond returns from 1926 to 1995 and found that a retiree who withdrew 4% of their portfolio in the first year — then adjusted that dollar amount for inflation each subsequent year — had a high probability (roughly 95%) of not running out of money over a 30-year retirement.</p>
+          <p>Here is how it works in practice: determine your desired annual retirement spending, then multiply by 25. That gives you your target nest egg. For example, <strong>if you need $50,000 per year in retirement, you need $50,000 × 25 = $1,250,000 saved</strong>. In your first year of retirement you would withdraw $50,000, then adjust for inflation — if inflation was 3%, you would withdraw $51,500 the next year.</p>
+          <p><strong>Criticism and modern alternatives:</strong> While the 4% rule remains a useful starting point, several financial planners argue it may be too aggressive given today's lower expected bond yields and longer life expectancies. Many now recommend a <strong>3.3% to 3.5% withdrawal rate</strong> for added safety. Others advocate <strong>dynamic withdrawal strategies</strong> — where you reduce spending slightly in years when markets perform poorly and increase it when markets do well — which can improve portfolio longevity without requiring a larger nest egg.</p>
         </div>
         <div>
           <div class="formula-card">
             <div class="formula-title">The 4% Rule Target Formula</div>
-            <div class="formula-math">Target Nest Egg = Annual Expenses &times; 25</div>
+            <div class="formula-math">Nest Egg = Annual Expenses &times; 25</div>
             <div class="formula-desc">
-              <strong>Example:</strong><br>
-              If your target annual living expenses in retirement are <strong>$60,000</strong>, you would multiply this by 25 to find your target retirement goal:<br>
-              • <strong>Target Nest Egg:</strong> $60,000 &times; 25 = <strong>$1,500,000</strong><br>
-              • <strong>4% Annual Withdrawal:</strong> $1,500,000 &times; 0.04 = <strong>$60,000/year</strong> ($5,000/month)
+              <strong>Worked Example:</strong><br>
+              If your annual expenses are <strong>$50,000</strong>:<br>
+              • Target Nest Egg: $50,000 &times; 25 = <strong>$1,250,000</strong><br>
+              • Year 1 Withdrawal: $1,250,000 &times; 4% = <strong>$50,000</strong><br>
+              • Monthly Income: $50,000 / 12 = <strong>$4,167/month</strong><br><br>
+              If your annual expenses are <strong>$80,000</strong>:<br>
+              • Target Nest Egg: $80,000 &times; 25 = <strong>$2,000,000</strong>
             </div>
           </div>
         </div>
       </div>
-      
+
+      <!-- Power of Starting Early -->
+      <h3>The Power of Starting Early</h3>
+      <p>Compound interest is the single most powerful force in retirement savings. Even modest monthly contributions can grow into a substantial nest egg if you start early enough. The difference between starting at age 25 versus age 45 is dramatic — not because of how much you contribute, but because of how long your money has to grow.</p>
+      <p>Consider three people who each invest <strong>$500 per month</strong> at a <strong>7% average annual return</strong>, but start at different ages and retire at 65:</p>
+
+      <div style="overflow-x:auto; margin: var(--space-4) 0 var(--space-6) 0;">
+        <table class="amort-table" style="min-width:480px;">
+          <thead>
+            <tr><th style="text-align:left">Scenario</th><th>Start Age</th><th>Years Investing</th><th>Total Contributed</th><th>Nest Egg at 65</th><th>Interest Earned</th></tr>
+          </thead>
+          <tbody>
+            <tr><td style="font-weight:700;color:var(--color-success)">Early Starter</td><td style="text-align:right">25</td><td style="text-align:right">40</td><td style="text-align:right">$240,000</td><td style="text-align:right;font-weight:700;color:var(--color-success)">$1,310,041</td><td style="text-align:right">$1,070,041</td></tr>
+            <tr><td style="font-weight:700;color:var(--color-gold)">Mid-Career</td><td style="text-align:right">35</td><td style="text-align:right">30</td><td style="text-align:right">$180,000</td><td style="text-align:right;font-weight:700;color:var(--color-gold)">$609,985</td><td style="text-align:right">$429,985</td></tr>
+            <tr><td style="font-weight:700;color:var(--color-warning)">Late Starter</td><td style="text-align:right">45</td><td style="text-align:right">20</td><td style="text-align:right">$120,000</td><td style="text-align:right;font-weight:700;color:var(--color-warning)">$260,464</td><td style="text-align:right">$140,464</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="background:var(--color-surface-offset);border-left:4px solid var(--color-gold);border-radius:var(--radius-md);padding:var(--space-4);margin-bottom:var(--space-6);">
+        <p style="margin-bottom:0;font-size:var(--text-sm);"><strong>💡 Pro Tip:</strong> The early starter contributed only $60,000 more than the late starter but ended up with over <strong>$1 million more</strong> at retirement. Time in the market matters far more than the amount you invest. Even if you can only start with $100 per month, start now.</p>
+      </div>
+
+      <!-- Social Security -->
+      <h3>Social Security: When to Claim (62 vs 67 vs 70)</h3>
+      <p>Social Security provides a foundation of retirement income for most Americans, but <em>when</em> you claim it has a massive impact on your monthly benefit. You can begin as early as age 62, but your benefit will be permanently reduced by about <strong>30%</strong> compared to your full retirement age (currently 67 for those born after 1960). Alternatively, if you delay claiming until age 70, your benefit increases by roughly <strong>8% per year</strong> past your full retirement age — resulting in a benefit that is approximately <strong>24% larger</strong> than at 67.</p>
+      <p>As a general rule, delaying makes financial sense if you are in good health and expect to live past your late 70s. If you need the income immediately or have health concerns, claiming earlier may be the better choice. Visit the <a href="https://www.ssa.gov/benefits/retirement/estimator.html" target="_blank" rel="noopener noreferrer">SSA Retirement Estimator</a> to see your personalized estimates.</p>
+
+      <!-- Employer Match -->
+      <h3>Employer Match: Why It's "Free Money"</h3>
+      <p>If your employer offers a 401(k) match, failing to contribute enough to get the full match is literally leaving free money on the table. Here is a worked example:</p>
+      <p>Say you earn <strong>$70,000 per year</strong> and your employer matches <strong>50% of your contributions up to 6% of your salary</strong>. If you contribute the full 6% ($4,200/year, or $350/month), your employer adds an additional <strong>$2,100 per year</strong>. That is a guaranteed 50% return on your contributed dollars before any investment gains. Over 30 years at a 7% return, that $2,100 annual employer match alone grows to approximately <strong>$212,000</strong>.</p>
+
+      <div style="background:var(--color-surface-offset);border-left:4px solid var(--color-success);border-radius:var(--radius-md);padding:var(--space-4);margin-bottom:var(--space-6);">
+        <p style="margin-bottom:0;font-size:var(--text-sm);"><strong>🎯 Did You Know?</strong> According to the Bureau of Labor Statistics, only about 40% of workers with access to an employer match contribute enough to receive the full match. Always contribute at least enough to capture 100% of your employer's matching contribution before investing anywhere else.</p>
+      </div>
+
+      <!-- 401k vs IRA vs Roth -->
+      <h3>401(k) vs Traditional IRA vs Roth IRA: Which Account Is Right for You?</h3>
+      <p>Choosing the right retirement account depends on your tax situation, income level, and when you want to pay taxes. Here is a side-by-side comparison of the three main account types using <a href="https://www.irs.gov/retirement-plans/plan-participant-employee/retirement-topics-contributions" target="_blank" rel="noopener noreferrer">2025 IRS contribution limits</a>:</p>
+
+      <div style="overflow-x:auto; margin: var(--space-4) 0 var(--space-6) 0;">
+        <table class="amort-table" style="min-width:540px;">
+          <thead>
+            <tr><th style="text-align:left">Feature</th><th>401(k)</th><th>Traditional IRA</th><th>Roth IRA</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>2025 Contribution Limit</td><td style="text-align:right">$23,500</td><td style="text-align:right">$7,000</td><td style="text-align:right">$7,000</td></tr>
+            <tr><td>Catch-Up (Age 50+)</td><td style="text-align:right">+$7,500</td><td style="text-align:right">+$1,000</td><td style="text-align:right">+$1,000</td></tr>
+            <tr><td>Super Catch-Up (60–63)</td><td style="text-align:right">+$11,250</td><td style="text-align:right">N/A</td><td style="text-align:right">N/A</td></tr>
+            <tr><td>Tax on Contributions</td><td style="text-align:right">Pre-tax</td><td style="text-align:right">Tax-deductible</td><td style="text-align:right">After-tax</td></tr>
+            <tr><td>Tax on Withdrawals</td><td style="text-align:right">Taxed as income</td><td style="text-align:right">Taxed as income</td><td style="text-align:right;color:var(--color-success);font-weight:700">Tax-free</td></tr>
+            <tr><td>Employer Match?</td><td style="text-align:right;color:var(--color-success);font-weight:700">Yes</td><td style="text-align:right">No</td><td style="text-align:right">No</td></tr>
+            <tr><td>Required Min. Distributions</td><td style="text-align:right">Age 73</td><td style="text-align:right">Age 73</td><td style="text-align:right;color:var(--color-success);font-weight:700">None</td></tr>
+            <tr><td>Income Limits?</td><td style="text-align:right">No</td><td style="text-align:right">Deduction phaseouts</td><td style="text-align:right">Yes (MAGI limits)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Catch-Up Contributions -->
+      <h3>Catch-Up Contributions After Age 50</h3>
+      <p>If you are 50 or older and feel behind on retirement savings, the IRS allows you to make additional "catch-up" contributions above the standard limits. For 2025, you can contribute an extra <strong>$7,500 to a 401(k)</strong> (for a total of $31,000) and an extra <strong>$1,000 to an IRA</strong> (for a total of $8,000). Starting in 2025, the SECURE 2.0 Act introduced a <strong>"super catch-up"</strong> provision: workers aged 60 through 63 can contribute an additional <strong>$11,250</strong> to their 401(k), bringing the total to $34,750. These catch-up provisions can make a meaningful difference — an extra $7,500 per year invested for 15 years at 7% grows to roughly <strong>$188,000</strong>.</p>
+
+      <!-- Inflation Impact -->
+      <h3>How Inflation Erodes Your Retirement Purchasing Power</h3>
+      <p>Inflation is often called the "silent killer" of retirement plans. At an average inflation rate of 3%, what costs $50,000 today will cost approximately <strong>$104,689</strong> in 25 years. This means a retiree who planned on spending $50,000 per year may actually need over $100,000 per year by the time they are deep into retirement. When using this calculator, consider using a "real" (inflation-adjusted) return rate — for example, if you expect 7% nominal returns and 3% inflation, use 4% as your expected return for a more conservative and realistic projection.</p>
+
+      <!-- 5 Mistakes -->
+      <h3>5 Retirement Planning Mistakes to Avoid</h3>
+      <div style="margin-bottom:var(--space-6);">
+        <p><strong>1. Not starting early enough.</strong> As our comparison table above shows, waiting even 10 years can cost you hundreds of thousands of dollars due to lost compounding. The best time to start was yesterday; the second-best time is today.</p>
+        <p><strong>2. Ignoring employer match.</strong> Not contributing enough to capture your full employer match is the same as declining a guaranteed 50–100% return on your money. Always prioritize this before any other investment.</p>
+        <p><strong>3. Underestimating healthcare costs.</strong> Fidelity estimates that an average retired couple will need approximately <strong>$315,000</strong> (after tax) for healthcare expenses in retirement. Medicare does not cover everything, and supplemental insurance can be expensive.</p>
+        <p><strong>4. Being too conservative with investments.</strong> While it is natural to fear market volatility, being overly conservative (such as keeping everything in bonds or savings accounts) can result in returns that fail to outpace inflation, especially during the accumulation phase.</p>
+        <p><strong>5. Claiming Social Security too early.</strong> Every year you delay claiming past 62 (up to age 70) permanently increases your monthly benefit. For many people, waiting until at least their full retirement age (67) provides substantially more income over a lifetime.</p>
+      </div>
+
+      <!-- External Resources -->
+      <h3>Helpful External Resources</h3>
+      <p>We recommend these authoritative sources for further retirement planning guidance:</p>
+      <ul style="font-size:var(--text-sm);margin-bottom:var(--space-6);padding-left:var(--space-6);line-height:1.8;">
+        <li><a href="https://www.ssa.gov/benefits/retirement/" target="_blank" rel="noopener noreferrer">Social Security Administration — Retirement Benefits</a></li>
+        <li><a href="https://www.irs.gov/retirement-plans/plan-participant-employee/retirement-topics-contributions" target="_blank" rel="noopener noreferrer">IRS — 401(k) and IRA Contribution Limits</a></li>
+        <li><a href="https://www.investor.gov/additional-resources/general-resources/publications/saving-and-investing" target="_blank" rel="noopener noreferrer">Investor.gov — Saving &amp; Investing Guide</a></li>
+        <li><a href="https://www.consumerfinance.gov/consumer-tools/retirement/" target="_blank" rel="noopener noreferrer">CFPB — Planning for Retirement</a></li>
+      </ul>
+
+      <!-- FAQ Section -->
       <div class="faq-section">
         <h3>Frequently Asked Questions (FAQ)</h3>
         <div class="faq-grid">
           <div class="faq-item">
-            <div class="faq-question">What is a safe withdrawal rate?</div>
-            <div class="faq-answer">A safe withdrawal rate is the percentage of your retirement nest egg that you can spend each year without a high risk of running out of money. 4% is widely considered the standard safe rate, though some choose a more conservative 3% to 3.5% in low-interest rate environments.</div>
+            <div class="faq-question">What is the 4% rule in retirement planning?</div>
+            <div class="faq-answer">The 4% rule comes from the 1998 Trinity Study. It states that if you withdraw 4% of your portfolio in the first year of retirement, then adjust that amount for inflation each subsequent year, your savings have a high probability of lasting at least 30 years. To use it, multiply your desired annual retirement income by 25 to find your savings target.</div>
           </div>
           <div class="faq-item">
-            <div class="faq-question">How does an employer match help?</div>
-            <div class="faq-answer">An employer matching contribution (e.g., matching 50% of your contributions up to 6% of your salary) is essentially free money. It instantly increases the yield on your savings and significantly accelerates the rate at which your retirement nest egg compounds.</div>
+            <div class="faq-question">How much money do I need to retire?</div>
+            <div class="faq-answer">Using the 4% rule, multiply your expected annual expenses by 25. For example, if you need $50,000 per year, you need $1,250,000 saved. If you need $80,000 per year, you need $2,000,000. Adjust upward if you plan for a longer retirement or want a more conservative withdrawal rate.</div>
           </div>
           <div class="faq-item">
-            <div class="faq-question">How does inflation impact retirement planning?</div>
-            <div class="faq-answer">Inflation erodes the purchasing power of your money over time. A monthly expense of $5,000 today might require $10,000 or more in 30 years to maintain the same standard of living. When projecting your savings target, it is critical to use inflation-adjusted values.</div>
+            <div class="faq-question">What is the difference between a 401(k), Traditional IRA, and Roth IRA?</div>
+            <div class="faq-answer">A 401(k) is an employer-sponsored plan with high contribution limits ($23,500 in 2025) and possible employer matching. A Traditional IRA offers tax-deductible contributions but has lower limits ($7,000 in 2025). A Roth IRA uses after-tax dollars but offers tax-free withdrawals in retirement, also with $7,000 limits.</div>
           </div>
           <div class="faq-item">
-            <div class="faq-question">What is the difference between pre-tax and post-tax retirement accounts?</div>
-            <div class="faq-answer">Pre-tax accounts (like traditional 401ks or IRAs) give you a tax deduction today, but you pay income tax on withdrawals in retirement. Post-tax accounts (like Roth accounts) offer no tax deduction today, but withdrawals in retirement are 100% tax-free.</div>
+            <div class="faq-question">When should I start claiming Social Security?</div>
+            <div class="faq-answer">You can claim as early as age 62 with reduced benefits (about 30% less), at your full retirement age (67 for most people) for full benefits, or delay until age 70 for a roughly 24% increase. Delaying generally pays off if you expect to live past your late 70s.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">How does employer matching work?</div>
+            <div class="faq-answer">Employer matching means your employer contributes additional money to your retirement account based on your contributions. A common match is 50% of your contributions up to 6% of your salary. For example, if you earn $70,000 and contribute 6% ($4,200), your employer adds $2,100 — that is a 50% instant return on your money.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">What are catch-up contributions?</div>
+            <div class="faq-answer">Workers aged 50 and older can contribute additional money beyond standard limits. For 2025, the 401(k) catch-up amount is $7,500 (total $31,000), and the IRA catch-up is $1,000 (total $8,000). Starting in 2025, workers aged 60–63 get a "super catch-up" of $11,250 for 401(k) plans.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">How does inflation affect retirement savings?</div>
+            <div class="faq-answer">Inflation erodes purchasing power over time. At 3% annual inflation, $50,000 today will only buy about $23,880 worth of goods in 25 years. This means you need to either save significantly more or plan for inflation-adjusted withdrawals in retirement.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">Is the 4% rule still valid today?</div>
+            <div class="faq-answer">The 4% rule remains a useful starting guideline, but many financial planners now recommend a more conservative 3.3% to 3.5% withdrawal rate due to lower expected bond returns and longer life expectancies. Dynamic withdrawal strategies that adjust spending based on portfolio performance are also gaining popularity.</div>
           </div>
         </div>
+      </div>
+
+      <!-- Sources & Methodology -->
+      <div style="margin-top:var(--space-8);border-top:1px solid var(--color-divider);padding-top:var(--space-6);">
+        <h3>Sources &amp; Methodology</h3>
+        <p>This calculator uses the <strong>future value of annuity</strong> formula for the accumulation phase, compounding monthly contributions at the user-specified annual return rate divided by 12. The drawdown phase applies a conservative growth rate (half the accumulation rate) while subtracting monthly withdrawals. The 4% rule target is calculated as the nest egg value multiplied by 0.04, divided by 12 for a monthly figure.</p>
+        <p style="font-size:var(--text-xs);color:var(--color-text-faint);">Contribution limits reflect 2025 IRS guidelines. Social Security information is sourced from <a href="https://www.ssa.gov/" target="_blank" rel="noopener noreferrer">SSA.gov</a>. Historical return assumptions are based on long-term S&amp;P 500 averages. The Trinity Study was published by Cooley, Hubbard, and Walz in the <em>AAII Journal</em>, 1998. This calculator provides estimates only and does not constitute financial advice. Consult a qualified financial advisor for personalized guidance.</p>
       </div>
     </div>
   </section>

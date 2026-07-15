@@ -20,6 +20,80 @@
 }
 </script>
 
+<!-- FAQPage Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the 28/36 debt rule for mortgages?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The 28/36 rule is a guideline lenders use to determine how much you can afford to borrow. Your total housing expenses (PITI) should not exceed 28% of your gross monthly income, and your total debt payments (housing plus car loans, credit cards, student loans) should not exceed 36% of your gross monthly income."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does my down payment affect my mortgage?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A larger down payment reduces your loan amount, which lowers both your monthly payment and the total interest paid over the life of the loan. Putting down at least 20% also lets you avoid Private Mortgage Insurance (PMI), which typically costs 0.5% to 1.5% of the loan amount per year."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I choose a 15-year or 30-year mortgage term?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A 30-year mortgage has lower monthly payments but costs significantly more in total interest. A 15-year mortgage has higher monthly payments but builds equity faster and saves you tens of thousands in interest. For example, on a $280,000 loan at 6.5%, a 30-year term costs $357,200 in interest while a 15-year term costs only $158,400."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is Private Mortgage Insurance (PMI)?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "PMI is insurance that protects the lender if you default on your mortgage. It is typically required when your down payment is less than 20% of the home price. PMI usually costs between 0.5% and 1.5% of your loan amount annually and can be removed once you reach 20% equity."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is an escrow account?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "An escrow account is a neutral holding account managed by your mortgage lender. A portion of your monthly payment is set aside to cover property taxes and homeowners insurance. The lender then pays those bills on your behalf when they come due."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between a fixed-rate and adjustable-rate mortgage?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A fixed-rate mortgage locks in the same interest rate for the entire loan term, giving you predictable payments. An adjustable-rate mortgage (ARM) offers a lower introductory rate for a set period (e.g., 5 or 7 years), after which the rate adjusts periodically based on market conditions, meaning your payment can increase or decrease."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do extra mortgage payments save money?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Extra payments go directly toward reducing your principal balance. Because interest is calculated on the remaining balance, every extra dollar you pay reduces the interest charged on all future payments. Even one extra payment per year on a 30-year mortgage can shave 4 to 5 years off your loan term."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I read an amortization schedule?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "An amortization schedule is a table showing every payment over the life of your loan. Each row shows the payment number, how much goes to principal, how much goes to interest, and the remaining balance. In the early years, most of the payment goes to interest. Over time, the principal portion grows while the interest portion shrinks."
+      }
+    }
+  ]
+}
+</script>
+
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8213059222433705"
      crossorigin="anonymous"></script>
@@ -415,6 +489,10 @@ footer{border-top:1px solid var(--color-divider);padding:var(--space-6) 0 var(--
         <svg class="nav-icon" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
         Loan
       </a>
+      <a href="learn.html" class="calc-nav-item">
+        <svg class="nav-icon" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        Learn
+      </a>
     </nav>
     <div class="nav-actions">
       <button class="theme-toggle" data-theme-toggle aria-label="Switch to dark mode">
@@ -533,16 +611,16 @@ footer{border-top:1px solid var(--color-divider);padding:var(--space-6) 0 var(--
 
     <!-- Mortgage Guide -->
     <div class="calc-guide-content">
-      <h2>Comprehensive Mortgage Guide & Calculator Reference</h2>
+      <h2>Comprehensive Mortgage Guide &amp; Calculator Reference</h2>
       <div class="calc-guide-grid">
         <div>
-          <h3>How Mortgage Payments Are Calculated</h3>
-          <p>When you purchase a home with a mortgage, your monthly payment consists of more than just paying back the money you borrowed. Most home loans are structured as "PITI" payments, which stands for <strong>Principal, Interest, Taxes, and Insurance</strong>:</p>
-          <p><strong>Principal:</strong> The actual portion of the payment that goes toward reducing the outstanding balance of your loan.</p>
-          <p><strong>Interest:</strong> The cost charged by the lender for borrowing the money, calculated as a percentage of the remaining principal.</p>
-          <p><strong>Property Taxes:</strong> Annual taxes levied by your local government, usually collected monthly by the lender and held in an escrow account to be paid on your behalf.</p>
-          <p><strong>Home Insurance:</strong> Protection for your home against damages (fire, hazards). Like taxes, this is typically collected monthly into escrow.</p>
-          <p>In the early years of a mortgage, the majority of your payment goes toward interest. Over time, as the principal balance decreases, a larger share of each payment goes toward paying down the principal. This process is called amortization.</p>
+          <h3>How Mortgage Payments Work: The PITI Breakdown</h3>
+          <p>When you take out a mortgage, your monthly payment is made up of four components — collectively known as <strong>PITI</strong>. Understanding each piece helps you see exactly where your money goes every month:</p>
+          <p><strong>Principal:</strong> This is the portion that reduces the actual balance you owe. In the first years of a 30-year loan, only a small fraction of each payment touches principal. For example, on a $280,000 loan at 6.5%, your first monthly payment of $1,770 puts just $253 toward principal — the rest goes to interest.</p>
+          <p><strong>Interest:</strong> The cost the lender charges for letting you use their money. Interest is calculated on the <em>remaining</em> balance, so it starts high and decreases over time as you pay down the loan. This is why making extra payments early can save you tens of thousands in interest.</p>
+          <p><strong>Property Taxes:</strong> Annual taxes set by your local government, usually between 0.5% and 2.5% of your home's assessed value. Most lenders collect 1/12th of the annual tax bill each month and hold it in an escrow account, then pay the tax authority directly when it's due.</p>
+          <p><strong>Home Insurance:</strong> Homeowners insurance protects your property against fire, storms, theft, and liability. Lenders require it because your home is their collateral. Like taxes, insurance premiums are typically escrowed — collected monthly and paid by the lender when the policy renews.</p>
+          <p>In the early years of a mortgage, the vast majority of each payment goes toward interest. Over time, as the principal balance decreases, a larger share of each payment goes toward paying down what you owe. This gradual shift is called <strong>amortization</strong> — and it's exactly what the chart above illustrates.</p>
         </div>
         <div>
           <div class="formula-card">
@@ -550,35 +628,153 @@ footer{border-top:1px solid var(--color-divider);padding:var(--space-6) 0 var(--
             <div class="formula-math">M = P &times; [ r(1+r)<sup>n</sup> ] / [ (1+r)<sup>n</sup> - 1 ]</div>
             <div class="formula-desc">
               <strong>Where:</strong><br>
-              • <strong>M</strong> = Total monthly principal & interest payment<br>
+              • <strong>M</strong> = Total monthly principal &amp; interest payment<br>
               • <strong>P</strong> = Principal loan amount (Home price minus down payment)<br>
               • <strong>r</strong> = Monthly interest rate (Annual rate / 12 months)<br>
               • <strong>n</strong> = Total number of payments (e.g., 360 payments for a 30-year loan)
             </div>
           </div>
+          <!-- Pro Tip Callout -->
+          <div style="background:var(--color-gold-highlight);border:1px solid var(--color-gold);border-radius:var(--radius-md);padding:var(--space-4);margin-top:var(--space-4)">
+            <div style="font-weight:700;color:var(--color-gold);font-size:var(--text-xs);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:var(--space-2)">💡 Pro Tip</div>
+            <p style="font-size:var(--text-xs);line-height:1.5;margin-bottom:0;color:var(--color-text-muted)">Making just one extra payment per year on a 30-year mortgage can shave <strong>4–5 years</strong> off your loan term and save you thousands in interest. Even rounding your payment up to the nearest $100 makes a meaningful difference over time.</p>
+          </div>
         </div>
       </div>
-      
+
+      <!-- TRUE COST WORKED EXAMPLE -->
+      <h3>The True Cost of a 30-Year Mortgage — A Worked Example</h3>
+      <p>Mortgage math can be eye-opening. Let's walk through a realistic scenario to see how much a home <em>actually</em> costs over 30 years:</p>
+      <div style="background:var(--color-surface-offset);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:var(--space-5);margin-bottom:var(--space-4)">
+        <p style="margin-bottom:var(--space-2)"><strong>Scenario:</strong> You buy a $350,000 home with a 20% down payment ($70,000), borrowing $280,000 at 6.5% fixed for 30 years.</p>
+        <p style="margin-bottom:var(--space-2)">• Monthly P&amp;I payment: <strong>$1,770</strong></p>
+        <p style="margin-bottom:var(--space-2)">• Total of 360 payments: <strong>$637,200</strong></p>
+        <p style="margin-bottom:var(--space-2)">• Total interest paid: <strong>$357,200</strong> — that's more than the original loan amount!</p>
+        <p style="margin-bottom:0">• Add property tax ($375/mo) and insurance ($100/mo), and your <em>actual</em> monthly outlay is around <strong>$2,245</strong>.</p>
+      </div>
+      <p>This is why even small rate differences matter. Dropping from 6.5% to 6.0% on this same loan saves roughly $34,000 in total interest and lowers your monthly payment by about $95.</p>
+
+      <!-- FIXED VS ARM TABLE -->
+      <h3>Fixed-Rate vs. Adjustable-Rate Mortgages (ARM)</h3>
+      <p>Choosing between a fixed-rate mortgage and an ARM depends on your plans, risk tolerance, and how long you expect to stay in the home. Here's how they compare:</p>
+      <div style="overflow-x:auto;margin-bottom:var(--space-4)">
+        <table class="amort-table" style="min-width:600px">
+          <thead>
+            <tr><th style="text-align:left">Feature</th><th style="text-align:left">Fixed-Rate Mortgage</th><th style="text-align:left">Adjustable-Rate (5/1 ARM)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Interest Rate</td><td>Locked for the entire term</td><td>Fixed for 5 years, then adjusts annually</td></tr>
+            <tr><td>Typical Starting Rate</td><td>6.5% (higher)</td><td>5.75% (lower intro rate)</td></tr>
+            <tr><td>Payment Predictability</td><td style="color:var(--color-success);font-weight:600">Fully predictable</td><td>Uncertain after intro period</td></tr>
+            <tr><td>Best For</td><td>Long-term homeowners (10+ years)</td><td>Short-term stays or expected rate drops</td></tr>
+            <tr><td>Risk Level</td><td style="color:var(--color-success);font-weight:600">Low</td><td style="color:var(--color-warning);font-weight:600">Moderate to High</td></tr>
+            <tr><td>Rate Caps</td><td>N/A</td><td>Typically 2% per adjustment, 5% lifetime cap</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>If you plan to sell or refinance within 5–7 years, an ARM's lower introductory rate could save you money. But if you're putting down roots, a fixed-rate mortgage provides peace of mind — your principal and interest payment never changes.</p>
+
+      <!-- DOWN PAYMENT & PMI -->
+      <h3>Down Payment Strategies &amp; Private Mortgage Insurance (PMI)</h3>
+      <p>Your down payment is the single biggest lever you control when purchasing a home. Here's what you need to know:</p>
+      <p><strong>The 20% threshold:</strong> If you put down less than 20%, most conventional lenders will require <strong>Private Mortgage Insurance (PMI)</strong>. PMI protects the lender (not you) if you default, and it typically costs between <strong>0.5% and 1.5%</strong> of your loan amount per year. On a $280,000 loan, that's $1,400 to $4,200 per year — or $117 to $350 added to your monthly payment.</p>
+      <p><strong>When does PMI go away?</strong> Under the <a href="https://www.consumerfinance.gov/ask-cfpb/what-is-private-mortgage-insurance-en-122/" target="_blank" rel="noopener noreferrer">Homeowners Protection Act</a>, your lender must automatically cancel PMI once your loan-to-value ratio reaches 78%, and you can request cancellation at 80%. This gives you a strong incentive to build equity quickly through extra payments.</p>
+      <p><strong>Low-down-payment options:</strong> FHA loans allow as little as 3.5% down. Some conventional programs allow 3%. VA loans and USDA loans offer 0% down for qualifying buyers. Each program has its own mortgage insurance rules, so compare total costs carefully. Visit <a href="https://www.hud.gov/buying" target="_blank" rel="noopener noreferrer">HUD.gov</a> for official guidance on government-backed loan programs.</p>
+
+      <!-- 15-YEAR VS 30-YEAR TABLE -->
+      <h3>15-Year vs. 30-Year Mortgage: Side-by-Side Comparison</h3>
+      <p>Using our example of a $280,000 loan at 6.5% (30-year) vs. 6.0% (15-year — shorter terms typically earn lower rates):</p>
+      <div style="overflow-x:auto;margin-bottom:var(--space-4)">
+        <table class="amort-table" style="min-width:500px">
+          <thead>
+            <tr><th style="text-align:left">Metric</th><th>30-Year at 6.5%</th><th>15-Year at 6.0%</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Monthly P&amp;I Payment</td><td>$1,770</td><td style="color:var(--color-warning);font-weight:600">$2,363</td></tr>
+            <tr><td>Total Payments (P&amp;I)</td><td style="color:var(--color-warning);font-weight:600">$637,200</td><td>$425,340</td></tr>
+            <tr><td>Total Interest Paid</td><td style="color:var(--color-warning);font-weight:600">$357,200</td><td style="color:var(--color-success);font-weight:600">$145,340</td></tr>
+            <tr><td>Interest Savings</td><td>—</td><td style="color:var(--color-success);font-weight:600">$211,860</td></tr>
+            <tr><td>Payoff Date (from 2025)</td><td>2055</td><td style="color:var(--color-success);font-weight:600">2040</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>The 15-year mortgage costs $593 more per month but saves you <strong>$211,860 in interest</strong> and has you mortgage-free 15 years sooner. If you can comfortably manage the higher payment, the 15-year term is financially superior.</p>
+
+      <!-- READING AMORTIZATION SCHEDULE -->
+      <h3>How to Read Your Amortization Schedule</h3>
+      <p>An amortization schedule is a month-by-month table that shows exactly how each payment is split between principal and interest, plus your remaining balance. Here's how to use it:</p>
+      <p><strong>Early payments are interest-heavy.</strong> In month 1 of our $280,000 loan at 6.5%, $1,517 of the $1,770 payment goes to interest and only $253 to principal. By month 180 (halfway), the split is roughly 50/50. By the final year, nearly the entire payment goes to principal.</p>
+      <p><strong>The "crossover point"</strong> is when your principal payment exceeds your interest payment for the first time. On a 30-year loan, this doesn't happen until roughly year 19–21, depending on your rate. Click "Show All Payments" above the calculator to see yours.</p>
+      <p><strong>Use it for planning:</strong> Your amortization schedule shows how much equity you'll have at any point in the future — useful for refinancing decisions, PMI removal timing, or understanding your net worth.</p>
+
+      <!-- FIRST-TIME BUYER TIPS -->
+      <h3>5 Essential Tips for First-Time Home Buyers</h3>
+      <div style="display:grid;gap:var(--space-3);margin-bottom:var(--space-4)">
+        <div style="background:var(--color-surface-offset);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:var(--space-4)">
+          <p style="font-weight:700;color:var(--color-text);margin-bottom:var(--space-1);font-size:var(--text-sm)">1. Get pre-approved before you shop</p>
+          <p style="font-size:var(--text-xs);color:var(--color-text-muted);margin-bottom:0;line-height:1.5">A pre-approval letter from a lender tells sellers you're serious and tells <em>you</em> exactly how much you can afford. It also locks in a rate for 60–90 days.</p>
+        </div>
+        <div style="background:var(--color-surface-offset);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:var(--space-4)">
+          <p style="font-weight:700;color:var(--color-text);margin-bottom:var(--space-1);font-size:var(--text-sm)">2. Budget for closing costs (2%–5% of the loan)</p>
+          <p style="font-size:var(--text-xs);color:var(--color-text-muted);margin-bottom:0;line-height:1.5">Beyond the down payment, expect to pay for appraisals, title insurance, origination fees, and prepaid taxes/insurance at closing. On a $280,000 loan, that's $5,600 to $14,000.</p>
+        </div>
+        <div style="background:var(--color-surface-offset);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:var(--space-4)">
+          <p style="font-weight:700;color:var(--color-text);margin-bottom:var(--space-1);font-size:var(--text-sm)">3. Compare at least 3 lenders</p>
+          <p style="font-size:var(--text-xs);color:var(--color-text-muted);margin-bottom:0;line-height:1.5">Rates and fees vary significantly between lenders. The <a href="https://www.consumerfinance.gov/owning-a-home/" target="_blank" rel="noopener noreferrer">CFPB's home-buying tools</a> can help you compare Loan Estimates side by side.</p>
+        </div>
+        <div style="background:var(--color-surface-offset);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:var(--space-4)">
+          <p style="font-weight:700;color:var(--color-text);margin-bottom:var(--space-1);font-size:var(--text-sm)">4. Don't forget the hidden costs of ownership</p>
+          <p style="font-size:var(--text-xs);color:var(--color-text-muted);margin-bottom:0;line-height:1.5">Maintenance typically runs 1%–2% of your home's value per year. A $350,000 home may need $3,500–$7,000 annually for upkeep, repairs, and replacements.</p>
+        </div>
+        <div style="background:var(--color-surface-offset);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:var(--space-4)">
+          <p style="font-weight:700;color:var(--color-text);margin-bottom:var(--space-1);font-size:var(--text-sm)">5. Keep an emergency fund — don't drain savings for the down payment</p>
+          <p style="font-size:var(--text-xs);color:var(--color-text-muted);margin-bottom:0;line-height:1.5">Financial experts recommend keeping 3–6 months of expenses in reserve after closing. A broken furnace or job loss shouldn't put your new home at risk.</p>
+        </div>
+      </div>
+
+      <!-- EXPANDED FAQ -->
       <div class="faq-section">
         <h3>Frequently Asked Questions (FAQ)</h3>
         <div class="faq-grid">
           <div class="faq-item">
             <div class="faq-question">What is the 28/36 debt rule?</div>
-            <div class="faq-answer">Lenders use this rule to determine how much you can borrow. It states that your housing expenses (PITI) shouldn't exceed 28% of your gross monthly income, and your total debt payments (housing + credit cards + car loans) shouldn't exceed 36% of your income.</div>
+            <div class="faq-answer">The 28/36 rule is a guideline lenders use to assess affordability. Your total housing expenses (PITI) should not exceed 28% of your gross monthly income, and your total debt payments — housing plus car loans, credit cards, and student loans — should not exceed 36%. For example, if you earn $7,000/month gross, your max PITI is $1,960 and your max total debt is $2,520.</div>
           </div>
           <div class="faq-item">
             <div class="faq-question">How does my down payment affect my mortgage?</div>
-            <div class="faq-answer">A larger down payment lowers your loan amount, which reduces your monthly payment and total interest paid. Additionally, putting down at least 20% helps you avoid paying Private Mortgage Insurance (PMI), which is an extra fee lenders charge to protect themselves.</div>
+            <div class="faq-answer">A larger down payment reduces your loan amount, which lowers both your monthly payment and total interest paid. On a $350,000 home, putting 20% down ($70,000) versus 10% ($35,000) saves roughly $320/month and over $80,000 in total interest on a 30-year loan at 6.5% — plus you avoid PMI entirely.</div>
           </div>
           <div class="faq-item">
             <div class="faq-question">Should I choose a 15-year or 30-year term?</div>
-            <div class="faq-answer">A 30-year mortgage offers lower, more manageable monthly payments but costs significantly more in total interest over the life of the loan. A 15-year mortgage has higher monthly payments but lets you pay off the home faster and saves you tens of thousands of dollars in interest.</div>
+            <div class="faq-answer">A 30-year term offers lower monthly payments, while a 15-year term saves enormous amounts on interest (see the comparison table above). Choose the 30-year if cash flow flexibility is important to you, but consider making extra payments to pay it off faster. Choose the 15-year if you can comfortably afford the higher payment.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">What is Private Mortgage Insurance (PMI)?</div>
+            <div class="faq-answer">PMI protects the lender — not you — if you default on a conventional loan with less than 20% down. It typically costs 0.5%–1.5% of the loan amount per year, added to your monthly payment. Once you reach 20% equity (80% loan-to-value), you can request its removal. At 78% LTV, the lender must remove it automatically.</div>
           </div>
           <div class="faq-item">
             <div class="faq-question">What is an escrow account?</div>
-            <div class="faq-answer">An escrow account is a neutral holding account managed by your mortgage lender. They collect a portion of your monthly payment to cover property taxes and home insurance, then pay those bills for you when they are due.</div>
+            <div class="faq-answer">An escrow account is a neutral holding account managed by your mortgage servicer. Each month, a portion of your payment covers property taxes and homeowners insurance. The servicer holds these funds and pays the bills on your behalf when they're due — ensuring you never miss a tax or insurance payment.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">Fixed-rate vs. adjustable-rate — which is better?</div>
+            <div class="faq-answer">If you plan to stay in your home for 10+ years, a fixed-rate mortgage provides predictable payments and protection against rising rates. If you expect to move or refinance within 5–7 years, an ARM's lower introductory rate could save you money. Always consider the worst-case scenario: what happens when the ARM adjusts upward?</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">How do extra payments save me money?</div>
+            <div class="faq-answer">Extra payments go directly toward reducing your principal. Since interest is charged on the remaining balance, every dollar of extra principal cuts future interest. Adding just $200/month to our $280,000 example saves over $98,000 in interest and pays off the loan almost 8 years early.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">How do I read an amortization schedule?</div>
+            <div class="faq-answer">Each row shows a single payment broken into principal, interest, and remaining balance. Early payments are interest-heavy; later payments are principal-heavy. The "crossover point" — where principal exceeds interest — typically occurs around year 19–21 on a 30-year loan. Use it to plan for PMI removal, refinancing, or tracking home equity growth.</div>
           </div>
         </div>
+      </div>
+
+      <!-- Sources & Methodology -->
+      <div style="margin-top:var(--space-8);padding-top:var(--space-6);border-top:1px solid var(--color-divider)">
+        <h3 style="font-size:var(--text-sm);margin-top:0">Sources &amp; Methodology</h3>
+        <p style="font-size:var(--text-xs);line-height:1.6;color:var(--color-text-faint)">Data and calculations on this page are based on standard amortization formulas used by financial institutions. For current mortgage rates, visit the <a href="https://www.federalreserve.gov/" target="_blank" rel="noopener noreferrer">Federal Reserve</a>. For guidance on mortgage shopping, see the <a href="https://www.consumerfinance.gov/owning-a-home/" target="_blank" rel="noopener noreferrer">CFPB's home-buying resources</a>. For information on government-backed loan programs (FHA, VA, USDA), visit <a href="https://www.hud.gov/buying" target="_blank" rel="noopener noreferrer">HUD.gov</a>. This calculator is for educational purposes only — consult a licensed mortgage professional before making financial decisions.</p>
       </div>
     </div>
   </section>
