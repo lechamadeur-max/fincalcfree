@@ -188,6 +188,8 @@
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{min-height:100dvh;line-height:1.6;font-family:var(--font-body);font-size:var(--text-base);color:var(--color-text);background:var(--color-bg);-webkit-font-smoothing:antialiased}
+a,a:visited{color:var(--color-primary);transition:color var(--transition-fast) ease}
+a:hover,a:focus,a:active{color:var(--color-primary-hover)}
 .container{max-width:var(--content-wide);margin-inline:auto;padding-inline:var(--space-4)}
 @media(min-width:768px){.container{padding-inline:var(--space-8)}}
 
