@@ -387,7 +387,8 @@ footer{border-top:1px solid var(--color-divider);padding:var(--space-6) 0 var(--
   <section class="hero" aria-labelledby="hero-title">
     <div class="hero-content">
       <h1 class="hero-title" id="hero-title">
-        Plan your savings roadmap with our interactive <span class="text-retirement">retirement planning</span> metrics and safety targets.
+        Plan your savings roadmap with our<br>
+        interactive retirement planning metrics and safety targets.
       </h1>
     </div>
   </section>
@@ -816,8 +817,16 @@ function calcRetirement(silent){
 
 // ===== SHARE MODAL =====
 document.getElementById('open-share').addEventListener('click',()=>{
-  const modal=document.getElementById('share-modal');
-  modal.classList.add('open');
+  if (navigator.share) {
+    navigator.share({
+      title: document.title,
+      text: 'Free Retirement Planner — compute savings trajectories and withdrawal goals!',
+      url: window.location.href
+    }).catch(err => console.log('Error sharing:', err));
+  } else {
+    const modal=document.getElementById('share-modal');
+    modal.classList.add('open');
+  }
 });
 function closeShareModal(){document.getElementById('share-modal').classList.remove('open');}
 document.getElementById('share-modal').addEventListener('click',e=>{if(e.target===document.getElementById('share-modal')) closeShareModal();});

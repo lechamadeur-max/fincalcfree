@@ -465,7 +465,8 @@ footer{border-top:1px solid var(--color-divider);padding:var(--space-6) 0 var(--
   <section class="hero" aria-labelledby="hero-title">
     <div class="hero-content">
       <h1 class="hero-title" id="hero-title">
-        Project your compound wealth with our <span class="text-investment">investment growth</span> calculator and interactive charts.
+        Project your compound wealth with our<br>
+        investment growth calculator and interactive charts.
       </h1>
     </div>
   </section>
@@ -921,8 +922,16 @@ function calcInvestment(silent){
 
 // ===== SHARE MODAL =====
 document.getElementById('open-share').addEventListener('click',()=>{
-  const modal=document.getElementById('share-modal');
-  modal.classList.add('open');
+  if (navigator.share) {
+    navigator.share({
+      title: document.title,
+      text: 'Free Investment Calculator — project growth and compound returns!',
+      url: window.location.href
+    }).catch(err => console.log('Error sharing:', err));
+  } else {
+    const modal=document.getElementById('share-modal');
+    modal.classList.add('open');
+  }
 });
 function closeShareModal(){document.getElementById('share-modal').classList.remove('open');}
 document.getElementById('share-modal').addEventListener('click',e=>{if(e.target===document.getElementById('share-modal')) closeShareModal();});

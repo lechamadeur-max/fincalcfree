@@ -353,8 +353,16 @@ document.getElementById('mobile-menu-btn').addEventListener('click',function(){
 
 // ===== SHARE MODAL =====
 document.getElementById('open-share').addEventListener('click',()=>{
-  const modal=document.getElementById('share-modal');
-  modal.classList.add('open');
+  if (navigator.share) {
+    navigator.share({
+      title: document.title,
+      text: 'FinCalcFree — 100% Free Financial Calculators',
+      url: window.location.href
+    }).catch(err => console.log('Error sharing:', err));
+  } else {
+    const modal=document.getElementById('share-modal');
+    modal.classList.add('open');
+  }
 });
 function closeShareModal(){document.getElementById('share-modal').classList.remove('open');}
 document.getElementById('share-modal').addEventListener('click',e=>{if(e.target===document.getElementById('share-modal')) closeShareModal();});
