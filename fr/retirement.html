@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Retirement Planner Calculator — FinCalcFree</title>
+<title>Calculateur de planification de la retraite — FinCalcFree</title>
 <meta name="description" content="Plan your retirement savings timeline, target nest egg growth, employer match options, and drawdown phase with life expectancy charts.">
 
 <!-- WebApplication Schema -->
@@ -338,7 +338,7 @@ footer{border-top:1px solid var(--color-divider);padding:var(--space-6) 0 var(--
 <!-- NAVBAR -->
 <header class="navbar" role="banner">
   <div class="container navbar-inner">
-    <a href="index.html" class="logo" aria-label="FinCalcFree Home">
+    <a href="index.html" class="logo" aria-label="Accueil FinCalcFree">
       <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
         <rect width="32" height="32" rx="8" fill="currentColor" style="color:var(--color-primary)"/>
         <path d="M9 20L13 15L17 18L23 11" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -347,30 +347,30 @@ footer{border-top:1px solid var(--color-divider);padding:var(--space-6) 0 var(--
       </svg>
       <span class="logo-text">Fin<span>Calc</span><span class="logo-free">Free</span></span>
     </a>
-    <nav class="nav-links" id="main-nav" role="navigation" aria-label="Calculator navigation">
+    <nav class="nav-links" id="main-nav" role="navigation" aria-label="Navigation des calculateurs">
       <a href="index.html" class="calc-nav-item">
         <svg class="nav-icon" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
-        Mortgage
+        Hypothèque
       </a>
       <a href="investment.html" class="calc-nav-item">
         <svg class="nav-icon" viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
-        Investment
+        Placements
       </a>
       <a href="retirement.html" class="calc-nav-item active">
         <svg class="nav-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-        Retirement
+        Retraite
       </a>
       <a href="loan.html" class="calc-nav-item">
         <svg class="nav-icon" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-        Loan
+        Prêts
       </a>
       <a href="learn.html" class="calc-nav-item">
         <svg class="nav-icon" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-        Learn
+        Guides
       </a>
     </nav>
-    <div class="nav-actions"><a href="../index.html" class="lang-switch" style="font-size:var(--text-xs);font-weight:700;padding:var(--space-2) var(--space-3);border-radius:var(--radius-md);border:1px solid var(--color-border);color:var(--color-primary);text-decoration:none;margin-right:8px;" title="Switch to English">EN</a>
-      <button class="theme-toggle" data-theme-toggle aria-label="Switch to dark mode">
+    <div class="nav-actions"><a href="../retirement.html" class="lang-switch" style="font-size:var(--text-xs);font-weight:700;padding:var(--space-2) var(--space-3);border-radius:var(--radius-md);border:1px solid var(--color-border);color:var(--color-primary);text-decoration:none;margin-right:8px;" title="Switch to English">EN</a><a href="fr/retirement.html" class="lang-switch" style="font-size:var(--text-xs);font-weight:700;padding:var(--space-2) var(--space-3);border-radius:var(--radius-md);border:1px solid var(--color-border);color:var(--color-primary);text-decoration:none;margin-right:8px;" title="Passer au français (Canada)">FR</a>
+      <button class="theme-toggle" data-theme-toggle aria-label="Basculer le mode sombre">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
       </button>
       <button class="btn-share" id="open-share" aria-label="Share this calculator">
@@ -406,26 +406,26 @@ footer{border-top:1px solid var(--color-divider);padding:var(--space-6) 0 var(--
           <div class="card-title-icon" style="background:var(--color-gold-highlight)">
             <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-gold)" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
           </div>
-          <h2 class="card-title" style="margin-bottom:0">Retirement Planner</h2>
+          <h2 class="card-title" style="margin-bottom:0">Planification de la retraite</h2>
         </div>
         <form id="retirement-form" onsubmit="return false;">
           <div class="form-row">
             <div class="form-group">
-              <label class="form-label" for="r-age">Âge actuel</label>
+              <label class="form-label" for="r-age">Current Age</label>
               <input class="form-input" type="number" id="r-age" value="35" min="18" max="70">
             </div>
             <div class="form-group">
-              <label class="form-label" for="r-retire-age">Âge ciblé pour la retraite</label>
+              <label class="form-label" for="r-retire-age">Âge visé à la retraite</label>
               <input class="form-input" type="number" id="r-retire-age" value="65" min="40" max="80">
             </div>
           </div>
           <div class="form-group">
-            <label class="form-label" for="r-current">Épargne actuelle pour la retraite</label>
+            <label class="form-label" for="r-current">Current Savings</label>
             <div class="input-wrapper"><span class="input-prefix">$</span><input class="form-input has-prefix" type="number" id="r-current" value="50000" min="0" step="1000"></div>
           </div>
           <div class="form-row">
             <div class="form-group">
-              <label class="form-label" for="r-monthly">Cotisation mensuelle</label>
+              <label class="form-label" for="r-monthly">Cotisation mensuelle (REER / CELI)</label>
               <div class="input-wrapper"><span class="input-prefix">$</span><input class="form-input has-prefix" type="number" id="r-monthly" value="800" min="0" step="50"></div>
             </div>
             <div class="form-group">
@@ -434,7 +434,7 @@ footer{border-top:1px solid var(--color-divider);padding:var(--space-6) 0 var(--
             </div>
           </div>
           <div class="form-group">
-            <label class="form-label" for="r-return">Expected Rendement annuel estimé (%)</label>
+            <label class="form-label" for="r-return">Expected Annual Return</label>
             <div class="range-wrapper">
               <input type="range" class="range-input" id="r-return-range" min="1" max="15" step="0.5" value="7">
               <div class="input-wrapper" style="width:100px;flex-shrink:0"><input class="form-input has-suffix" type="number" id="r-return" value="7" min="0.1" max="20" step="0.5"><span class="input-suffix">%</span></div>
@@ -450,19 +450,19 @@ footer{border-top:1px solid var(--color-divider);padding:var(--space-6) 0 var(--
               <input class="form-input" type="number" id="r-lifespan" value="90" min="65" max="110">
             </div>
           </div>
-          <button class="btn-primary" type="button" onclick="calcRetirement()">Calculer Retirement</button>
+          <button class="btn-primary" type="button" onclick="calcRetirement()">Calculer la retraite</button>
         </form>
       </div>
       <div>
         <div class="results-card" id="retirement-results-card" style="display:none">
           <div class="results-header" style="background:var(--color-gold)">
-            <h3>Retirement Projection</h3>
+            <h3>Projection de capital à la retraite</h3>
             <p id="r-summary-text">Retire at 65 · 30 years to save</p>
           </div>
           <div class="results-kpis">
             <div class="kpi"><div class="kpi-label">Nest Egg at Retirement</div><div class="kpi-value positive" id="r-nest-egg">—</div></div>
             <div class="kpi"><div class="kpi-label">Funds Last Until</div><div class="kpi-value" id="r-last-age">—</div></div>
-            <div class="kpi"><div class="kpi-label">Total Contributions</div><div class="kpi-value" id="r-total-contrib">—</div></div>
+            <div class="kpi"><div class="kpi-label">Total des cotisations</div><div class="kpi-value" id="r-total-contrib">—</div></div>
             <div class="kpi"><div class="kpi-label">Monthly Need (4% Rule)</div><div class="kpi-value" id="r-monthly-need">—</div></div>
           </div>
           <div class="chart-area">
@@ -499,7 +499,7 @@ footer{border-top:1px solid var(--color-divider);padding:var(--space-6) 0 var(--
               <strong>Worked Example:</strong><br>
               If your annual expenses are <strong>$50,000</strong>:<br>
               • Target Nest Egg: $50,000 &times; 25 = <strong>$1,250,000</strong><br>
-              • Année 1 Withdrawal: $1,250,000 &times; 4% = <strong>$50,000</strong><br>
+              • Year 1 Withdrawal: $1,250,000 &times; 4% = <strong>$50,000</strong><br>
               • Monthly Income: $50,000 / 12 = <strong>$4,167/month</strong><br><br>
               If your annual expenses are <strong>$80,000</strong>:<br>
               • Target Nest Egg: $80,000 &times; 25 = <strong>$2,000,000</strong>
@@ -516,7 +516,7 @@ footer{border-top:1px solid var(--color-divider);padding:var(--space-6) 0 var(--
       <div style="overflow-x:auto; margin: var(--space-4) 0 var(--space-6) 0;">
         <table class="amort-table" style="min-width:480px;">
           <thead>
-            <tr><th style="text-align:left">Scenario</th><th>Start Age</th><th>Années Investing</th><th>Total Contributed</th><th>Nest Egg at 65</th><th>Interest Earned</th></tr>
+            <tr><th style="text-align:left">Scenario</th><th>Start Age</th><th>Years Investing</th><th>Total Contributed</th><th>Nest Egg at 65</th><th>Interest Earned</th></tr>
           </thead>
           <tbody>
             <tr><td style="font-weight:700;color:var(--color-success)">Early Starter</td><td style="text-align:right">25</td><td style="text-align:right">40</td><td style="text-align:right">$240,000</td><td style="text-align:right;font-weight:700;color:var(--color-success)">$1,310,041</td><td style="text-align:right">$1,070,041</td></tr>
@@ -658,7 +658,7 @@ footer{border-top:1px solid var(--color-divider);padding:var(--space-6) 0 var(--
         <a href="privacy.html">Privacy Policy</a>
         <a href="disclaimer.html">Avis légal</a>
       </div>
-      <p class="footer-text">Résultats are estimates only. Consult a financial advisor for advice.</p>
+      <p class="footer-text">Results are estimates only. Consult a financial advisor for advice.</p>
     </div>
   </div>
 </footer>
@@ -691,7 +691,7 @@ footer{border-top:1px solid var(--color-divider);padding:var(--space-6) 0 var(--
     </div>
     <div class="share-url-row">
       <div class="share-url" id="share-url-display">https://fincalcfree.com/retirement.html</div>
-      <button class="btn-copy" onclick="copyShareUrl()">Copy</button>
+      <button class="btn-copy" onclick="copyShareUrl()">Copier</button>
     </div>
   </div>
 </div>
