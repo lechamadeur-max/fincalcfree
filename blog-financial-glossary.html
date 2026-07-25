@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Financial Calculator Glossary: 50 Terms You Should Know — FinCalcFree</title>
+<meta name="description" content="A comprehensive 50-term reference dictionary explaining APR, APY, amortization, DTI, LTV, and more.">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Financial Calculator Glossary: 50 Terms You Should Know",
+  "url": "https://fincalcfree.com/blog-financial-glossary.html",
+  "author": { "@type": "Organization", "name": "FinCalcFree Team" },
+  "publisher": { "@type": "Organization", "name": "FinCalcFree", "url": "https://fincalcfree.com" },
+  "datePublished": "2026-07-14",
+  "dateModified": "2026-07-24"
+}
+</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8213059222433705" crossorigin="anonymous"></script>
+
+<script>
+  (function() {
+    const t = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,600,700&f[]=cabinet-grotesk@400,500,700,800&display=swap" rel="stylesheet">
+
+<style>
+:root, [data-theme="light"] {
+  --text-xs:   clamp(0.75rem,  0.7rem  + 0.25vw, 0.875rem);
+  --text-sm:   clamp(0.875rem, 0.8rem  + 0.35vw, 1rem);
+  --text-base: clamp(1rem,     0.95rem + 0.25vw, 1.125rem);
+  --text-lg:   clamp(1.125rem, 1rem    + 0.75vw, 1.5rem);
+  --text-xl:   clamp(1.5rem,   1.2rem  + 1.25vw, 2.25rem);
+  --text-2xl:  clamp(2rem,     1.2rem  + 2.5vw,  3.5rem);
+
+  --space-1:0.25rem;--space-2:0.5rem;--space-3:0.75rem;--space-4:1rem;
+  --space-5:1.25rem;--space-6:1.5rem;--space-8:2rem;--space-10:2.5rem;
+  --space-12:3rem;--space-16:4rem;--space-20:5rem;--space-24:6rem;
+
+  --color-bg:#f7f6f2;
+  --color-surface:#f9f8f5;
+  --color-surface-2:#fbfbf9;
+  --color-surface-offset:#f3f0ec;
+  --color-surface-offset-2:#edeae5;
+  --color-surface-dynamic:#e6e4df;
+  --color-divider:#dcd9d5;
+  --color-border:#d4d1ca;
+  --color-text:#28251d;
+  --color-text-muted:#7a7974;
+  --color-text-faint:#bab9b4;
+  --color-text-inverse:#f9f8f4;
+  --color-primary:#01696f;
+  --color-primary-hover:#0c4e54;
+  --color-primary-active:#0f3638;
+  --color-primary-highlight:#cedcd8;
+  --color-success:#437a22;
+  --color-success-hover:#2e5c10;
+  --color-success-highlight:#d4dfcc;
+  --color-warning:#964219;
+  --color-warning-highlight:#ddcfc6;
+  --color-error:#a12c7b;
+  --color-gold:#d19900;
+  --color-gold-hover:#a37700;
+  --color-gold-active:#7a5900;
+  --color-gold-highlight:#e9e0c6;
+  --color-blue:#006494;
+  --color-blue-hover:#004b70;
+  --color-blue-active:#00334d;
+  --color-blue-highlight:#c6d8e4;
+
+  --radius-sm:0.375rem;--radius-md:0.5rem;--radius-lg:0.75rem;
+  --radius-xl:1rem;--radius-2xl:1.5rem;--radius-full:9999px;
+  --transition-interactive:180ms cubic-bezier(0.16, 1, 0.3, 1);
+  --shadow-sm:0 1px 2px oklch(0.2 0.01 80 / 0.06);
+  --shadow-md:0 4px 12px oklch(0.2 0.01 80 / 0.08);
+  --shadow-lg:0 12px 32px oklch(0.2 0.01 80 / 0.12);
+
+  --font-display: 'Cabinet Grotesk', 'Helvetica Neue', sans-serif;
+  --font-body: 'Satoshi', 'Helvetica Neue', sans-serif;
+  --content-narrow:640px;--content-default:960px;--content-wide:1200px;
+}
+
+[data-theme="dark"] {
+  --color-bg:#171614;--color-surface:#1c1b19;--color-surface-2:#201f1d;
+  --color-surface-offset:#1d1c1a;--color-surface-offset-2:#22211f;
+  --color-surface-dynamic:#2d2c2a;--color-divider:#262523;--color-border:#393836;
+  --color-text:#f5f4f2;--color-text-muted:#b0aeb3;--color-text-faint:#88868c;
+  --color-text-inverse:#2b2a28;
+  --color-primary:#4f98a3;--color-primary-hover:#227f8b;--color-primary-active:#1a626b;
+  --color-primary-highlight:#313b3b;
+  --color-success:#6daa45;--color-success-hover:#4d8f25;--color-success-highlight:#3a4435;
+  --color-warning:#bb653b;--color-warning-highlight:#564942;
+  --color-error:#d163a7;
+  --color-gold:#e8af34;--color-gold-hover:#c28f1b;--color-gold-active:#9c710f;--color-gold-highlight:#4d4332;
+  --color-blue:#5591c7;--color-blue-hover:#3d79b0;--color-blue-active:#2b5e8c;--color-blue-highlight:#3a4550;
+  --shadow-sm:0 1px 2px oklch(0 0 0 / 0.2);
+  --shadow-md:0 4px 12px oklch(0 0 0 / 0.3);
+  --shadow-lg:0 12px 32px oklch(0 0 0 / 0.4);
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{min-height:100dvh;line-height:1.6;font-family:var(--font-body);font-size:var(--text-base);color:var(--color-text);background:var(--color-bg);-webkit-font-smoothing:antialiased}
+a,a:visited{color:var(--color-primary);transition:color var(--transition-fast) ease}
+a:hover,a:focus,a:active{color:var(--color-primary-hover)}
+.container{max-width:var(--content-wide);margin-inline:auto;padding-inline:var(--space-4)}
+@media(min-width:768px){.container{padding-inline:var(--space-8)}}
+
+.navbar{position:sticky;top:0;z-index:100;background:color-mix(in oklch,var(--color-surface) 92%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid oklch(from var(--color-text) l c h / 0.08);padding-block:var(--space-3)}
+.navbar-inner{display:flex;align-items:center;justify-content:space-between;gap:var(--space-4)}
+.logo{display:flex;align-items:center;gap:var(--space-2);text-decoration:none;color:var(--color-text)}
+.logo-text{font-family:var(--font-display);font-weight:800;font-size:var(--text-lg);letter-spacing:-0.02em}
+.logo-text span{color:var(--color-primary)}
+.logo-text .logo-free{color:#ffffff}
+[data-theme="light"] .logo-text .logo-free{color:#28251d}
+.nav-links{display:flex;align-items:center;gap:var(--space-1)}
+.calc-nav-item{display:flex;align-items:center;gap:var(--space-1);font-size:var(--text-xs);font-weight:600;padding:var(--space-2) var(--space-3);border-radius:var(--radius-md);color:var(--color-text-muted);text-decoration:none}
+.calc-nav-item .nav-icon{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2}
+.calc-nav-item:hover{background:var(--color-surface-offset);color:var(--color-text)}
+.calc-nav-item.active{background:var(--color-primary-highlight);color:var(--color-primary)}
+.nav-actions{display:flex;align-items:center;gap:var(--space-2)}
+.theme-toggle{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:var(--radius-md);color:var(--color-text-muted);cursor:pointer}
+.theme-toggle:hover{background:var(--color-surface-offset);color:var(--color-text)}
+.btn-share{display:flex;align-items:center;gap:var(--space-2);font-size:var(--text-sm);font-weight:600;padding:var(--space-2) var(--space-4);background:var(--color-primary);color:var(--color-text-inverse);border-radius:var(--radius-md);cursor:pointer}
+.btn-share:hover{background:var(--color-primary-hover)}
+.mobile-menu-btn{display:none;align-items:center;justify-content:center;width:40px;height:40px;border-radius:var(--radius-md);color:var(--color-text-muted);cursor:pointer}
+.mobile-menu-btn:hover{background:var(--color-surface-offset)}
+@media(max-width:767px){
+  .nav-links{display:none}.nav-links.open{display:flex;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:var(--color-surface);border-bottom:1px solid var(--color-border);padding:var(--space-3);gap:var(--space-1);z-index:99}
+  .calc-nav-item{width:100%}
+  .mobile-menu-btn{display:flex}
+}
+
+.text-container{max-width:var(--content-narrow);margin-inline:auto;padding-block:var(--space-12)}
+.text-card{background:var(--color-surface);border:1px solid oklch(from var(--color-text) l c h / 0.08);border-radius:var(--radius-xl);padding:var(--space-8);box-shadow:var(--shadow-sm)}
+.text-card h1{font-family:var(--font-display);font-size:var(--text-xl);font-weight:800;color:var(--color-text);margin-bottom:var(--space-4);letter-spacing:-0.02em}
+.text-card h2{font-family:var(--font-display);font-size:var(--text-lg);font-weight:700;color:var(--color-text);margin-top:var(--space-8);margin-bottom:var(--space-3)}
+.text-card h3{font-family:var(--font-display);font-size:var(--text-base);font-weight:700;color:var(--color-text);margin-top:var(--space-6);margin-bottom:var(--space-2)}
+.text-card p{font-size:var(--text-sm);line-height:1.7;color:var(--color-text-muted);margin-bottom:var(--space-4)}
+.text-card a{color:var(--color-primary);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:2px}
+.text-card a:hover{color:var(--color-primary-hover)}
+.text-card ul,.text-card ol{font-size:var(--text-sm);line-height:1.7;color:var(--color-text-muted);margin-bottom:var(--space-4);padding-left:var(--space-6)}
+.text-card li{margin-bottom:var(--space-2)}
+.text-card strong{color:var(--color-text);font-weight:600}
+
+.pro-tip{background:var(--color-primary-highlight);border:1px solid var(--color-primary);border-radius:var(--radius-lg);padding:var(--space-4) var(--space-5);margin:var(--space-4) 0}
+.pro-tip-label{font-size:var(--text-xs);font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--color-primary);margin-bottom:var(--space-2)}
+.pro-tip p{margin-bottom:0;color:var(--color-text-muted);font-size:var(--text-sm)}
+
+.did-you-know{background:var(--color-gold-highlight);border:1px solid var(--color-gold);border-radius:var(--radius-lg);padding:var(--space-4) var(--space-5);margin:var(--space-4) 0}
+.did-you-know-label{font-size:var(--text-xs);font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--color-gold);margin-bottom:var(--space-2)}
+.did-you-know p{margin-bottom:0;color:var(--color-text-muted);font-size:var(--text-sm)}
+
+.learn-table{width:100%;border-collapse:collapse;font-size:var(--text-sm);margin:var(--space-4) 0}
+.learn-table th{text-align:left;padding:var(--space-3) var(--space-4);background:var(--color-surface-offset);font-weight:700;color:var(--color-text);border-bottom:2px solid var(--color-border);font-size:var(--text-xs);text-transform:uppercase;letter-spacing:0.04em}
+.learn-table td{padding:var(--space-3) var(--space-4);border-bottom:1px solid var(--color-divider);color:var(--color-text-muted)}
+.learn-table tr:last-child td{border-bottom:none}
+.learn-table .highlight-row{background:var(--color-success-highlight);font-weight:600}
+.learn-table .highlight-row td{color:var(--color-text)}
+
+.glossary-list{list-style:none;padding:0;margin:var(--space-4) 0}
+.glossary-list dt{font-weight:700;color:var(--color-text);font-size:var(--text-sm);margin-top:var(--space-4);padding-bottom:var(--space-1);border-bottom:1px solid var(--color-divider)}
+.glossary-list dt:first-child{margin-top:0}
+.glossary-list dd{font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;margin:var(--space-2) 0 0 0}
+.glossary-letter{font-family:var(--font-display);font-size:var(--text-lg);font-weight:800;color:var(--color-primary);margin-top:var(--space-6);margin-bottom:var(--space-2);padding-bottom:var(--space-1);border-bottom:2px solid var(--color-primary)}
+
+.article-meta{display:flex;flex-wrap:wrap;gap:var(--space-4);justify-content:space-between;align-items:center;margin-top:var(--space-6);padding-top:var(--space-4);border-top:1px solid var(--color-divider);font-size:var(--text-xs);color:var(--color-text-faint)}
+.back-to-hub{display:inline-flex;align-items:center;gap:var(--space-2);font-size:var(--text-xs);font-weight:700;color:var(--color-primary);text-decoration:none;margin-bottom:var(--space-4)}
+.back-to-hub:hover{color:var(--color-primary-hover)}
+
+footer{border-top:1px solid var(--color-divider);padding:var(--space-6) 0 var(--space-8) 0;margin-top:var(--space-8)}
+.footer-inner{display:flex;flex-wrap:wrap;gap:var(--space-6);justify-content:space-between;align-items:baseline}
+.footer-logo{font-family:var(--font-display);font-weight:800;font-size:var(--text-base);letter-spacing:-0.02em}
+.footer-logo span{color:var(--color-primary)}
+.footer-logo .logo-free{color:var(--color-text)}
+.footer-text{font-size:var(--text-xs);color:var(--color-text-faint)}
+.footer-links{display:flex;gap:var(--space-4)}
+.footer-links a{font-size:var(--text-xs);color:var(--color-text-muted);text-decoration:none}
+.footer-links a:hover{color:var(--color-primary)}
+</style>
+</head>
+<body>
+
+<header class="navbar" role="banner">
+  <div class="container navbar-inner">
+    <a href="index.html" class="logo" aria-label="FinCalcFree Home">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <rect width="32" height="32" rx="8" fill="currentColor" style="color:var(--color-primary)"/>
+        <path d="M9 20L13 15L17 18L23 11" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="23" cy="11" r="2" fill="white"/>
+        <path d="M9 24h14" stroke="white" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+      </svg>
+      <span class="logo-text">Fin<span>Calc</span><span class="logo-free">Free</span></span>
+    </a>
+    <nav class="nav-links" id="main-nav" role="navigation">
+      <a href="index.html" class="calc-nav-item">
+        <svg class="nav-icon" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+        Mortgage
+      </a>
+      <a href="investment.html" class="calc-nav-item">
+        <svg class="nav-icon" viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+        Investment
+      </a>
+      <a href="retirement.html" class="calc-nav-item">
+        <svg class="nav-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Retirement
+      </a>
+      <a href="loan.html" class="calc-nav-item">
+        <svg class="nav-icon" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        Loan
+      </a>
+      <a href="learn.html" class="calc-nav-item active">
+        <svg class="nav-icon" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        Learn
+      </a>
+    </nav>
+    <div class="nav-actions">
+      <button class="theme-toggle" data-theme-toggle aria-label="Switch to dark mode">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="btn-share" id="open-share" aria-label="Share this page">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8M16 6l-4-4-4 4M12 2v13"/></svg>
+        Share
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <div class="text-container">
+    <a href="learn.html" class="back-to-hub">&larr; Back to Learning Hub</a>
+    <article class="text-card">
+      <h1>Financial Calculator Glossary: 50 Terms You Should Know</h1>
+
+      <p>Financial jargon can feel like a foreign language. This glossary covers the 50 most important terms you'll encounter when using financial calculators, reading loan documents, or planning your investments. Bookmark this page — it's a reference you'll keep coming back to.</p>
+
+      <div class="glossary-letter">A</div>
+      <dl class="glossary-list">
+        <dt>Amortization</dt>
+        <dd>The process of spreading a loan into a series of fixed payments over time. Each payment includes both principal and interest, with early payments being mostly interest. See it in action with our <a href="index.html">Mortgage Calculator</a>.</dd>
+        <dt>Annual Percentage Rate (APR)</dt>
+        <dd>The total yearly cost of borrowing, including fees and interest, expressed as a percentage. APR is always equal to or higher than the interest rate because it includes origination fees, points, and other charges.</dd>
+        <dt>Annual Percentage Yield (APY)</dt>
+        <dd>The effective annual rate of return on a savings account or investment, accounting for compound interest. A 5% rate compounded monthly produces a 5.116% APY.</dd>
+        <dt>Appreciation</dt>
+        <dd>The increase in value of an asset over time. Historically, U.S. home prices have appreciated about 3–4% annually on average.</dd>
+        <dt>Asset Allocation</dt>
+        <dd>The strategy of dividing investments among different asset categories — stocks, bonds, real estate, and cash — to balance risk and reward.</dd>
+      </dl>
+
+      <div class="glossary-letter">B</div>
+      <dl class="glossary-list">
+        <dt>Balance</dt>
+        <dd>The amount of money remaining in an account or the amount still owed on a loan at any given time.</dd>
+        <dt>Basis Point</dt>
+        <dd>One-hundredth of a percentage point (0.01%). A rate increase from 5.00% to 5.25% is a 25 basis point increase. Used commonly in banking and bond markets.</dd>
+        <dt>Bond</dt>
+        <dd>A fixed-income investment where you lend money to a government or corporation in exchange for periodic interest payments and the return of principal at maturity.</dd>
+      </dl>
+
+      <div class="glossary-letter">C</div>
+      <dl class="glossary-list">
+        <dt>Compound Interest</dt>
+        <dd>Interest calculated on both the initial principal and the accumulated interest from previous periods. This is the engine behind long-term investment growth. <a href="blog-compound-interest.html">Read our full guide here</a>.</dd>
+        <dt>Credit Score</dt>
+        <dd>A numerical rating (typically 300–850) representing your creditworthiness. Higher scores qualify you for lower interest rates. Scores above 740 generally get the best mortgage rates.</dd>
+        <dt>Capital Gains</dt>
+        <dd>Profit earned from selling an asset for more than you paid. Short-term gains (held &lt;1 year) are taxed as ordinary income; long-term gains get preferential tax rates.</dd>
+      </dl>
+
+      <div class="glossary-letter">D</div>
+      <dl class="glossary-list">
+        <dt>Debt-to-Income Ratio (DTI)</dt>
+        <dd>Your monthly debt payments divided by gross monthly income. Lenders prefer a DTI below 36%, and most require under 43% for mortgage approval.</dd>
+        <dt>Depreciation</dt>
+        <dd>The decrease in value of an asset over time, most commonly applied to vehicles, equipment, and investment properties for tax purposes.</dd>
+        <dt>Diversification</dt>
+        <dd>Spreading investments across different assets to reduce risk. The idea is that not all investments will lose value at the same time.</dd>
+        <dt>Dividend</dt>
+        <dd>A payment made by a corporation to its shareholders, usually from profits. Dividend yield is the annual dividend divided by the stock's price.</dd>
+        <dt>Down Payment</dt>
+        <dd>An upfront payment made when purchasing a large asset, typically expressed as a percentage. On homes, 20% down avoids private mortgage insurance (PMI).</dd>
+      </dl>
+
+      <div class="glossary-letter">E</div>
+      <dl class="glossary-list">
+        <dt>Equity</dt>
+        <dd>The portion of an asset you truly own. Home equity = current home value minus remaining mortgage balance. Stock equity = your ownership stake in a company.</dd>
+        <dt>Escrow</dt>
+        <dd>A third-party account that holds funds (often for property taxes and insurance) until they're due. Many mortgage lenders require escrow accounts.</dd>
+        <dt>Expense Ratio</dt>
+        <dd>The annual fee charged by mutual funds or ETFs, expressed as a percentage of assets. An expense ratio of 0.03% means you pay $3 per year per $10,000 invested.</dd>
+      </dl>
+
+      <div class="glossary-letter">F–I</div>
+      <dl class="glossary-list">
+        <dt>Fixed Rate</dt>
+        <dd>An interest rate that stays the same for the entire term of a loan or investment. Provides payment predictability but may start higher than adjustable rates.</dd>
+        <dt>Gross Income</dt>
+        <dd>Your total earnings before taxes and deductions. Most financial ratios (like DTI) and calculator inputs use gross income.</dd>
+        <dt>Index Fund</dt>
+        <dd>A mutual fund or ETF designed to match the performance of a specific market index (like the S&amp;P 500). Known for low fees and broad diversification.</dd>
+        <dt>Inflation</dt>
+        <dd>The rate at which prices for goods and services increase over time, reducing purchasing power. The <a href="https://www.federalreserve.gov/monetarypolicy/2percent-inflation-target.htm" target="_blank" rel="noopener noreferrer">Federal Reserve</a> targets 2% annual inflation.</dd>
+        <dt>Interest Rate</dt>
+        <dd>The cost of borrowing money (or the return on lending it), expressed as a percentage of the principal. Not the same as APR, which includes additional fees.</dd>
+        <dt>IRA (Individual Retirement Account)</dt>
+        <dd>A tax-advantaged account for retirement savings. Traditional IRAs offer tax-deductible contributions; Roth IRAs offer tax-free withdrawals in retirement. See <a href="https://www.irs.gov/retirement-plans/individual-retirement-arrangements-iras" target="_blank" rel="noopener noreferrer">IRS guidelines on IRAs</a>.</dd>
+      </dl>
+
+      <div class="glossary-letter">L–M</div>
+      <dl class="glossary-list">
+        <dt>Liquidity</dt>
+        <dd>How easily an asset can be converted to cash without losing value. Cash is the most liquid asset; real estate is relatively illiquid.</dd>
+        <dt>Loan-to-Value Ratio (LTV)</dt>
+        <dd>The loan amount divided by the property's appraised value. An LTV above 80% typically requires private mortgage insurance (PMI).</dd>
+        <dt>Maturity Date</dt>
+        <dd>The date when a loan or bond must be fully repaid. For a 30-year mortgage starting in 2026, the maturity date is 2056.</dd>
+        <dt>Mortgage</dt>
+        <dd>A loan secured by real property. If you stop making payments, the lender can foreclose on the property. Try our <a href="index.html">Mortgage Calculator</a> to explore payment scenarios.</dd>
+        <dt>Mutual Fund</dt>
+        <dd>A pooled investment vehicle managed by a professional, holding a diversified portfolio of stocks, bonds, or other securities.</dd>
+      </dl>
+
+      <div class="glossary-letter">N–P</div>
+      <dl class="glossary-list">
+        <dt>Net Worth</dt>
+        <dd>Total assets minus total liabilities. It's the single best snapshot of your overall financial health.</dd>
+        <dt>PMI (Private Mortgage Insurance)</dt>
+        <dd>Insurance required by lenders when your down payment is less than 20% of the home price. PMI typically costs 0.5–1% of the loan amount annually.</dd>
+        <dt>Points (Discount Points)</dt>
+        <dd>Prepaid interest paid at closing to lower your mortgage rate. One point = 1% of the loan amount and typically reduces your rate by 0.25%.</dd>
+        <dt>Portfolio</dt>
+        <dd>The complete collection of your investments, including stocks, bonds, real estate, and cash equivalents.</dd>
+        <dt>Principal</dt>
+        <dd>The original amount of money borrowed or invested, excluding interest. Monthly mortgage payments reduce principal and pay interest.</dd>
+        <dt>Prepayment Penalty</dt>
+        <dd>A fee charged by some lenders if you pay off a loan before its scheduled end date. Check your loan agreement — many modern loans don't include this.</dd>
+      </dl>
+
+      <div class="glossary-letter">R–S</div>
+      <dl class="glossary-list">
+        <dt>Refinancing</dt>
+        <dd>Replacing an existing loan with a new one, typically at a lower interest rate or different term. Useful when rates drop or your credit improves.</dd>
+        <dt>Return on Investment (ROI)</dt>
+        <dd>The profit or loss from an investment expressed as a percentage of the original cost. ROI = (Gain − Cost) ÷ Cost × 100.</dd>
+        <dt>Risk Tolerance</dt>
+        <dd>Your ability and willingness to withstand investment losses. Higher risk tolerance generally supports a more stock-heavy portfolio.</dd>
+        <dt>Rule of 72</dt>
+        <dd>A mental shortcut: divide 72 by your annual return to estimate how many years it takes to double your money. At 8%, money doubles in about 9 years.</dd>
+        <dt>Simple Interest</dt>
+        <dd>Interest calculated only on the original principal, not on accumulated interest. Most auto loans and some short-term loans use simple interest.</dd>
+        <dt>S&amp;P 500</dt>
+        <dd>A stock market index tracking 500 of the largest U.S. companies. Widely used as a benchmark for overall market performance.</dd>
+      </dl>
+
+      <div class="glossary-letter">T–Z</div>
+      <dl class="glossary-list">
+        <dt>Tax-Deferred</dt>
+        <dd>Income or gains that are not taxed until withdrawn, such as traditional 401(k) and IRA contributions. You pay taxes later, ideally at a lower rate in retirement.</dd>
+        <dt>Term</dt>
+        <dd>The length of time for a loan or investment. A 30-year mortgage has a 360-month term. Shorter terms mean higher payments but less total interest.</dd>
+        <dt>Variable Rate (Adjustable Rate)</dt>
+        <dd>An interest rate that changes periodically based on a benchmark index. ARMs (Adjustable Rate Mortgages) often start with a lower "teaser" rate that adjusts after a fixed period.</dd>
+        <dt>Yield</dt>
+        <dd>The income return on an investment, expressed as a percentage. For bonds, yield reflects coupon payments relative to price. For stocks, it typically refers to dividend yield.</dd>
+        <dt>401(k)</dt>
+        <dd>An employer-sponsored retirement savings plan with tax advantages. Many employers match a portion of your contributions — always contribute at least enough to get the full match.</dd>
+      </dl>
+
+      <div class="article-meta">
+        <span>Last updated: July 2026</span>
+        <span>By the FinCalcFree Team</span>
+      </div>
+    </article>
+  </div>
+</main>
+
+<footer role="contentinfo">
+  <div class="container footer-inner">
+    <div>
+      <div class="footer-logo">Fin<span>Calc</span><span class="logo-free">Free</span></div>
+      <p class="footer-text">100% Free Financial Calculators. Private, Fast, Client-Side.</p>
+    </div>
+    <div class="footer-links">
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="disclaimer.html">Disclaimer</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const toggleBtn = document.querySelector('[data-theme-toggle]');
+  const htmlEl = document.documentElement;
+  toggleBtn.addEventListener('click', () => {
+    const currentTheme = htmlEl.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    htmlEl.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+  });
+  if (document.getElementById('open-share')) {
+    document.getElementById('open-share').addEventListener('click', () => {
+      if (navigator.share) {
+        navigator.share({ title: document.title, url: window.location.href });
+      }
+    });
+  }
+</script>
+</body>
+</html>
