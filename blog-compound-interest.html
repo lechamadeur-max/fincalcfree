@@ -240,6 +240,30 @@ footer{border-top:1px solid var(--color-divider);padding:var(--space-6) 0 var(--
       <p>Albert Einstein supposedly called compound interest "the eighth wonder of the world." Whether or not he actually said it, the math behind compound interest is genuinely remarkable — and understanding it is arguably the single most valuable piece of financial knowledge you can possess.</p>
 
       <h2>Simple Interest vs. Compound Interest</h2>
+
+<div style="background:var(--color-surface-offset);border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:var(--space-6);margin:var(--space-6) 0;text-align:center;">
+  <h4 style="font-family:var(--font-display);font-size:var(--text-sm);font-weight:700;color:var(--color-text);margin-bottom:var(--space-3);">Visual: Compound Growth vs Simple Growth over 30 Years</h4>
+  <svg viewBox="0 0 500 220" style="width:100%;max-width:480px;height:auto;margin:0 auto;display:block;" aria-label="Compound interest chart">
+    <!-- Grid -->
+    <line x1="50" y1="180" x2="450" y2="180" stroke="var(--color-border)" stroke-width="2"/>
+    <line x1="50" y1="20" x2="50" y2="180" stroke="var(--color-border)" stroke-width="2"/>
+    
+    <!-- Simple Interest Line (Linear) -->
+    <path d="M 50 160 L 450 110" stroke="var(--color-text-muted)" stroke-width="3" stroke-dasharray="6,4" fill="none"/>
+    
+    <!-- Compound Interest Curve (Exponential) -->
+    <path d="M 50 160 Q 250 145 450 30" stroke="var(--color-primary)" stroke-width="4" fill="none"/>
+    
+    <!-- Labels -->
+    <text x="455" y="32" fill="var(--color-primary)" font-size="12" font-weight="700">Compound ($447k)</text>
+    <text x="455" y="114" fill="var(--color-text-muted)" font-size="11">Simple ($170k)</text>
+    <text x="50" y="200" fill="var(--color-text-muted)" font-size="11">Year 0</text>
+    <text x="250" y="200" fill="var(--color-text-muted)" font-size="11">Year 15</text>
+    <text x="430" y="200" fill="var(--color-text-muted)" font-size="11">Year 30</text>
+  </svg>
+  <p style="font-size:var(--text-xs);color:var(--color-text-muted);margin-top:var(--space-2);">Notice how compound growth accelerates exponentially in the final 15 years.</p>
+</div>
+
       <p>Simple interest pays you only on your original deposit. If you invest $10,000 at 7% simple interest, you earn a flat $700 per year — $7,000 after 10 years, for a total of $17,000. Compound interest, however, pays interest on your interest. That same $10,000 at 7% compounded annually grows to <strong>$19,672</strong> after 10 years. The difference is $2,672 — free money you earned because your interest started earning interest of its own.</p>
       <p>The formula behind this is elegant:</p>
       <div style="background:var(--color-surface-offset);border-radius:var(--radius-lg);padding:var(--space-4) var(--space-5);margin:var(--space-4) 0;text-align:center;font-family:var(--font-display);font-size:var(--text-lg);font-weight:700;color:var(--color-text)">
@@ -276,11 +300,11 @@ footer{border-top:1px solid var(--color-divider);padding:var(--space-6) 0 var(--
         <p>The most important investment decision isn't picking the right stock — it's starting early. Someone who invests $300/month from age 25 to 35 (then stops) will often have more by age 65 than someone who starts at 35 and invests $300/month for 30 years straight. Those first 10 years of growth compound for decades.</p>
       </div>
 
-      <h2>The Rule of 72</h2>
+      <h2>The <a href="blog-financial-glossary.html#term-rule-of-72">Rule of 72</a></h2>
       <p>Want a quick mental shortcut? The <strong>Rule of 72</strong> tells you approximately how many years it takes to double your money: divide 72 by your annual return rate. At 8%, your money doubles every 72 ÷ 8 = <strong>9 years</strong>. At 6%, it takes 12 years. At 10%, just 7.2 years. This is a surprisingly accurate approximation for rates between 2–15%.</p>
 
       <h2>When Compound Interest Works Against You</h2>
-      <p>Compound interest doesn't only help savers — it also magnifies debt. A $5,000 credit card balance at 22% APR, with only minimum payments, can take <strong>over 20 years to pay off</strong> and cost you more than $10,000 in interest. The same mathematical force that builds your investment portfolio is working overtime to grow your debt balance. This is precisely why paying off high-interest debt is often the best "investment" you can make. The <a href="https://www.federalreserve.gov/creditcard-profitability.htm" target="_blank" rel="noopener noreferrer">Federal Reserve</a> publishes data on credit card interest rates regularly.</p>
+      <p>Compound interest doesn't only help savers — it also magnifies debt. A $5,000 credit card balance at 22% <a href="blog-financial-glossary.html#term-apr">APR</a>, with only minimum payments, can take <strong>over 20 years to pay off</strong> and cost you more than $10,000 in interest. The same mathematical force that builds your investment portfolio is working overtime to grow your debt balance. This is precisely why paying off high-interest debt is often the best "investment" you can make. The <a href="https://www.federalreserve.gov/creditcard-profitability.htm" target="_blank" rel="noopener noreferrer">Federal Reserve</a> publishes data on credit card interest rates regularly.</p>
 
       <div class="did-you-know">
         <div class="did-you-know-label">📊 Did You Know?</div>

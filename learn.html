@@ -241,6 +241,15 @@ footer{border-top:1px solid var(--color-divider);padding:var(--space-6) 0 var(--
     <p>Free, practical financial guides and educational resources to help you master mortgages, investing, retirement, and debt management.</p>
   </div>
 
+  
+  <div style="max-width:540px;margin:0 auto var(--space-8) auto;position:relative;">
+    <div style="position:relative;display:flex;align-items:center;">
+      <svg style="position:absolute;left:16px;width:20px;height:20px;color:var(--color-text-muted);pointer-events:none;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="text" id="blog-search-input" placeholder="Search guides, terms, or calculators..." style="width:100%;padding:14px 16px 14px 48px;font-size:var(--text-sm);border-radius:var(--radius-full);border:2px solid var(--color-border);background:var(--color-surface);color:var(--color-text);outline:none;transition:border-color var(--transition-fast);">
+    </div>
+    <div id="search-no-results" style="display:none;text-align:center;padding:var(--space-6);color:var(--color-text-muted);font-size:var(--text-sm);">No guides or terms found matching your query.</div>
+  </div>
+
   <div class="blog-grid">
     <!-- Card 1 -->
     <div class="blog-card">
@@ -379,5 +388,31 @@ footer{border-top:1px solid var(--color-divider);padding:var(--space-6) 0 var(--
     });
   }
 </script>
+
+<script>
+  const searchInput = document.getElementById('blog-search-input');
+  const blogCards = document.querySelectorAll('.blog-card');
+  const noResults = document.getElementById('search-no-results');
+
+  if (searchInput) {
+    searchInput.addEventListener('input', (e) => {
+      const q = e.target.value.toLowerCase().trim();
+      let matchCount = 0;
+      blogCards.forEach(card => {
+        const text = card.textContent.toLowerCase();
+        if (q === '' || text.includes(q)) {
+          card.style.display = 'flex';
+          matchCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+      if (noResults) {
+        noResults.style.display = (matchCount === 0 && q !== '') ? 'block' : 'none';
+      }
+    });
+  }
+</script>
+
 </body>
 </html>
