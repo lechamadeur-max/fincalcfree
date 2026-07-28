@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="fr-CA" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculateur d'hypothèque — FinCalcFree</title>
+<meta name="description" content="Calculate monthly mortgage payments including property tax, home insurance, interest rate, and down payment percentage with real-time amortization charts and schedules.">
+
+<!-- Schema.org JSON-LD Structured Data for Search Engines -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "FinCalcFree Calculateur d'hypothèque",
+  "description": "Calculate monthly mortgage payments including property tax, home insurance, interest rate, and down payment percentage with real-time amortization charts and schedules.",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "All",
+  "browserRequirements": "Requires JavaScript. Requires HTML5.",
+  "url": "https://fincalcfree.com"
+}
+</script>
+
+<!-- FAQPage Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the 28/36 debt rule for mortgages?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The 28/36 rule is a guideline lenders use to determine how much you can afford to borrow. Your total housing expenses (PITI) should not exceed 28% of your gross monthly income, and your total debt payments (housing plus car loans, credit cards, student loans) should not exceed 36% of your gross monthly income."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does my down payment affect my mortgage?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A larger down payment reduces your loan amount, which lowers both your monthly payment and the total interest paid over the life of the loan. Putting down at least 20% also lets you avoid Private Mortgage Insurance (PMI), which typically costs 0.5% to 1.5% of the loan amount per year."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I choose a 15-year or 30-year mortgage term?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A 30-year mortgage has lower monthly payments but costs significantly more in total interest. A 15-year mortgage has higher monthly payments but builds equity faster and saves you tens of thousands in interest. For example, on a $280,000 loan at 6.5%, a 30-year term costs $357,200 in interest while a 15-year term costs only $158,400."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is Private Mortgage Insurance (PMI)?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "PMI is insurance that protects the lender if you default on your mortgage. It is typically required when your down payment is less than 20% of the home price. PMI usually costs between 0.5% and 1.5% of your loan amount annually and can be removed once you reach 20% equity."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is an escrow account?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "An escrow account is a neutral holding account managed by your mortgage lender. A portion of your monthly payment is set aside to cover property taxes and homeowners insurance. The lender then pays those bills on your behalf when they come due."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between a fixed-rate and adjustable-rate mortgage?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A fixed-rate mortgage locks in the same interest rate for the entire loan term, giving you predictable payments. An adjustable-rate mortgage (ARM) offers a lower introductory rate for a set period (e.g., 5 or 7 years), after which the rate adjusts periodically based on market conditions, meaning your payment can increase or decrease."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do extra mortgage payments save money?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Extra payments go directly toward reducing your principal balance. Because interest is calculated on the remaining balance, every extra dollar you pay reduces the interest charged on all future payments. Even one extra payment per year on a 30-year mortgage can shave 4 to 5 years off your loan term."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I read an amortization schedule?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "An amortization schedule is a table showing every payment over the life of your loan. Each row shows the payment number, how much goes to principal, how much goes to interest, and the remaining balance. In the early years, most of the payment goes to interest. Over time, the principal portion grows while the interest portion shrinks."
+      }
+    }
+  ]
+}
+</script>
+
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8213059222433705"
+     crossorigin="anonymous"></script>
+
+<!-- Theme Script to avoid flash of light/dark background -->
+<script>
+  (function() {
+    const t = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+
+<!-- Fonts -->
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,600,700&f[]=cabinet-grotesk@400,500,700,800&display=swap" rel="stylesheet">
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+<style>
+/* ======= CSS STYLE SYSTEM (Consistent across all pages) ======= */
+:root, [data-theme="light"] {
+  --text-xs:   clamp(0.75rem,  0.7rem  + 0.25vw, 0.875rem);
+  --text-sm:   clamp(0.875rem, 0.8rem  + 0.35vw, 1rem);
+  --text-base: clamp(1rem,     0.95rem + 0.25vw, 1.125rem);
+  --text-lg:   clamp(1.125rem, 1rem    + 0.75vw, 1.5rem);
+  --text-xl:   clamp(1.5rem,   1.2rem  + 1.25vw, 2.25rem);
+  --text-2xl:  clamp(2rem,     1.2rem  + 2.5vw,  3.5rem);
+
+  --space-1:0.25rem;--space-2:0.5rem;--space-3:0.75rem;--space-4:1rem;
+  --space-5:1.25rem;--space-6:1.5rem;--space-8:2rem;--space-10:2.5rem;
+  --space-12:3rem;--space-16:4rem;--space-20:5rem;--space-24:6rem;
+
+  --color-bg:#f7f6f2;
+  --color-surface:#f9f8f5;
+  --color-surface-2:#fbfbf9;
+  --color-surface-offset:#f3f0ec;
+  --color-surface-offset-2:#edeae5;
+  --color-surface-dynamic:#e6e4df;
+  --color-divider:#dcd9d5;
+  --color-border:#d4d1ca;
+  --color-text:#28251d;
+  --color-text-muted:#7a7974;
+  --color-text-faint:#bab9b4;
+  --color-text-inverse:#f9f8f4;
+  --color-primary:#01696f;
+  --color-primary-hover:#0c4e54;
+  --color-primary-active:#0f3638;
+  --color-primary-highlight:#cedcd8;
+  --color-success:#437a22;
+  --color-success-hover:#2e5c10;
+  --color-success-highlight:#d4dfcc;
+  --color-warning:#964219;
+  --color-warning-highlight:#ddcfc6;
+  --color-error:#a12c7b;
+  --color-gold:#d19900;
+  --color-gold-hover:#a37700;
+  --color-gold-active:#7a5900;
+  --color-gold-highlight:#e9e0c6;
+  --color-blue:#006494;
+  --color-blue-hover:#004b70;
+  --color-blue-active:#00334d;
+  --color-blue-highlight:#c6d8e4;
+
+  --radius-sm:0.375rem;--radius-md:0.5rem;--radius-lg:0.75rem;
+  --radius-xl:1rem;--radius-2xl:1.5rem;--radius-full:9999px;
+  --transition-interactive:180ms cubic-bezier(0.16, 1, 0.3, 1);
+  --shadow-sm:0 1px 2px oklch(0.2 0.01 80 / 0.06);
+  --shadow-md:0 4px 12px oklch(0.2 0.01 80 / 0.08);
+  --shadow-lg:0 12px 32px oklch(0.2 0.01 80 / 0.12);
+
+  --font-display: 'Cabinet Grotesk', 'Helvetica Neue', sans-serif;
+  --font-body: 'Satoshi', 'Helvetica Neue', sans-serif;
+  --content-narrow:640px;--content-default:960px;--content-wide:1200px;
+}
+
+[data-theme="dark"] {
+  --color-bg:#171614;--color-surface:#1c1b19;--color-surface-2:#201f1d;
+  --color-surface-offset:#1d1c1a;--color-surface-offset-2:#22211f;
+  --color-surface-dynamic:#2d2c2a;--color-divider:#262523;--color-border:#393836;
+  --color-text:#f5f4f2;--color-text-muted:#b0aeb3;--color-text-faint:#88868c;
+  --color-text-inverse:#2b2a28;
+  --color-primary:#4f98a3;--color-primary-hover:#227f8b;--color-primary-active:#1a626b;
+  --color-primary-highlight:#313b3b;
+  --color-success:#6daa45;--color-success-hover:#4d8f25;--color-success-highlight:#3a4435;
+  --color-warning:#bb653b;--color-warning-highlight:#564942;
+  --color-error:#d163a7;
+  --color-gold:#e8af34;--color-gold-hover:#c28f1b;--color-gold-active:#9c710f;--color-gold-highlight:#4d4332;
+  --color-blue:#5591c7;--color-blue-hover:#3d79b0;--color-blue-active:#2b5e8c;--color-blue-highlight:#3a4550;
+  --shadow-sm:0 1px 2px oklch(0 0 0 / 0.2);
+  --shadow-md:0 4px 12px oklch(0 0 0 / 0.3);
+  --shadow-lg:0 12px 32px oklch(0 0 0 / 0.4);
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{min-height:100dvh;line-height:1.6;font-family:var(--font-body);font-size:var(--text-base);color:var(--color-text);background:var(--color-bg);-webkit-font-smoothing:antialiased}
+a,a:visited{color:var(--color-primary);transition:color var(--transition-fast) ease}
+a:hover,a:focus,a:active{color:var(--color-primary-hover)}
+.container{max-width:var(--content-wide);margin-inline:auto;padding-inline:var(--space-4)}
+@media(min-width:768px){.container{padding-inline:var(--space-8)}}
+
+/* Accessibility Skip-link */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+.sr-only:focus {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  width: auto;
+  height: auto;
+  padding: 0.75rem 1.25rem;
+  background: var(--color-primary);
+  color: white;
+  z-index: 1000;
+  clip: auto;
+  border-radius: var(--radius-md);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+/* NAVBAR */
+.navbar{position:sticky;top:0;z-index:100;background:color-mix(in oklch,var(--color-surface) 92%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid oklch(from var(--color-text) l c h / 0.08);padding-block:var(--space-3)}
+.navbar-inner{display:flex;align-items:center;justify-content:space-between;gap:var(--space-4)}
+.logo{display:flex;align-items:center;gap:var(--space-2);text-decoration:none;color:var(--color-text)}
+.logo-text{font-family:var(--font-display);font-weight:800;font-size:var(--text-lg);letter-spacing:-0.02em}
+.logo-text span{color:var(--color-primary)}
+.logo-text .logo-free{color:#ffffff}
+[data-theme="light"] .logo-text .logo-free{color:#28251d}
+.nav-links{display:flex;align-items:center;gap:var(--space-1)}
+.calc-nav-item{display:flex;align-items:center;gap:var(--space-1);font-size:var(--text-xs);font-weight:600;padding:var(--space-2) var(--space-3);border-radius:var(--radius-md);color:var(--color-text-muted);text-decoration:none}
+.calc-nav-item .nav-icon{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2}
+.calc-nav-item:hover{background:var(--color-surface-offset);color:var(--color-text)}
+.calc-nav-item.active{background:var(--color-primary-highlight);color:var(--color-primary)}
+.nav-actions{display:flex;align-items:center;gap:var(--space-2)}
+.theme-toggle{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:var(--radius-md);color:var(--color-text-muted);cursor:pointer}
+.theme-toggle:hover{background:var(--color-surface-offset);color:var(--color-text)}
+.btn-share{display:flex;align-items:center;gap:var(--space-2);font-size:var(--text-sm);font-weight:600;padding:var(--space-2) var(--space-4);background:var(--color-primary);color:var(--color-text-inverse);border-radius:var(--radius-md);cursor:pointer}
+.btn-share:hover{background:var(--color-primary-hover)}
+.mobile-menu-btn{display:none;align-items:center;justify-content:center;width:40px;height:40px;border-radius:var(--radius-md);color:var(--color-text-muted);cursor:pointer}
+.mobile-menu-btn:hover{background:var(--color-surface-offset)}
+@media(max-width:767px){
+  .nav-links{display:none}.nav-links.open{display:flex;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:var(--color-surface);border-bottom:1px solid var(--color-border);padding:var(--space-3);gap:var(--space-1);z-index:99}
+  .calc-nav-item{width:100%}
+  .mobile-menu-btn{display:flex}
+}
+
+/* HERO */
+.hero{padding:var(--space-6) 0 0;display:flex;flex-direction:column}
+.hero-content{text-align:center;max-width:900px;margin-inline:auto;display:flex;flex-direction:column;align-items:center}
+.hero-title{font-family:var(--font-display);font-size:clamp(1.25rem, 1rem + 0.8vw, 1.625rem);font-weight:800;letter-spacing:-0.03em;line-height:1.25;text-align:center;margin-bottom:0}
+.text-mortgage{color:var(--color-primary)}
+
+/* CALCULATOR SECTION */
+.calc-section{padding-bottom:var(--space-6);margin-top:var(--space-6)}
+.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-6);align-items:start}
+@media(max-width:900px){.calc-grid{grid-template-columns:1fr}}
+
+/* CARD */
+.card{background:var(--color-surface);border:1px solid oklch(from var(--color-text) l c h / 0.08);border-radius:var(--radius-xl);padding:var(--space-6);box-shadow:var(--shadow-sm)}
+.card-title-row{display:flex;align-items:center;gap:var(--space-3);margin-bottom:var(--space-5)}
+.card-title-icon{width:36px;height:36px;border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.card-title-icon svg{width:18px;height:18px}
+.card-title{font-family:var(--font-display);font-size:var(--text-lg);font-weight:700}
+
+/* FORM */
+.form-group{margin-bottom:var(--space-4)}
+.form-label{display:block;font-size:var(--text-sm);font-weight:600;color:var(--color-text-muted);margin-bottom:var(--space-2)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-3)}
+@media(max-width:500px){.form-row{grid-template-columns:1fr}}
+.input-wrapper{position:relative;display:flex;align-items:center}
+.input-prefix,.input-suffix{position:absolute;font-size:var(--text-sm);font-weight:600;color:var(--color-text-muted);pointer-events:none;user-select:none}
+.input-prefix{left:var(--space-3)}
+.input-suffix{right:var(--space-3)}
+.form-input{width:100%;padding:var(--space-3) var(--space-4);background:var(--color-surface-2);border:1px solid var(--color-border);border-radius:var(--radius-md);font-size:var(--text-sm);font-variant-numeric:tabular-nums;color:var(--color-text)}
+.form-input:focus{outline:none;border-color:var(--color-primary);box-shadow:0 0 0 3px oklch(from var(--color-primary) l c h / 0.12)}
+.form-input.has-prefix{padding-left:var(--space-8)}
+.form-input.has-suffix{padding-right:var(--space-8)}
+.range-wrapper{display:flex;align-items:center;gap:var(--space-3)}
+.range-input{flex:1;-webkit-appearance:none;appearance:none;height:4px;border-radius:var(--radius-full);background:var(--color-surface-dynamic);outline:none;cursor:pointer}
+.range-input::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--color-primary);cursor:pointer;box-shadow:var(--shadow-sm)}
+.range-input::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--color-primary);cursor:pointer;border:none}
+.btn-primary{width:100%;padding:var(--space-3) var(--space-6);background:var(--color-primary);color:var(--color-text-inverse);border-radius:var(--radius-md);font-size:var(--text-base);font-weight:700;margin-top:var(--space-2);font-family:var(--font-display);cursor:pointer}
+.btn-primary:hover{background:var(--color-primary-hover)}
+.btn-primary:active{background:var(--color-primary-active);transform:translateY(1px)}
+
+/* RESULTS */
+.results-card{background:var(--color-surface);border:1px solid oklch(from var(--color-text) l c h / 0.08);border-radius:var(--radius-xl);overflow:hidden;box-shadow:var(--shadow-sm)}
+.results-header{background:var(--color-primary);color:var(--color-text-inverse);padding:var(--space-5) var(--space-6)}
+.results-header h3{font-family:var(--font-display);font-size:var(--text-lg);font-weight:700;margin-bottom:var(--space-1)}
+.results-header p{font-size:var(--text-sm);opacity:0.8}
+.results-kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--color-divider)}
+.kpi{background:var(--color-surface);padding:var(--space-4) var(--space-5)}
+.kpi-label{font-size:var(--text-xs);font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:var(--space-1)}
+.kpi-value{font-family:var(--font-display);font-size:var(--text-xl);font-weight:800;color:var(--color-text);font-variant-numeric:tabular-nums lining-nums;letter-spacing:-0.02em}
+.kpi-value.warning{color:var(--color-warning)}
+.chart-area{padding:var(--space-6);border-top:1px solid var(--color-divider)}
+.chart-title{font-size:var(--text-sm);font-weight:700;color:var(--color-text-muted);margin-bottom:var(--space-4);text-transform:uppercase;letter-spacing:0.06em}
+.chart-container{position:relative;height:220px}
+
+/* TABLE */
+.table-area{padding:0 var(--space-6) var(--space-6);border-top:1px solid var(--color-divider)}
+.table-header-row{display:flex;justify-content:space-between;align-items:center;line-height:1;padding:var(--space-3) 0}
+.table-title{font-size:var(--text-sm);font-weight:700;color:var(--color-text-muted);text-transform:uppercase;letter-spacing:0.06em;transform:translateY(8pt)}
+.table-toggle{font-size:var(--text-xs);font-weight:600;color:var(--color-primary);cursor:pointer;transform:translateY(8pt)}
+.amort-table-wrap{overflow-x:auto;max-height:320px;overflow-y:auto;border-radius:var(--radius-md);border:1px solid var(--color-border)}
+.amort-table{width:100%;border-collapse:collapse;font-size:var(--text-xs);font-variant-numeric:tabular-nums}
+.amort-table thead{position:sticky;top:0;background:var(--color-surface-offset);z-index:1}
+.amort-table th{padding:var(--space-2) var(--space-3);text-align:right;font-weight:700;color:var(--color-text-muted);white-space:nowrap;letter-spacing:0.04em;text-transform:uppercase}
+.amort-table th:first-child{text-align:left}
+.amort-table td{padding:var(--space-2) var(--space-3);text-align:right;border-top:1px solid oklch(from var(--color-text) l c h / 0.05)}
+.amort-table td:first-child{text-align:left;font-weight:600;color:var(--color-text-muted)}
+.amort-table tr:hover td{background:var(--color-surface-offset)}
+.amort-table .principal-cell{color:var(--color-primary);font-weight:600}
+.amort-table .interest-cell{color:var(--color-warning)}
+.amort-table .balance-cell{color:var(--color-text)}
+
+.results-empty{padding:var(--space-10);text-align:center;color:var(--color-text-faint)}
+.results-empty svg{width:40px;height:40px;margin:0 auto var(--space-3)}
+.results-empty p{font-size:var(--text-sm);max-width:24ch;margin-inline:auto}
+
+/* AD PLACEHOLDER */
+.ad-banner{background:var(--color-surface-offset);border:1px dashed var(--color-border);border-radius:var(--radius-lg);padding:var(--space-4);text-align:center;color:var(--color-text-faint);font-size:var(--text-xs);font-weight:600;letter-spacing:0.06em;text-transform:uppercase;margin:var(--space-6) 0}
+.ad-banner-wide{height:90px;display:flex;align-items:center;justify-content:center}
+
+/* GUIDES */
+.calc-guide-content {
+  margin-top: var(--space-10);
+  padding-top: var(--space-8);
+  border-top: 1px solid var(--color-divider);
+  color: var(--color-text-muted);
+}
+.calc-guide-content h2, .calc-guide-content h3 {
+  font-family: var(--font-display);
+  color: var(--color-text);
+  margin-top: var(--space-6);
+  margin-bottom: var(--space-3);
+  font-weight: 700;
+}
+.calc-guide-content h2 {
+  font-size: var(--text-lg);
+  display: inline-block;
+  padding-bottom: var(--space-1);
+}
+.calc-guide-content h3 {
+  font-size: var(--text-base);
+  margin-top: var(--space-4);
+}
+.calc-guide-content p {
+  font-size: var(--text-sm);
+  line-height: 1.6;
+  margin-bottom: var(--space-4);
+}
+.calc-guide-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-8);
+  margin-top: var(--space-4);
+}
+@media (min-width: 768px) {
+  .calc-guide-grid {
+    grid-template-columns: 3fr 2fr;
+  }
+}
+.formula-card {
+  background: var(--color-surface-offset);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  height: fit-content;
+}
+.formula-title {
+  font-size: var(--text-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-2);
+  letter-spacing: 0.05em;
+}
+.formula-math {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  margin: var(--space-3) 0;
+  text-align: center;
+}
+.formula-desc {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  line-height: 1.4;
+}
+.faq-section {
+  margin-top: var(--space-8);
+  border-top: 1px solid var(--color-divider);
+  padding-top: var(--space-6);
+}
+.faq-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+  margin-top: var(--space-4);
+}
+@media (min-width: 768px) {
+  .faq-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+.faq-item {
+  background: var(--color-surface-offset);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+}
+.faq-question {
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: var(--space-2);
+  font-size: var(--text-sm);
+}
+.faq-answer {
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  color: var(--color-text-muted);
+}
+
+/* FOOTER */
+footer{border-top:1px solid var(--color-divider);padding:var(--space-6) 0 var(--space-8) 0;margin-top:var(--space-8)}
+.footer-inner{display:flex;flex-wrap:wrap;gap:var(--space-6);justify-content:space-between;align-items:baseline;margin-top:-6pt}
+.footer-logo{font-family:var(--font-display);font-weight:800;font-size:var(--text-base);letter-spacing:-0.02em}
+.footer-logo span{color:var(--color-primary)}
+.footer-logo .logo-free{color:var(--color-text)}
+.footer-text{font-size:var(--text-xs);color:var(--color-text-faint)}
+.footer-links{display:flex;gap:var(--space-4)}
+.footer-links a{font-size:var(--text-xs);color:var(--color-text-muted);text-decoration:none}
+.footer-links a:hover{color:var(--color-primary)}
+
+/* MODAL & TOAST */
+.modal-overlay{position:fixed;inset:0;background:oklch(0 0 0 / 0.5);z-index:200;display:flex;align-items:center;justify-content:center;padding:var(--space-4);opacity:0;pointer-events:none;transition:opacity 200ms ease}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal{background:var(--color-surface);border-radius:var(--radius-xl);padding:var(--space-8);max-width:440px;width:100%;box-shadow:var(--shadow-lg);transform:translateY(12px) scale(0.98);transition:transform 200ms cubic-bezier(0.16,1,0.3,1);position:relative}
+.modal-overlay.open .modal{transform:none}
+.modal h2{font-family:var(--font-display);font-size:var(--text-lg);font-weight:700;margin-bottom:var(--space-2)}
+.modal p{font-size:var(--text-sm);color:var(--text-muted);margin-bottom:var(--space-5)}
+.share-options{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-3);margin-bottom:var(--space-5)}
+.share-btn{display:flex;flex-direction:column;align-items:center;gap:var(--space-2);padding:var(--space-4);border:1px solid var(--color-border);border-radius:var(--radius-lg);font-size:var(--text-xs);font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--color-text-muted);cursor:pointer}
+.share-btn:hover{background:var(--color-surface-offset);color:var(--color-text);border-color:var(--color-primary)}
+.share-btn svg{width:22px;height:22px;color:var(--color-primary)}
+.share-url-row{display:flex;gap:var(--space-2)}
+.share-url{flex:1;padding:var(--space-3) var(--space-4);background:var(--color-surface-offset);border:1px solid var(--color-border);border-radius:var(--radius-md);font-size:var(--text-xs);color:var(--color-text-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.btn-copy{padding:var(--space-3) var(--space-4);background:var(--color-primary);color:var(--color-text-inverse);border-radius:var(--radius-md);font-size:var(--text-sm);font-weight:700}
+.btn-copy:hover{background:var(--color-primary-hover)}
+.modal-close{position:absolute;top:var(--space-4);right:var(--space-4);width:32px;height:32px;border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;color:var(--color-text-muted);cursor:pointer}
+.modal-close:hover{background:var(--color-surface-offset)}
+.toast{position:fixed;bottom:var(--space-6);right:var(--space-6);background:var(--color-text);color:var(--color-text-inverse);padding:var(--space-3) var(--space-5);border-radius:var(--radius-md);font-size:var(--text-sm);font-weight:600;z-index:300;transform:translateY(20px);opacity:0;transition:all 300ms cubic-bezier(0.16,1,0.3,1)}
+.toast.show{transform:none;opacity:1}
+</style>
+</head>
+<body>
+
+<!-- SKIP LINK -->
+<a href="#main" class="sr-only">Aller au contenu principal</a>
+
+<!-- NAVBAR -->
+<header class="navbar" role="banner">
+  <div class="container navbar-inner">
+    <a href="index.html" class="logo" aria-label="Accueil FinCalcFree">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <rect width="32" height="32" rx="8" fill="currentColor" style="color:var(--color-primary)"/>
+        <path d="M9 20L13 15L17 18L23 11" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="23" cy="11" r="2" fill="white"/>
+        <path d="M9 24h14" stroke="white" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+      </svg>
+      <span class="logo-text">Fin<span>Calc</span><span class="logo-free">Free</span></span>
+    </a>
+    <nav class="nav-links" id="main-nav" role="navigation" aria-label="Navigation des calculateurs">
+      <a href="index.html" class="calc-nav-item active">
+        <svg class="nav-icon" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+        Hypothèque
+      </a>
+      <a href="investment.html" class="calc-nav-item">
+        <svg class="nav-icon" viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+        Placements
+      </a>
+      <a href="retirement.html" class="calc-nav-item">
+        <svg class="nav-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Retraite
+      </a>
+      <a href="loan.html" class="calc-nav-item">
+        <svg class="nav-icon" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        Prêts
+      </a>
+      <a href="learn.html" class="calc-nav-item">
+        <svg class="nav-icon" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        Guides
+      </a>
+    </nav>
+    <div class="nav-actions"><a href="../index.html" class="lang-switch" style="font-size:var(--text-xs);font-weight:700;padding:var(--space-2) var(--space-3);border-radius:var(--radius-md);border:1px solid var(--color-border);color:var(--color-primary);text-decoration:none;margin-right:8px;" title="Switch to English">EN</a><a href="fr/index.html" class="lang-switch" style="font-size:var(--text-xs);font-weight:700;padding:var(--space-2) var(--space-3);border-radius:var(--radius-md);border:1px solid var(--color-border);color:var(--color-primary);text-decoration:none;margin-right:8px;" title="Passer au français (Canada)">FR</a>
+      <button class="theme-toggle" data-theme-toggle aria-label="Basculer le mode sombre">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="btn-share" id="open-share" aria-label="Partager ce calculateur">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8M16 6l-4-4-4 4M12 2v13"/></svg>
+        Share
+      </button>
+      <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main" class="container">
+  <!-- HERO -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-content">
+      <h1 class="hero-title" id="hero-title">
+        Calculateur interactif de <span class="text-mortgage">versements hypothécaires</span>,<br>
+        avec graphiques et tableaux d'amortissement en temps réel.
+      </h1>
+    </div>
+  </section>
+
+  <!-- AD BANNER TOP -->
+  <div class="ad-banner ad-banner-wide" role="complementary" aria-label="Advertisement">Advertisement</div>
+
+  <!-- ===== MORTGAGE CALCULATOR ===== -->
+  <section class="calc-section" id="calc-mortgage">
+    <div class="calc-grid">
+      <!-- INPUTS -->
+      <div class="card">
+        <div class="card-title-row">
+          <div class="card-title-icon" style="background:var(--color-primary-highlight)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+          </div>
+          <h2 class="card-title" style="margin-bottom:0">Calculateur d'hypothèque</h2>
+        </div>
+        <form id="mortgage-form" onsubmit="return false;">
+          <div class="form-group">
+            <label class="form-label" for="m-price">Valeur de la propriété</label>
+            <div class="input-wrapper"><span class="input-prefix">$</span><input class="form-input has-prefix" type="number" id="m-price" value="400000" min="0" step="5000"></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="m-down">Mise de fonds</label>
+              <div class="input-wrapper"><span class="input-prefix">$</span><input class="form-input has-prefix" type="number" id="m-down" value="80000" min="0" step="1000"></div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="m-down-pct">Mise de fonds (%)</label>
+              <div class="input-wrapper"><input class="form-input has-suffix" type="number" id="m-down-pct" value="20" min="0" max="100" step="0.5"><span class="input-suffix">%</span></div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="m-rate">Taux d'intérêt annuel (%)</label>
+            <div class="range-wrapper">
+              <input type="range" class="range-input" id="m-rate-range" min="1" max="15" step="0.1" value="6.5">
+              <div class="input-wrapper" style="width:100px;flex-shrink:0"><input class="form-input has-suffix" type="number" id="m-rate" value="6.5" min="0.1" max="30" step="0.1"><span class="input-suffix">%</span></div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="m-term">Période d'amortissement (Années)</label>
+            <div class="range-wrapper">
+              <input type="range" class="range-input" id="m-term-range" min="10" max="30" step="5" value="30">
+              <div class="input-wrapper" style="width:100px;flex-shrink:0"><input class="form-input has-suffix" type="number" id="m-term" value="30" min="5" max="50"><span class="input-suffix">ans</span></div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="m-tax">Taxes municipales et scolaires annuelles municipales</label>
+              <div class="input-wrapper"><span class="input-prefix">$</span><input class="form-input has-prefix" type="number" id="m-tax" value="4500" min="0" step="100"></div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="m-ins">Assurance habitation annuelle</label>
+              <div class="input-wrapper"><span class="input-prefix">$</span><input class="form-input has-prefix" type="number" id="m-ins" value="1200" min="0" step="100"></div>
+            </div>
+          </div>
+          <button class="btn-primary" type="button" onclick="calcMortgage()">Calculer le versement</button>
+        </form>
+      </div>
+      <!-- RESULTS -->
+      <div id="mortgage-results">
+        <div class="results-card" id="mortgage-results-card" style="display:none">
+          <div class="results-header">
+            <h3>Détail du versement mensuel</h3>
+            <p id="m-summary-text">30-year fixed at 6.5%</p>
+          </div>
+          <div class="results-kpis">
+            <div class="kpi"><div class="kpi-label">Versement mensuel</div><div class="kpi-value" id="m-monthly">—</div></div>
+            <div class="kpi"><div class="kpi-label">Paiement total</div><div class="kpi-value warning" id="m-total">—</div></div>
+            <div class="kpi"><div class="kpi-label">Intérêts totaux</div><div class="kpi-value" id="m-interest">—</div></div>
+            <div class="kpi"><div class="kpi-label">Montant du prêt</div><div class="kpi-value" id="m-loan-amt">—</div></div>
+          </div>
+          <div class="chart-area">
+            <div class="chart-title">Composition du paiement</div>
+            <div class="chart-container"><canvas id="mortgage-chart"></canvas></div>
+          </div>
+          <div class="table-area" id="m-table-area">
+            <div class="table-header-row">
+              <div class="table-title">Tableau d'amortissement</div>
+              <span class="table-toggle" id="m-table-toggle" role="button" tabindex="0" onclick="toggleMortgageTable()">Afficher tous les paiements</span>
+            </div>
+            <div id="m-table-wrap" style="display:none"></div>
+          </div>
+        </div>
+        <div class="results-card" id="mortgage-empty">
+          <div class="results-empty">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+            <p>Enter your home price and rate, then click Calculate</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mortgage Guide -->
+    <div class="calc-guide-content">
+      <h2>Comprehensive Mortgage Guide &amp; Calculator Reference</h2>
+      <div class="calc-guide-grid">
+        <div>
+          <h3>How Mortgage Payments Work: The PITI Breakdown</h3>
+          <p>When you take out a mortgage, your monthly payment is made up of four components — collectively known as <strong>PITI</strong>. Understanding each piece helps you see exactly where your money goes every month:</p>
+          <p><strong>Principal:</strong> This is the portion that reduces the actual balance you owe. In the first years of a 30-year loan, only a small fraction of each payment touches principal. For example, on a $280,000 loan at 6.5%, your first monthly payment of $1,770 puts just $253 toward principal — the rest goes to interest.</p>
+          <p><strong>Interest:</strong> The cost the lender charges for letting you use their money. Interest is calculated on the <em>remaining</em> balance, so it starts high and decreases over time as you pay down the loan. This is why making extra payments early can save you tens of thousands in interest.</p>
+          <p><strong>Taxes municipaleses:</strong> Annual taxes set by your local government, usually between 0.5% and 2.5% of your home's assessed value. Most lenders collect 1/12th of the annual tax bill each month and hold it in an escrow account, then pay the tax authority directly when it's due.</p>
+          <p><strong>Assurance habitation:</strong> Homeowners insurance protects your property against fire, storms, theft, and liability. Lenders require it because your home is their collateral. Like taxes, insurance premiums are typically escrowed — collected monthly and paid by the lender when the policy renews.</p>
+          <p>In the early years of a mortgage, the vast majority of each payment goes toward interest. Over time, as the principal balance decreases, a larger share of each payment goes toward paying down what you owe. This gradual shift is called <strong>amortization</strong> — and it's exactly what the chart above illustrates.</p>
+        </div>
+        <div>
+          <div class="formula-card">
+            <div class="formula-title">Amortization Formula</div>
+            <div class="formula-math">M = P &times; [ r(1+r)<sup>n</sup> ] / [ (1+r)<sup>n</sup> - 1 ]</div>
+            <div class="formula-desc">
+              <strong>Where:</strong><br>
+              • <strong>M</strong> = Total monthly principal &amp; interest payment<br>
+              • <strong>P</strong> = Principal loan amount (Home price minus down payment)<br>
+              • <strong>r</strong> = Monthly interest rate (Annual rate / 12 months)<br>
+              • <strong>n</strong> = Total number of payments (e.g., 360 payments for a 30-year loan)
+            </div>
+          </div>
+          <!-- Pro Tip Callout -->
+          <div style="background:var(--color-gold-highlight);border:1px solid var(--color-gold);border-radius:var(--radius-md);padding:var(--space-4);margin-top:var(--space-4)">
+            <div style="font-weight:700;color:var(--color-gold);font-size:var(--text-xs);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:var(--space-2)">💡 Pro Tip</div>
+            <p style="font-size:var(--text-xs);line-height:1.5;margin-bottom:0;color:var(--color-text-muted)">Making just one extra payment per year on a 30-year mortgage can shave <strong>4–5 years</strong> off your loan term and save you thousands in interest. Even rounding your payment up to the nearest $100 makes a meaningful difference over time.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- TRUE COST WORKED EXAMPLE -->
+      <h3>The True Cost of a 30-Year Mortgage — A Worked Example</h3>
+      <p>Mortgage math can be eye-opening. Let's walk through a realistic scenario to see how much a home <em>actually</em> costs over 30 years:</p>
+      <div style="background:var(--color-surface-offset);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:var(--space-5);margin-bottom:var(--space-4)">
+        <p style="margin-bottom:var(--space-2)"><strong>Scenario:</strong> You buy a $350,000 home with a 20% down payment ($70,000), borrowing $280,000 at 6.5% fixed for 30 years.</p>
+        <p style="margin-bottom:var(--space-2)">• Monthly P&amp;I payment: <strong>$1,770</strong></p>
+        <p style="margin-bottom:var(--space-2)">• Total of 360 payments: <strong>$637,200</strong></p>
+        <p style="margin-bottom:var(--space-2)">• Total interest paid: <strong>$357,200</strong> — that's more than the original loan amount!</p>
+        <p style="margin-bottom:0">• Add property tax ($375/mo) and insurance ($100/mo), and your <em>actual</em> monthly outlay is around <strong>$2,245</strong>.</p>
+      </div>
+      <p>This is why even small rate differences matter. Dropping from 6.5% to 6.0% on this same loan saves roughly $34,000 in total interest and lowers your monthly payment by about $95.</p>
+
+      <!-- FIXED VS ARM TABLE -->
+      <h3>Taux fixe vs Taux variable</h3>
+      <p>Choosing between a fixed-rate mortgage and an ARM depends on your plans, risk tolerance, and how long you expect to stay in the home. Here's how they compare:</p>
+      <div style="overflow-x:auto;margin-bottom:var(--space-4)">
+        <table class="amort-table" style="min-width:600px">
+          <thead>
+            <tr><th style="text-align:left">Feature</th><th style="text-align:left">Fixed-Rate Mortgage</th><th style="text-align:left">Adjustable-Rate (5/1 ARM)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Taux d'intérêt annuel</td><td>Locked for the entire term</td><td>Fixed for 5 years, then adjusts annually</td></tr>
+            <tr><td>Typical Starting Rate</td><td>6.5% (higher)</td><td>5.75% (lower intro rate)</td></tr>
+            <tr><td>Payment Predictability</td><td style="color:var(--color-success);font-weight:600">Fully predictable</td><td>Uncertain after intro period</td></tr>
+            <tr><td>Best For</td><td>Long-term homeowners (10+ years)</td><td>Short-term stays or expected rate drops</td></tr>
+            <tr><td>Risk Level</td><td style="color:var(--color-success);font-weight:600">Low</td><td style="color:var(--color-warning);font-weight:600">Moderate to High</td></tr>
+            <tr><td>Rate Caps</td><td>N/A</td><td>Typically 2% per adjustment, 5% lifetime cap</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>If you plan to sell or refinance within 5–7 years, an ARM's lower introductory rate could save you money. But if you're putting down roots, a fixed-rate mortgage provides peace of mind — your principal and interest payment never changes.</p>
+
+      <!-- DOWN PAYMENT & PMI -->
+      <h3>Mise de fonds Strategies &amp; Private Mortgage Insurance (PMI)</h3>
+      <p>Your down payment is the single biggest lever you control when purchasing a home. Here's what you need to know:</p>
+      <p><strong>The 20% threshold:</strong> If you put down less than 20%, most conventional lenders will require <strong>Private Mortgage Insurance (PMI)</strong>. PMI protects the lender (not you) if you default, and it typically costs between <strong>0.5% and 1.5%</strong> of your loan amount per year. On a $280,000 loan, that's $1,400 to $4,200 per year — or $117 to $350 added to your monthly payment.</p>
+      <p><strong>When does PMI go away?</strong> Under the <a href="https://www.consumerfinance.gov/ask-cfpb/what-is-private-mortgage-insurance-en-122/" target="_blank" rel="noopener noreferrer">Homeowners Protection Act</a>, your lender must automatically cancel PMI once your loan-to-value ratio reaches 78%, and you can request cancellation at 80%. This gives you a strong incentive to build equity quickly through extra payments.</p>
+      <p><strong>Low-down-payment options:</strong> FHA loans allow as little as 3.5% down. Some conventional programs allow 3%. VA loans and USDA loans offer 0% down for qualifying buyers. Each program has its own mortgage insurance rules, so compare total costs carefully. Visit <a href="https://www.hud.gov/buying" target="_blank" rel="noopener noreferrer">HUD.gov</a> for official guidance on government-backed loan programs.</p>
+
+      <!-- 15-YEAR VS 30-YEAR TABLE -->
+      <h3>15-Year vs. 30-Year Mortgage: Side-by-Side Comparison</h3>
+      <p>Using our example of a $280,000 loan at 6.5% (30-year) vs. 6.0% (15-year — shorter terms typically earn lower rates):</p>
+      <div style="overflow-x:auto;margin-bottom:var(--space-4)">
+        <table class="amort-table" style="min-width:500px">
+          <thead>
+            <tr><th style="text-align:left">Metric</th><th>30-Year at 6.5%</th><th>15-Year at 6.0%</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Monthly P&amp;I Payment</td><td>$1,770</td><td style="color:var(--color-warning);font-weight:600">$2,363</td></tr>
+            <tr><td>Total Payments (P&amp;I)</td><td style="color:var(--color-warning);font-weight:600">$637,200</td><td>$425,340</td></tr>
+            <tr><td>Intérêts totaux Paid</td><td style="color:var(--color-warning);font-weight:600">$357,200</td><td style="color:var(--color-success);font-weight:600">$145,340</td></tr>
+            <tr><td>Interest Savings</td><td>—</td><td style="color:var(--color-success);font-weight:600">$211,860</td></tr>
+            <tr><td>Payoff Date (from 2025)</td><td>2055</td><td style="color:var(--color-success);font-weight:600">2040</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>The 15-year mortgage costs $593 more per month but saves you <strong>$211,860 in interest</strong> and has you mortgage-free 15 years sooner. If you can comfortably manage the higher payment, the 15-year term is financially superior.</p>
+
+      <!-- READING AMORTIZATION SCHEDULE -->
+      <h3>How to Read Your Tableau d'amortissement</h3>
+      <p>An amortization schedule is a month-by-month table that shows exactly how each payment is split between principal and interest, plus your remaining balance. Here's how to use it:</p>
+      <p><strong>Early payments are interest-heavy.</strong> In month 1 of our $280,000 loan at 6.5%, $1,517 of the $1,770 payment goes to interest and only $253 to principal. By month 180 (halfway), the split is roughly 50/50. By the final year, nearly the entire payment goes to principal.</p>
+      <p><strong>The "crossover point"</strong> is when your principal payment exceeds your interest payment for the first time. On a 30-year loan, this doesn't happen until roughly year 19–21, depending on your rate. Click "Afficher tous les paiements" above the calculator to see yours.</p>
+      <p><strong>Use it for planning:</strong> Your amortization schedule shows how much equity you'll have at any point in the future — useful for refinancing decisions, PMI removal timing, or understanding your net worth.</p>
+
+      <!-- FIRST-TIME BUYER TIPS -->
+      <h3>5 Essential 5 conseils pour les premiers acheteurs</h3>
+      <div style="display:grid;gap:var(--space-3);margin-bottom:var(--space-4)">
+        <div style="background:var(--color-surface-offset);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:var(--space-4)">
+          <p style="font-weight:700;color:var(--color-text);margin-bottom:var(--space-1);font-size:var(--text-sm)">1. Get pre-approved before you shop</p>
+          <p style="font-size:var(--text-xs);color:var(--color-text-muted);margin-bottom:0;line-height:1.5">A pre-approval letter from a lender tells sellers you're serious and tells <em>you</em> exactly how much you can afford. It also locks in a rate for 60–90 days.</p>
+        </div>
+        <div style="background:var(--color-surface-offset);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:var(--space-4)">
+          <p style="font-weight:700;color:var(--color-text);margin-bottom:var(--space-1);font-size:var(--text-sm)">2. Budget for closing costs (2%–5% of the loan)</p>
+          <p style="font-size:var(--text-xs);color:var(--color-text-muted);margin-bottom:0;line-height:1.5">Beyond the down payment, expect to pay for appraisals, title insurance, origination fees, and prepaid taxes/insurance at closing. On a $280,000 loan, that's $5,600 to $14,000.</p>
+        </div>
+        <div style="background:var(--color-surface-offset);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:var(--space-4)">
+          <p style="font-weight:700;color:var(--color-text);margin-bottom:var(--space-1);font-size:var(--text-sm)">3. Compare at least 3 lenders</p>
+          <p style="font-size:var(--text-xs);color:var(--color-text-muted);margin-bottom:0;line-height:1.5">Rates and fees vary significantly between lenders. The <a href="https://www.consumerfinance.gov/owning-a-home/" target="_blank" rel="noopener noreferrer">CFPB's home-buying tools</a> can help you compare Loan Estimates side by side.</p>
+        </div>
+        <div style="background:var(--color-surface-offset);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:var(--space-4)">
+          <p style="font-weight:700;color:var(--color-text);margin-bottom:var(--space-1);font-size:var(--text-sm)">4. Don't forget the hidden costs of ownership</p>
+          <p style="font-size:var(--text-xs);color:var(--color-text-muted);margin-bottom:0;line-height:1.5">Maintenance typically runs 1%–2% of your home's value per year. A $350,000 home may need $3,500–$7,000 annually for upkeep, repairs, and replacements.</p>
+        </div>
+        <div style="background:var(--color-surface-offset);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:var(--space-4)">
+          <p style="font-weight:700;color:var(--color-text);margin-bottom:var(--space-1);font-size:var(--text-sm)">5. Keep an emergency fund — don't drain savings for the down payment</p>
+          <p style="font-size:var(--text-xs);color:var(--color-text-muted);margin-bottom:0;line-height:1.5">Financial experts recommend keeping 3–6 months of expenses in reserve after closing. A broken furnace or job loss shouldn't put your new home at risk.</p>
+        </div>
+      </div>
+
+      <!-- EXPANDED FAQ -->
+      <div class="faq-section">
+        <h3>Foire aux questions (FAQ)</h3>
+        <div class="faq-grid">
+          <div class="faq-item">
+            <div class="faq-question">What is the 28/36 debt rule?</div>
+            <div class="faq-answer">The 28/36 rule is a guideline lenders use to assess affordability. Your total housing expenses (PITI) should not exceed 28% of your gross monthly income, and your total debt payments — housing plus car loans, credit cards, and student loans — should not exceed 36%. For example, if you earn $7,000/month gross, your max PITI is $1,960 and your max total debt is $2,520.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">How does my down payment affect my mortgage?</div>
+            <div class="faq-answer">A larger down payment reduces your loan amount, which lowers both your monthly payment and total interest paid. On a $350,000 home, putting 20% down ($70,000) versus 10% ($35,000) saves roughly $320/month and over $80,000 in total interest on a 30-year loan at 6.5% — plus you avoid PMI entirely.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">Should I choose a 15-year or 30-year term?</div>
+            <div class="faq-answer">A 30-year term offers lower monthly payments, while a 15-year term saves enormous amounts on interest (see the comparison table above). Choose the 30-year if cash flow flexibility is important to you, but consider making extra payments to pay it off faster. Choose the 15-year if you can comfortably afford the higher payment.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">What is Private Mortgage Insurance (PMI)?</div>
+            <div class="faq-answer">PMI protects the lender — not you — if you default on a conventional loan with less than 20% down. It typically costs 0.5%–1.5% of the loan amount per year, added to your monthly payment. Once you reach 20% equity (80% loan-to-value), you can request its removal. At 78% LTV, the lender must remove it automatically.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">What is an escrow account?</div>
+            <div class="faq-answer">An escrow account is a neutral holding account managed by your mortgage servicer. Each month, a portion of your payment covers property taxes and homeowners insurance. The servicer holds these funds and pays the bills on your behalf when they're due — ensuring you never miss a tax or insurance payment.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">Fixed-rate vs. adjustable-rate — which is better?</div>
+            <div class="faq-answer">If you plan to stay in your home for 10+ years, a fixed-rate mortgage provides predictable payments and protection against rising rates. If you expect to move or refinance within 5–7 years, an ARM's lower introductory rate could save you money. Always consider the worst-case scenario: what happens when the ARM adjusts upward?</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">How do extra payments save me money?</div>
+            <div class="faq-answer">Extra payments go directly toward reducing your principal. Since interest is charged on the remaining balance, every dollar of extra principal cuts future interest. Adding just $200/month to our $280,000 example saves over $98,000 in interest and pays off the loan almost 8 years early.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">How do I read an amortization schedule?</div>
+            <div class="faq-answer">Each row shows a single payment broken into principal, interest, and remaining balance. Early payments are interest-heavy; later payments are principal-heavy. The "crossover point" — where principal exceeds interest — typically occurs around year 19–21 on a 30-year loan. Use it to plan for PMI removal, refinancing, or tracking home equity growth.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sources & Methodology -->
+      <div style="margin-top:var(--space-8);padding-top:var(--space-6);border-top:1px solid var(--color-divider)">
+        <h3 style="font-size:var(--text-sm);margin-top:0">Sources &amp; Methodology</h3>
+        <p style="font-size:var(--text-xs);line-height:1.6;color:var(--color-text-faint)">Data and calculations on this page are based on standard amortization formulas used by financial institutions. For current mortgage rates, visit the <a href="https://www.federalreserve.gov/" target="_blank" rel="noopener noreferrer">Federal Reserve</a>. For guidance on mortgage shopping, see the <a href="https://www.consumerfinance.gov/owning-a-home/" target="_blank" rel="noopener noreferrer">CFPB's home-buying resources</a>. For information on government-backed loan programs (FHA, VA, USDA), visit <a href="https://www.hud.gov/buying" target="_blank" rel="noopener noreferrer">HUD.gov</a>. This calculator is for educational purposes only — consult a licensed mortgage professional before making financial decisions.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOTTOM AD -->
+  <div class="ad-banner ad-banner-wide" role="complementary" aria-label="Advertisement">Advertisement</div>
+</main>
+
+<!-- FOOTER -->
+<footer role="contentinfo">
+  <div class="container">
+    <div class="footer-logo" style="margin-bottom:var(--space-2)">Fin<span>Calc</span><span class="logo-free">Free</span></div>
+    <div class="footer-inner">
+      <p class="footer-text">Free financial calculators for everyone.</p>
+      <div class="footer-links">
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact Us</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="disclaimer.html">Avis légal</a>
+      </div>
+      <p class="footer-text">Results are estimates only. Consult a financial advisor for advice.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- SHARE MODAL -->
+<div class="modal-overlay" id="share-modal" role="dialog" aria-modal="true" aria-labelledby="share-title">
+  <div class="modal modal-position">
+    <button class="modal-close" onclick="closeShareModal()" aria-label="Close">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <h2 id="share-title">Share This Calculator</h2>
+    <p>Share FinCalc with friends and colleagues who need help with financial planning.</p>
+    <div class="share-options">
+      <button class="share-btn" onclick="shareVia('twitter')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
+        Twitter/X
+      </button>
+      <button class="share-btn" onclick="shareVia('linkedin')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </button>
+      <button class="share-btn" onclick="shareVia('whatsapp')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        WhatsApp
+      </button>
+      <button class="share-btn" onclick="shareVia('email')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Email
+      </button>
+    </div>
+    <div class="share-url-row">
+      <div class="share-url" id="share-url-display">https://fincalcfree.com</div>
+      <button class="btn-copy" onclick="copyShareUrl()">Copier</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast" role="alert" aria-live="polite"></div>
+
+<script>
+// ===== THEME TOGGLE =====
+(function(){
+  const t=document.querySelector('[data-theme-toggle]'),r=document.documentElement;
+  let d=localStorage.getItem('theme') || 'light';
+  r.setAttribute('data-theme',d);
+  const sunIcon='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>';
+  const moonIcon='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+  if(t){
+    t.innerHTML=d==='dark'?sunIcon:moonIcon;
+    t.addEventListener('click',()=>{
+      d=d==='dark'?'light':'dark';
+      r.setAttribute('data-theme',d);
+      localStorage.setItem('theme',d);
+      t.innerHTML=d==='dark'?sunIcon:moonIcon;
+      updateAllCharts();
+    });
+  }
+})();
+
+// ===== MOBILE MENU =====
+document.getElementById('mobile-menu-btn').addEventListener('click',function(){
+  const nav=document.getElementById('main-nav');
+  nav.classList.toggle('open');
+  this.setAttribute('aria-expanded', nav.classList.contains('open'));
+});
+
+// ===== HELPERS =====
+const fmt = n => '$'+Math.round(n).toLocaleString('en-US');
+const fmtD = n => '$'+(+n.toFixed(2)).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+function getChartColors(){
+  const s=getComputedStyle(document.documentElement);
+  return {
+    primary:s.getPropertyValue('--color-primary').trim(),
+    success:s.getPropertyValue('--color-success').trim(),
+    warning:s.getPropertyValue('--color-warning').trim(),
+    gold:s.getPropertyValue('--color-gold').trim(),
+    blue:s.getPropertyValue('--color-blue').trim(),
+    text:s.getPropertyValue('--color-text').trim(),
+    textMuted:s.getPropertyValue('--color-text-muted').trim(),
+    border:s.getPropertyValue('--color-border').trim(),
+    surface:s.getPropertyValue('--color-surface').trim(),
+  };
+}
+const charts={};
+function destroyChart(id){if(charts[id]){charts[id].destroy();delete charts[id];}}
+function updateAllCharts(){
+  if(charts.mortgage) calcMortgage(true);
+}
+
+// ===== RANGE SYNC =====
+function syncRange(rangeId, inputId){
+  const range=document.getElementById(rangeId), input=document.getElementById(inputId);
+  range.addEventListener('input',()=>{ input.value=range.value; });
+  input.addEventListener('input',()=>{ range.value=Math.max(+range.min,Math.min(+range.max,+input.value||0)); });
+}
+syncRange('m-rate-range','m-rate');
+syncRange('m-term-range','m-term');
+
+// ===== DOWN PAYMENT SYNC =====
+const mPrice=document.getElementById('m-price'), mDown=document.getElementById('m-down'), mDownPct=document.getElementById('m-down-pct');
+mDown.addEventListener('input',()=>{ const p=+mPrice.value||0; if(p>0) mDownPct.value=(+mDown.value/p*100).toFixed(1); });
+mDownPct.addEventListener('input',()=>{ const p=+mPrice.value||0; mDown.value=Math.round(p*(+mDownPct.value/100)); });
+mPrice.addEventListener('input',()=>{ const p=+mPrice.value||0; mDown.value=Math.round(p*(+mDownPct.value/100)); });
+
+// ===== MORTGAGE CALCULATOR =====
+function calcMortgage(silent){
+  const price=+mPrice.value||0, down=+mDown.value||0, rate=(+document.getElementById('m-rate').value||0)/100/12,
+    term=+document.getElementById('m-term').value||0, tax=+document.getElementById('m-tax').value||0,
+    ins=+document.getElementById('m-ins').value||0;
+  const principal=price-down;
+  if(principal<=0||rate<=0||term<=0) return;
+  const n=term*12;
+  const mp=principal*(rate*Math.pow(1+rate,n))/(Math.pow(1+rate,n)-1);
+  const totalPandI=mp*n, totalInt=totalPandI-principal, totalPmt=totalPandI+tax*term+ins*term;
+  const monthlyWithEscrow=mp+tax/12+ins/12;
+
+  document.getElementById('m-monthly').textContent=fmtD(monthlyWithEscrow);
+  document.getElementById('m-total').textContent=fmt(totalPmt);
+  document.getElementById('m-interest').textContent=fmt(totalInt);
+  document.getElementById('m-loan-amt').textContent=fmt(principal);
+  document.getElementById('m-summary-text').textContent=term+'-year fixed at '+(+document.getElementById('m-rate').value).toFixed(2)+'%';
+
+  if(!silent){
+    document.getElementById('mortgage-results-card').style.display='';
+    document.getElementById('mortgage-empty').style.display='none';
+  }
+
+  // Amortization data for chart
+  const schedule=[];
+  let bal=principal;
+  let cumPrincipal=0, cumInterest=0;
+  for(let i=1;i<=n;i++){
+    const imt=bal*rate, pmt=mp-imt;
+    bal=Math.max(0,bal-pmt);
+    cumPrincipal+=pmt; cumInterest+=imt;
+    schedule.push({month:i,payment:mp,interest:imt,principal:pmt,balance:bal,cumPrincipal,cumInterest});
+  }
+
+  const c=getChartColors();
+  destroyChart('mortgage');
+  // Annual rollup for chart
+  const years=[]; const piData=[]; const intData=[];
+  for(let y=1;y<=term;y++){
+    const d=schedule[y*12-1]||schedule[schedule.length-1];
+    years.push('Yr '+y);
+    piData.push(+d.cumPrincipal.toFixed(0));
+    intData.push(+d.cumInterest.toFixed(0));
+  }
+  const ctx=document.getElementById('mortgage-chart').getContext('2d');
+  charts.mortgage=new Chart(ctx,{
+    type:'bar',
+    data:{labels:years,datasets:[
+      {label:'Principal Paid',data:piData,backgroundColor:c.primary+'cc',borderRadius:2},
+      {label:'Interest Paid',data:intData,backgroundColor:c.warning+'cc',borderRadius:2}
+    ]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true,labels:{color:c.textMuted,font:{size:11},boxWidth:12}},tooltip:{callbacks:{label:ctx=>ctx.dataset.label+': '+fmt(ctx.parsed.y)}}},scales:{x:{stacked:true,ticks:{color:c.textMuted,font:{size:10}},grid:{color:c.border+'40'}},y:{stacked:true,ticks:{color:c.textMuted,font:{size:10},callback:v=>'$'+(v>=1000000?(v/1000000).toFixed(1)+'M':(v/1000).toFixed(0)+'K')},grid:{color:c.border+'40'}}}}
+  });
+
+  window._mortgageSchedule=schedule;
+}
+
+let mortgageTableVisible=false;
+function toggleMortgageTable(){
+  mortgageTableVisible=!mortgageTableVisible;
+  const wrap=document.getElementById('m-table-wrap');
+  if(mortgageTableVisible && window._mortgageSchedule){
+    wrap.style.display='';
+    document.getElementById('m-table-toggle').textContent='Hide Schedule';
+    if(!wrap.innerHTML){
+      const sch=window._mortgageSchedule;
+      let html='<div class="amort-table-wrap"><table class="amort-table"><thead><tr><th>Mois</th><th>Paiement</th><th>Capital</th><th>Intérêt</th><th>Solde restant</th></tr></thead><tbody>';
+      sch.forEach(r=>{html+=`<tr><td>${r.month}</td><td>${fmtD(r.payment)}</td><td class="principal-cell">${fmtD(r.principal)}</td><td class="interest-cell">${fmtD(r.interest)}</td><td class="balance-cell">${fmtD(r.balance)}</td></tr>`});
+      html+='</tbody></table></div>';
+      wrap.innerHTML=html;
+    }
+  } else {
+    wrap.style.display='none';
+    document.getElementById('m-table-toggle').textContent='Afficher tous les paiements';
+  }
+}
+
+// ===== SHARE MODAL =====
+document.getElementById('open-share').addEventListener('click',()=>{
+  if (navigator.share) {
+    navigator.share({
+      title: document.title,
+      text: 'Free Calculateur d'hypothèque — compute payments and view amortization tables!',
+      url: window.location.href
+    }).catch(err => console.log('Error sharing:', err));
+  } else {
+    const modal=document.getElementById('share-modal');
+    modal.classList.add('open');
+  }
+});
+function closeShareModal(){document.getElementById('share-modal').classList.remove('open');}
+document.getElementById('share-modal').addEventListener('click',e=>{if(e.target===document.getElementById('share-modal')) closeShareModal();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape') closeShareModal();});
+
+function shareVia(platform){
+  const url=encodeURIComponent('https://fincalcfree.com'), text=encodeURIComponent('Free Calculateur d'hypothèque — compute payments and view amortization tables!');
+  const urls={
+    twitter:'https://twitter.com/intent/tweet?text='+text+'&url='+url,
+    linkedin:'https://www.linkedin.com/sharing/share-offsite/?url='+url,
+    whatsapp:'https://wa.me/?text='+text+'%20'+url,
+    email:'mailto:?subject=Mortgage+Calculator&body='+text+'%20https://fincalcfree.com'
+  };
+  if(urls[platform]) window.open(urls[platform],'_blank','noopener,noreferrer');
+}
+function copyShareUrl(){
+  const url='https://fincalcfree.com';
+  navigator.clipboard.writeText(url).then(()=>showToast('Link copied!')).catch(()=>{
+    const el=document.createElement('textarea');el.value=url;document.body.appendChild(el);el.select();document.execCommand('copy');document.body.removeChild(el);showToast('Link copied!');
+  });
+}
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2800);
+}
+
+// Auto-run on change
+['m-price','m-down','m-down-pct','m-rate','m-term','m-tax','m-ins'].forEach(id=>{
+  document.getElementById(id).addEventListener('change',()=>{if(document.getElementById('mortgage-results-card').style.display!=='none')calcMortgage();});
+});
+
+window.addEventListener('load',()=>{
+  calcMortgage();
+});
+</script>
+</body>
+</html>

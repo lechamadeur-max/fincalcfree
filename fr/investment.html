@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="fr-CA" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculateur de croissance des placements — FinCalcFree</title>
+<meta name="description" content="Project compound investment returns over time with custom monthly contributions, compounding frequencies, inflation adjustments, and visual growth charts.">
+
+<!-- Schema.org JSON-LD Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "FinCalcFree Calculateur de croissance des placements",
+  "description": "Project compound investment returns over time with custom monthly contributions, compounding frequencies, inflation adjustments, and visual growth charts.",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "All",
+  "browserRequirements": "Requires JavaScript. Requires HTML5.",
+  "url": "https://fincalcfree.com/investment"
+}
+</script>
+
+<!-- FAQPage Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is compound interest and how does it work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Compound interest is interest calculated on both the initial principal and all previously accumulated interest. Unlike simple interest (calculated only on the original amount), compound interest creates exponential growth because you earn interest on your interest. Over long periods, this snowball effect dramatically accelerates wealth growth."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the Rule of 72?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The Rule of 72 is a quick mental math shortcut to estimate how long it takes your money to double. Divide 72 by your expected annual return rate. At 8% returns, your money doubles in approximately 9 years (72 ÷ 8 = 9). At 6%, it takes about 12 years. At 12%, roughly 6 years."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a realistic annual rate of return for investments?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The S&P 500 has returned an average of about 10% per year (nominal) since 1928. Adjusted for inflation, the real return is approximately 7%. For conservative financial planning, many advisors recommend using 6% to 8% to account for market fluctuations and fees."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does compounding frequency affect my returns?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "More frequent compounding (daily vs. monthly vs. annually) produces slightly higher returns because interest is calculated and reinvested more often. On a $10,000 investment at 7% over 20 years, annual compounding yields $38,697, monthly compounding yields $40,387, and daily compounding yields $40,552. The difference is most significant with larger balances and higher rates."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is dollar-cost averaging?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Dollar-cost averaging (DCA) is the strategy of investing a fixed amount at regular intervals regardless of market conditions. When prices are low, your fixed amount buys more shares; when prices are high, you buy fewer. Over time, this tends to lower your average cost per share and removes the emotional pressure of trying to time the market."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is starting to invest early so important?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Because compound interest is exponential, time is your most powerful advantage. An investor who starts at age 25 contributing $300/month at 7% returns will have approximately $948,000 by age 65. Someone starting at 35 with the same contributions will have only about $441,000 — less than half, despite only a 10-year difference."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between tax-advantaged and taxable investment accounts?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tax-advantaged accounts (401(k), IRA, Roth IRA) let your investments grow tax-deferred or tax-free, significantly boosting long-term returns. Taxable brokerage accounts offer more flexibility but require you to pay capital gains taxes on profits each year. Maximize tax-advantaged accounts first before investing in taxable accounts."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does inflation affect my investment returns?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Inflation erodes purchasing power over time. A 7% nominal return with 3% inflation gives you only about 4% in real (inflation-adjusted) returns. Over 20 years at 3% inflation, $1 today is worth only about $0.55. Always consider real returns when planning long-term goals to ensure your money maintains its buying power."
+      }
+    }
+  ]
+}
+</script>
+
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8213059222433705"
+     crossorigin="anonymous"></script>
+
+<!-- Theme Script to avoid flash of light/dark background -->
+<script>
+  (function() {
+    const t = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+
+<!-- Fonts -->
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,600,700&f[]=cabinet-grotesk@400,500,700,800&display=swap" rel="stylesheet">
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+<style>
+/* ======= CSS IMPORTED FROM MAIN SETUP (Same styles across all pages) ======= */
+:root, [data-theme="light"] {
+  --text-xs:   clamp(0.75rem,  0.7rem  + 0.25vw, 0.875rem);
+  --text-sm:   clamp(0.875rem, 0.8rem  + 0.35vw, 1rem);
+  --text-base: clamp(1rem,     0.95rem + 0.25vw, 1.125rem);
+  --text-lg:   clamp(1.125rem, 1rem    + 0.75vw, 1.5rem);
+  --text-xl:   clamp(1.5rem,   1.2rem  + 1.25vw, 2.25rem);
+  --text-2xl:  clamp(2rem,     1.2rem  + 2.5vw,  3.5rem);
+
+  --space-1:0.25rem;--space-2:0.5rem;--space-3:0.75rem;--space-4:1rem;
+  --space-5:1.25rem;--space-6:1.5rem;--space-8:2rem;--space-10:2.5rem;
+  --space-12:3rem;--space-16:4rem;--space-20:5rem;--space-24:6rem;
+
+  --color-bg:#f7f6f2;
+  --color-surface:#f9f8f5;
+  --color-surface-2:#fbfbf9;
+  --color-surface-offset:#f3f0ec;
+  --color-surface-offset-2:#edeae5;
+  --color-surface-dynamic:#e6e4df;
+  --color-divider:#dcd9d5;
+  --color-border:#d4d1ca;
+  --color-text:#28251d;
+  --color-text-muted:#7a7974;
+  --color-text-faint:#bab9b4;
+  --color-text-inverse:#f9f8f4;
+  --color-primary:#01696f;
+  --color-primary-hover:#0c4e54;
+  --color-primary-active:#0f3638;
+  --color-primary-highlight:#cedcd8;
+  --color-success:#437a22;
+  --color-success-hover:#2e5c10;
+  --color-success-highlight:#d4dfcc;
+  --color-warning:#964219;
+  --color-warning-highlight:#ddcfc6;
+  --color-error:#a12c7b;
+  --color-gold:#d19900;
+  --color-gold-hover:#a37700;
+  --color-gold-active:#7a5900;
+  --color-gold-highlight:#e9e0c6;
+  --color-blue:#006494;
+  --color-blue-hover:#004b70;
+  --color-blue-active:#00334d;
+  --color-blue-highlight:#c6d8e4;
+
+  --radius-sm:0.375rem;--radius-md:0.5rem;--radius-lg:0.75rem;
+  --radius-xl:1rem;--radius-2xl:1.5rem;--radius-full:9999px;
+  --transition-interactive:180ms cubic-bezier(0.16, 1, 0.3, 1);
+  --shadow-sm:0 1px 2px oklch(0.2 0.01 80 / 0.06);
+  --shadow-md:0 4px 12px oklch(0.2 0.01 80 / 0.08);
+  --shadow-lg:0 12px 32px oklch(0.2 0.01 80 / 0.12);
+
+  --font-display: 'Cabinet Grotesk', 'Helvetica Neue', sans-serif;
+  --font-body: 'Satoshi', 'Helvetica Neue', sans-serif;
+  --content-narrow:640px;--content-default:960px;--content-wide:1200px;
+}
+
+[data-theme="dark"] {
+  --color-bg:#171614;--color-surface:#1c1b19;--color-surface-2:#201f1d;
+  --color-surface-offset:#1d1c1a;--color-surface-offset-2:#22211f;
+  --color-surface-dynamic:#2d2c2a;--color-divider:#262523;--color-border:#393836;
+  --color-text:#f5f4f2;--color-text-muted:#b0aeb3;--color-text-faint:#88868c;
+  --color-text-inverse:#2b2a28;
+  --color-primary:#4f98a3;--color-primary-hover:#227f8b;--color-primary-active:#1a626b;
+  --color-primary-highlight:#313b3b;
+  --color-success:#6daa45;--color-success-hover:#4d8f25;--color-success-highlight:#3a4435;
+  --color-warning:#bb653b;--color-warning-highlight:#564942;
+  --color-error:#d163a7;
+  --color-gold:#e8af34;--color-gold-hover:#c28f1b;--color-gold-active:#9c710f;--color-gold-highlight:#4d4332;
+  --color-blue:#5591c7;--color-blue-hover:#3d79b0;--color-blue-active:#2b5e8c;--color-blue-highlight:#3a4550;
+  --shadow-sm:0 1px 2px oklch(0 0 0 / 0.2);
+  --shadow-md:0 4px 12px oklch(0 0 0 / 0.3);
+  --shadow-lg:0 12px 32px oklch(0 0 0 / 0.4);
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{min-height:100dvh;line-height:1.6;font-family:var(--font-body);font-size:var(--text-base);color:var(--color-text);background:var(--color-bg);-webkit-font-smoothing:antialiased}
+a,a:visited{color:var(--color-primary);transition:color var(--transition-fast) ease}
+a:hover,a:focus,a:active{color:var(--color-primary-hover)}
+.container{max-width:var(--content-wide);margin-inline:auto;padding-inline:var(--space-4)}
+@media(min-width:768px){.container{padding-inline:var(--space-8)}}
+
+/* NAVBAR */
+.navbar{position:sticky;top:0;z-index:100;background:color-mix(in oklch,var(--color-surface) 92%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid oklch(from var(--color-text) l c h / 0.08);padding-block:var(--space-3)}
+.navbar-inner{display:flex;align-items:center;justify-content:space-between;gap:var(--space-4)}
+.logo{display:flex;align-items:center;gap:var(--space-2);text-decoration:none;color:var(--color-text)}
+.logo-text{font-family:var(--font-display);font-weight:800;font-size:var(--text-lg);letter-spacing:-0.02em}
+.logo-text span{color:var(--color-primary)}
+.logo-text .logo-free{color:#ffffff}
+[data-theme="light"] .logo-text .logo-free{color:#28251d}
+.nav-links{display:flex;align-items:center;gap:var(--space-1)}
+.calc-nav-item{display:flex;align-items:center;gap:var(--space-1);font-size:var(--text-xs);font-weight:600;padding:var(--space-2) var(--space-3);border-radius:var(--radius-md);color:var(--color-text-muted);text-decoration:none}
+.calc-nav-item .nav-icon{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2}
+.calc-nav-item:hover{background:var(--color-surface-offset);color:var(--color-text)}
+.calc-nav-item.active{background:var(--color-success-highlight);color:var(--color-success)}
+.nav-actions{display:flex;align-items:center;gap:var(--space-2)}
+.theme-toggle{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:var(--radius-md);color:var(--color-text-muted);cursor:pointer}
+.theme-toggle:hover{background:var(--color-surface-offset);color:var(--color-text)}
+.btn-share{display:flex;align-items:center;gap:var(--space-2);font-size:var(--text-sm);font-weight:600;padding:var(--space-2) var(--space-4);background:var(--color-success);color:var(--color-text-inverse);border-radius:var(--radius-md);cursor:pointer}
+.btn-share:hover{background:var(--color-success-hover)}
+.mobile-menu-btn{display:none;align-items:center;justify-content:center;width:40px;height:40px;border-radius:var(--radius-md);color:var(--color-text-muted);cursor:pointer}
+.mobile-menu-btn:hover{background:var(--color-surface-offset)}
+@media(max-width:767px){
+  .nav-links{display:none}.nav-links.open{display:flex;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:var(--color-surface);border-bottom:1px solid var(--color-border);padding:var(--space-3);gap:var(--space-1);z-index:99}
+  .calc-nav-item{width:100%}
+  .mobile-menu-btn{display:flex}
+}
+
+/* HERO */
+.hero{padding:var(--space-6) 0 0;display:flex;flex-direction:column}
+.hero-content{text-align:center;max-width:900px;margin-inline:auto;display:flex;flex-direction:column;align-items:center}
+.hero-title{font-family:var(--font-display);font-size:clamp(1.25rem, 1rem + 0.8vw, 1.625rem);font-weight:800;letter-spacing:-0.03em;line-height:1.25;text-align:center;margin-bottom:0}
+.text-investment{color:var(--color-success)}
+
+/* CALCULATOR SECTION */
+.calc-section{padding-bottom:var(--space-6);margin-top:var(--space-6)}
+.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-6);align-items:start}
+@media(max-width:900px){.calc-grid{grid-template-columns:1fr}}
+
+/* CARD */
+.card{background:var(--color-surface);border:1px solid oklch(from var(--color-text) l c h / 0.08);border-radius:var(--radius-xl);padding:var(--space-6);box-shadow:var(--shadow-sm)}
+.card-title-row{display:flex;align-items:center;gap:var(--space-3);margin-bottom:var(--space-5)}
+.card-title-icon{width:36px;height:36px;border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.card-title-icon svg{width:18px;height:18px}
+.card-title{font-family:var(--font-display);font-size:var(--text-lg);font-weight:700}
+
+/* FORM */
+.form-group{margin-bottom:var(--space-4)}
+.form-label{display:block;font-size:var(--text-sm);font-weight:600;color:var(--color-text-muted);margin-bottom:var(--space-2)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-3)}
+@media(max-width:500px){.form-row{grid-template-columns:1fr}}
+.input-wrapper{position:relative;display:flex;align-items:center}
+.input-prefix,.input-suffix{position:absolute;font-size:var(--text-sm);font-weight:600;color:var(--color-text-muted);pointer-events:none;user-select:none}
+.input-prefix{left:var(--space-3)}
+.input-suffix{right:var(--space-3)}
+.form-input{width:100%;padding:var(--space-3) var(--space-4);background:var(--color-surface-2);border:1px solid var(--color-border);border-radius:var(--radius-md);font-size:var(--text-sm);font-variant-numeric:tabular-nums;color:var(--color-text)}
+.form-input:focus{outline:none;border-color:var(--color-success);box-shadow:0 0 0 3px oklch(from var(--color-success) l c h / 0.12)}
+.form-input.has-prefix{padding-left:var(--space-8)}
+.form-input.has-suffix{padding-right:var(--space-8)}
+.range-wrapper{display:flex;align-items:center;gap:var(--space-3)}
+.range-input{flex:1;-webkit-appearance:none;appearance:none;height:4px;border-radius:var(--radius-full);background:var(--color-surface-dynamic);outline:none;cursor:pointer}
+.range-input::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--color-success);cursor:pointer;box-shadow:var(--shadow-sm)}
+.range-input::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--color-success);cursor:pointer;border:none}
+.btn-primary{width:100%;padding:var(--space-3) var(--space-6);background:var(--color-success);color:var(--color-text-inverse);border-radius:var(--radius-md);font-size:var(--text-base);font-weight:700;margin-top:var(--space-2);font-family:var(--font-display);cursor:pointer}
+.btn-primary:hover{background:var(--color-success-hover)}
+.btn-primary:active{background:#1e3f0a;transform:translateY(1px)}
+
+/* RESULTS */
+.results-card{background:var(--color-surface);border:1px solid oklch(from var(--color-text) l c h / 0.08);border-radius:var(--radius-xl);overflow:hidden;box-shadow:var(--shadow-sm)}
+.results-header{background:var(--color-success);color:var(--color-text-inverse);padding:var(--space-5) var(--space-6)}
+.results-header h3{font-family:var(--font-display);font-size:var(--text-lg);font-weight:700;margin-bottom:var(--space-1)}
+.results-header p{font-size:var(--text-sm);opacity:0.8}
+.results-kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--color-divider)}
+.kpi{background:var(--color-surface);padding:var(--space-4) var(--space-5)}
+.kpi-label{font-size:var(--text-xs);font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:var(--space-1)}
+.kpi-value{font-family:var(--font-display);font-size:var(--text-xl);font-weight:800;color:var(--color-text);font-variant-numeric:tabular-nums lining-nums;letter-spacing:-0.02em}
+.kpi-value.positive{color:var(--color-success)}
+.chart-area{padding:var(--space-6);border-top:1px solid var(--color-divider)}
+.chart-title{font-size:var(--text-sm);font-weight:700;color:var(--color-text-muted);margin-bottom:var(--space-4);text-transform:uppercase;letter-spacing:0.06em}
+.chart-container{position:relative;height:220px}
+.results-empty{padding:var(--space-10);text-align:center;color:var(--color-text-faint)}
+.results-empty svg{width:40px;height:40px;margin:0 auto var(--space-3)}
+.results-empty p{font-size:var(--text-sm);max-width:24ch;margin-inline:auto}
+
+/* AD PLACEHOLDER */
+.ad-banner{background:var(--color-surface-offset);border:1px dashed var(--color-border);border-radius:var(--radius-lg);padding:var(--space-4);text-align:center;color:var(--color-text-faint);font-size:var(--text-xs);font-weight:600;letter-spacing:0.06em;text-transform:uppercase;margin:var(--space-6) 0}
+.ad-banner-wide{height:90px;display:flex;align-items:center;justify-content:center}
+
+/* GUIDES */
+.calc-guide-content {
+  margin-top: var(--space-10);
+  padding-top: var(--space-8);
+  border-top: 1px solid var(--color-divider);
+  color: var(--color-text-muted);
+}
+.calc-guide-content h2, .calc-guide-content h3 {
+  font-family: var(--font-display);
+  color: var(--color-text);
+  margin-top: var(--space-6);
+  margin-bottom: var(--space-3);
+  font-weight: 700;
+}
+.calc-guide-content h2 {
+  font-size: var(--text-lg);
+  display: inline-block;
+  padding-bottom: var(--space-1);
+}
+.calc-guide-content h3 {
+  font-size: var(--text-base);
+  margin-top: var(--space-4);
+}
+.calc-guide-content p {
+  font-size: var(--text-sm);
+  line-height: 1.6;
+  margin-bottom: var(--space-4);
+}
+.calc-guide-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-8);
+  margin-top: var(--space-4);
+}
+@media (min-width: 768px) {
+  .calc-guide-grid {
+    grid-template-columns: 3fr 2fr;
+  }
+}
+.formula-card {
+  background: var(--color-surface-offset);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  height: fit-content;
+}
+.formula-title {
+  font-size: var(--text-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-2);
+  letter-spacing: 0.05em;
+}
+.formula-math {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  margin: var(--space-3) 0;
+  text-align: center;
+}
+.formula-desc {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  line-height: 1.4;
+}
+.faq-section {
+  margin-top: var(--space-8);
+  border-top: 1px solid var(--color-divider);
+  padding-top: var(--space-6);
+}
+.faq-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+  margin-top: var(--space-4);
+}
+@media (min-width: 768px) {
+  .faq-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+.faq-item {
+  background: var(--color-surface-offset);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+}
+.faq-question {
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: var(--space-2);
+  font-size: var(--text-sm);
+}
+.faq-answer {
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  color: var(--color-text-muted);
+}
+
+/* FOOTER */
+footer{border-top:1px solid var(--color-divider);padding:var(--space-6) 0 var(--space-8) 0;margin-top:var(--space-8)}
+.footer-inner{display:flex;flex-wrap:wrap;gap:var(--space-6);justify-content:space-between;align-items:baseline;margin-top:-6pt}
+.footer-logo{font-family:var(--font-display);font-weight:800;font-size:var(--text-base);letter-spacing:-0.02em}
+.footer-logo span{color:var(--color-primary)}
+.footer-logo .logo-free{color:var(--color-text)}
+.footer-text{font-size:var(--text-xs);color:var(--color-text-faint)}
+.footer-links{display:flex;gap:var(--space-4)}
+.footer-links a{font-size:var(--text-xs);color:var(--color-text-muted);text-decoration:none}
+.footer-links a:hover{color:var(--color-primary)}
+
+/* MODAL & TOAST */
+.modal-overlay{position:fixed;inset:0;background:oklch(0 0 0 / 0.5);z-index:200;display:flex;align-items:center;justify-content:center;padding:var(--space-4);opacity:0;pointer-events:none;transition:opacity 200ms ease}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal{background:var(--color-surface);border-radius:var(--radius-xl);padding:var(--space-8);max-width:440px;width:100%;box-shadow:var(--shadow-lg);transform:translateY(12px) scale(0.98);transition:transform 200ms cubic-bezier(0.16,1,0.3,1);position:relative}
+.modal-overlay.open .modal{transform:none}
+.modal h2{font-family:var(--font-display);font-size:var(--text-lg);font-weight:700;margin-bottom:var(--space-2)}
+.modal p{font-size:var(--text-sm);color:var(--color-text-muted);margin-bottom:var(--space-5)}
+.share-options{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-3);margin-bottom:var(--space-5)}
+.share-btn{display:flex;flex-direction:column;align-items:center;gap:var(--space-2);padding:var(--space-4);border:1px solid var(--color-border);border-radius:var(--radius-lg);font-size:var(--text-xs);font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--color-text-muted);cursor:pointer}
+.share-btn:hover{background:var(--color-surface-offset);color:var(--color-text);border-color:var(--color-success)}
+.share-btn svg{width:22px;height:22px;color:var(--color-success)}
+.share-url-row{display:flex;gap:var(--space-2)}
+.share-url{flex:1;padding:var(--space-3) var(--space-4);background:var(--color-surface-offset);border:1px solid var(--color-border);border-radius:var(--radius-md);font-size:var(--text-xs);color:var(--color-text-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.btn-copy{padding:var(--space-3) var(--space-4);background:var(--color-success);color:var(--color-text-inverse);border-radius:var(--radius-md);font-size:var(--text-sm);font-weight:700}
+.btn-copy:hover{background:var(--color-success-hover)}
+.modal-close{position:absolute;top:var(--space-4);right:var(--space-4);width:32px;height:32px;border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;color:var(--color-text-muted);cursor:pointer}
+.modal-close:hover{background:var(--color-surface-offset)}
+.toast{position:fixed;bottom:var(--space-6);right:var(--space-6);background:var(--color-text);color:var(--color-text-inverse);padding:var(--space-3) var(--space-5);border-radius:var(--radius-md);font-size:var(--text-sm);font-weight:600;z-index:300;transform:translateY(20px);opacity:0;transition:all 300ms cubic-bezier(0.16,1,0.3,1)}
+.toast.show{transform:none;opacity:1}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar" role="banner">
+  <div class="container navbar-inner">
+    <a href="index.html" class="logo" aria-label="Accueil FinCalcFree">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <rect width="32" height="32" rx="8" fill="currentColor" style="color:var(--color-primary)"/>
+        <path d="M9 20L13 15L17 18L23 11" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="23" cy="11" r="2" fill="white"/>
+        <path d="M9 24h14" stroke="white" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+      </svg>
+      <span class="logo-text">Fin<span>Calc</span><span class="logo-free">Free</span></span>
+    </a>
+    <nav class="nav-links" id="main-nav" role="navigation" aria-label="Navigation des calculateurs">
+      <a href="index.html" class="calc-nav-item">
+        <svg class="nav-icon" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+        Hypothèque
+      </a>
+      <a href="investment.html" class="calc-nav-item active">
+        <svg class="nav-icon" viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+        Placements
+      </a>
+      <a href="retirement.html" class="calc-nav-item">
+        <svg class="nav-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Retraite
+      </a>
+      <a href="loan.html" class="calc-nav-item">
+        <svg class="nav-icon" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        Prêts
+      </a>
+      <a href="learn.html" class="calc-nav-item">
+        <svg class="nav-icon" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        Guides
+      </a>
+    </nav>
+    <div class="nav-actions"><a href="../investment.html" class="lang-switch" style="font-size:var(--text-xs);font-weight:700;padding:var(--space-2) var(--space-3);border-radius:var(--radius-md);border:1px solid var(--color-border);color:var(--color-primary);text-decoration:none;margin-right:8px;" title="Switch to English">EN</a><a href="fr/investment.html" class="lang-switch" style="font-size:var(--text-xs);font-weight:700;padding:var(--space-2) var(--space-3);border-radius:var(--radius-md);border:1px solid var(--color-border);color:var(--color-primary);text-decoration:none;margin-right:8px;" title="Passer au français (Canada)">FR</a>
+      <button class="theme-toggle" data-theme-toggle aria-label="Basculer le mode sombre">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="btn-share" id="open-share" aria-label="Share this calculator">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8M16 6l-4-4-4 4M12 2v13"/></svg>
+        Share
+      </button>
+      <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main" class="container">
+  <!-- HERO -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-content">
+      <h1 class="hero-title" id="hero-title">
+        Project your compound wealth with our<br>
+        <span class="text-investment">investment growth</span> calculator and interactive charts.
+      </h1>
+    </div>
+  </section>
+
+  <!-- AD BANNER TOP -->
+  <div class="ad-banner ad-banner-wide" role="complementary" aria-label="Advertisement">Advertisement</div>
+
+  <!-- ===== INVESTMENT CALCULATOR ===== -->
+  <section class="calc-section" id="calc-investment">
+    <div class="calc-grid">
+      <div class="card">
+        <div class="card-title-row">
+          <div class="card-title-icon" style="background:var(--color-success-highlight)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+          </div>
+          <h2 class="card-title" style="margin-bottom:0">Investment Returns</h2>
+        </div>
+        <form id="investment-form" onsubmit="return false;">
+          <div class="form-group">
+            <label class="form-label" for="i-initial">Initial Investment</label>
+            <div class="input-wrapper"><span class="input-prefix">$</span><input class="form-input has-prefix" type="number" id="i-initial" value="10000" min="0" step="500"></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="i-monthly">Cotisation mensuelle</label>
+              <div class="input-wrapper"><span class="input-prefix">$</span><input class="form-input has-prefix" type="number" id="i-monthly" value="500" min="0" step="50"></div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="i-years">Time Period</label>
+              <div class="input-wrapper"><input class="form-input has-suffix" type="number" id="i-years" value="20" min="1" max="50"><span class="input-suffix">ans</span></div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="i-rate">Expected Annual Return</label>
+            <div class="range-wrapper">
+              <input type="range" class="range-input" id="i-rate-range" min="1" max="20" step="0.5" value="7">
+              <div class="input-wrapper" style="width:100px;flex-shrink:0"><input class="form-input has-suffix" type="number" id="i-rate" value="7" min="0.1" max="50" step="0.5"><span class="input-suffix">%</span></div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="i-compound">Compounding Frequency</label>
+            <select class="form-input" id="i-compound">
+              <option value="12">Monthly</option>
+              <option value="4">Quarterly</option>
+              <option value="2">Semi-Annually</option>
+              <option value="1">Annually</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="i-inflation">Inflation Rate (optional)</label>
+            <div class="range-wrapper">
+              <input type="range" class="range-input" id="i-inflation-range" min="0" max="10" step="0.25" value="2.5">
+              <div class="input-wrapper" style="width:100px;flex-shrink:0"><input class="form-input has-suffix" type="number" id="i-inflation" value="2.5" min="0" max="20" step="0.25"><span class="input-suffix">%</span></div>
+            </div>
+          </div>
+          <button class="btn-primary" type="button" onclick="calcInvestment()">Calculate Returns</button>
+        </form>
+      </div>
+      <div>
+        <div class="results-card" id="investment-results-card" style="display:none">
+          <div class="results-header" style="background:var(--color-success)">
+            <h3>Growth Projection</h3>
+            <p id="i-summary-text">20 years at 7% annual return</p>
+          </div>
+          <div class="results-kpis">
+            <div class="kpi"><div class="kpi-label">Final Balance</div><div class="kpi-value positive" id="i-final">—</div></div>
+            <div class="kpi"><div class="kpi-label">Real Value (Inflation-adj.)</div><div class="kpi-value" id="i-real">—</div></div>
+            <div class="kpi"><div class="kpi-label">Total des cotisations</div><div class="kpi-value" id="i-contributions">—</div></div>
+            <div class="kpi"><div class="kpi-label">Intérêts composés gagnés</div><div class="kpi-value positive" id="i-earned">—</div></div>
+          </div>
+          <div class="chart-area">
+            <div class="chart-title">Growth Over Time</div>
+            <div class="chart-container"><canvas id="investment-chart"></canvas></div>
+          </div>
+        </div>
+        <div class="results-card" id="investment-empty">
+          <div class="results-empty">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+            <p>Enter your investment details to see projected growth</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Investment Guide -->
+    <div class="calc-guide-content">
+      <h2>Comprehensive Guide to Investment Returns &amp; Wealth Growth</h2>
+      <div class="calc-guide-grid">
+        <div>
+          <h3>The Power of Compound Interest</h3>
+          <p>Albert Einstein reportedly called compound interest the "eighth wonder of the world," adding: "He who understands it, earns it; he who doesn't, pays it." Whether or not Einstein actually said it, the math behind compound interest truly is remarkable.</p>
+          <p>Unlike <strong>simple interest</strong>, which is calculated only on your original principal, <strong>compound interest</strong> is calculated on your principal <em>plus</em> all previously accumulated interest. You earn interest on your interest — and over time, this creates the exponential "J-curve" where your money accelerates faster and faster, even if you stop adding new contributions.</p>
+          <p><strong>Real-world example:</strong> Invest $10,000 today at 7% annual return with $500/month contributions. After 20 years, you'll have roughly <strong>$271,000</strong> — but only $130,000 of that came from your own contributions. The remaining <strong>$141,000 is pure compound growth</strong>. That's your money making money, which then makes <em>more</em> money.</p>
+        </div>
+        <div>
+          <div class="formula-card">
+            <div class="formula-title">Compound Interest Formula</div>
+            <div class="formula-math">A = P(1 + r/n)<sup>nt</sup> + PMT &times; [ (1 + r/n)<sup>nt</sup> - 1 ] / (r/n)</div>
+            <div class="formula-desc">
+              <strong>Where:</strong><br>
+              • <strong>A</strong> = Future value of the investment balance<br>
+              • <strong>P</strong> = Principal (Initial investment)<br>
+              • <strong>r</strong> = Expected annual interest rate (as a decimal)<br>
+              • <strong>n</strong> = Number of compounding periods per year (e.g., 12 for monthly)<br>
+              • <strong>t</strong> = Number of years the money is invested<br>
+              • <strong>PMT</strong> = Monthly contribution amount
+            </div>
+          </div>
+          <!-- Did You Know Callout -->
+          <div style="background:var(--color-success-highlight);border:1px solid var(--color-success);border-radius:var(--radius-md);padding:var(--space-4);margin-top:var(--space-4)">
+            <div style="font-weight:700;color:var(--color-success);font-size:var(--text-xs);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:var(--space-2)">🧠 Did You Know?</div>
+            <p style="font-size:var(--text-xs);line-height:1.5;margin-bottom:0;color:var(--color-text-muted)">An investor who starts at age 25 contributing $300/month at 7% will have roughly <strong>$948,000</strong> by age 65. Starting at 35 — just 10 years later — with the same contributions yields only about <strong>$441,000</strong>. Time is your most powerful investing asset.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- SIMPLE VS COMPOUND TABLE -->
+      <h3>Simple Interest vs. Compound Interest</h3>
+      <p>The difference between simple and compound interest may seem subtle, but over decades it creates a massive gap in wealth. Here's how $10,000 grows at 7% with no additional contributions:</p>
+      <div style="overflow-x:auto;margin-bottom:var(--space-4)">
+        <table class="amort-table" style="min-width:500px">
+          <thead>
+            <tr><th style="text-align:left">Year</th><th>Simple Interest (7%)</th><th>Compound Interest (7%)</th><th>Difference</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>5</td><td>$13,500</td><td>$14,026</td><td style="color:var(--color-success);font-weight:600">+$526</td></tr>
+            <tr><td>10</td><td>$17,000</td><td>$19,672</td><td style="color:var(--color-success);font-weight:600">+$2,672</td></tr>
+            <tr><td>20</td><td>$24,000</td><td>$38,697</td><td style="color:var(--color-success);font-weight:600">+$14,697</td></tr>
+            <tr><td>30</td><td>$31,000</td><td>$76,123</td><td style="color:var(--color-success);font-weight:600">+$45,123</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>After 30 years, compound interest produces <strong>more than double</strong> the result of simple interest — on the exact same initial investment with the exact same rate. This is the J-curve in action.</p>
+
+      <!-- COMPOUNDING FREQUENCY -->
+      <h3>How Compounding Frequency Affects Your Returns</h3>
+      <p>Compounding frequency determines how often earned interest is calculated and added back to your balance. More frequent compounding means you start earning interest on your new interest sooner. Here's how $10,000 at 7% grows over 20 years with different frequencies (no contributions):</p>
+      <div style="overflow-x:auto;margin-bottom:var(--space-4)">
+        <table class="amort-table" style="min-width:450px">
+          <thead>
+            <tr><th style="text-align:left">Compounding</th><th>Periods/Year</th><th>Balance After 20 Years</th><th>Effective Annual Rate</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Annually</td><td>1</td><td>$38,697</td><td>7.000%</td></tr>
+            <tr><td>Quarterly</td><td>4</td><td>$39,855</td><td>7.186%</td></tr>
+            <tr><td>Monthly</td><td>12</td><td>$40,387</td><td>7.229%</td></tr>
+            <tr><td>Daily</td><td>365</td><td style="color:var(--color-success);font-weight:600">$40,552</td><td style="color:var(--color-success);font-weight:600">7.250%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>The difference between annual and daily compounding on $10,000 is about $1,855 over 20 years. With larger balances and higher rates, this gap widens considerably. Most savings accounts and bonds compound daily or monthly; this calculator lets you model any frequency.</p>
+
+      <!-- DOLLAR-COST AVERAGING -->
+      <h3>Dollar-Cost Averaging: Consistency Over Timing</h3>
+      <p><strong>Dollar-cost averaging (DCA)</strong> is the strategy of investing a fixed amount at regular intervals — say, $500 every month — regardless of whether the market is up or down. This is precisely what the "Monthly Contribution" field in our calculator models.</p>
+      <p>DCA works because when prices drop, your fixed contribution buys more shares. When prices rise, you buy fewer. Over time, your average cost per share tends to be lower than the average market price. More importantly, DCA removes the emotional paralysis of trying to "time the market" — which even professional fund managers fail to do consistently.</p>
+      <p>Research from <a href="https://www.investor.gov/introduction-investing/getting-started" target="_blank" rel="noopener noreferrer">SEC Investor.gov</a> consistently shows that steady, disciplined investing outperforms the strategy of waiting for the "perfect" moment to invest.</p>
+
+      <!-- HISTORICAL CONTEXT -->
+      <h3>Historical S&amp;P 500 Returns: What History Tells Us</h3>
+      <p>The S&amp;P 500 — a broad index of 500 large U.S. companies — has been the benchmark for "stock market returns" for nearly a century. Here's the context you need for realistic planning:</p>
+      <p><strong>Nominal average return:</strong> ~10% per year since 1928. This is the number before adjusting for inflation.</p>
+      <p><strong>Real (inflation-adjusted) return:</strong> ~7% per year. This is what your money is <em>actually</em> worth in purchasing power, and it's the more honest number to use for planning.</p>
+      <p><strong>The range is wide:</strong> Individual years have ranged from -37% (2008) to +53% (1954). The 10% average smooths over enormous volatility. Any single year can be dramatically different from the average.</p>
+      <p>For conservative long-term planning, using <strong>6%–8%</strong> as your expected annual return accounts for market fluctuations, investment fees, and the reality that past performance doesn't guarantee future results. Current data is available from the <a href="https://www.federalreserve.gov/" target="_blank" rel="noopener noreferrer">Federal Reserve</a>.</p>
+
+      <!-- INFLATION -->
+      <h3>The Impact of Inflation on Your Returns</h3>
+      <p>Inflation is the silent thief of wealth. While your portfolio balance grows in nominal terms, inflation steadily erodes what each dollar can buy. This is why our calculator includes an inflation adjustment field.</p>
+      <p><strong>Example:</strong> If your portfolio grows to $500,000 over 25 years, but inflation averaged 3% per year, the <em>real purchasing power</em> of that $500,000 is only about <strong>$239,000</strong> in today's dollars. You still have $500,000, but it buys roughly what $239,000 buys today.</p>
+      <p>This is why it's critical to invest in assets that <em>outpace</em> inflation. Historically, equities have done this comfortably, while cash savings accounts and many bonds have barely kept pace.</p>
+
+      <!-- TAX-ADVANTAGED ACCOUNTS -->
+      <h3>Tax-Advantaged vs. Taxable Accounts</h3>
+      <p>Where you hold your investments matters almost as much as what you invest in. Here's a quick overview:</p>
+      <div style="overflow-x:auto;margin-bottom:var(--space-4)">
+        <table class="amort-table" style="min-width:550px">
+          <thead>
+            <tr><th style="text-align:left">Account Type</th><th style="text-align:left">Tax Treatment</th><th style="text-align:left">2025 Contribution Limit</th><th style="text-align:left">Best For</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>401(k) / 403(b)</td><td>Tax-deferred (pay taxes on withdrawal)</td><td>$23,500 ($31,000 if 50+)</td><td>Employer-match maximization</td></tr>
+            <tr><td>Traditional IRA</td><td>Tax-deferred (may be deductible)</td><td>$7,000 ($8,000 if 50+)</td><td>Additional tax-deferred growth</td></tr>
+            <tr><td>Roth IRA</td><td style="color:var(--color-success);font-weight:600">Tax-free growth &amp; withdrawals</td><td>$7,000 ($8,000 if 50+)</td><td>Younger investors, tax diversification</td></tr>
+            <tr><td>Taxable Brokerage</td><td>Capital gains taxed annually</td><td>No limit</td><td>Flexibility, short/mid-term goals</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p><strong>Priority order:</strong> Get the full employer 401(k) match first (it's free money), then max out a Roth IRA, then go back and max the 401(k), then use a taxable brokerage for anything beyond. For current limits, see <a href="https://www.irs.gov/retirement-plans" target="_blank" rel="noopener noreferrer">IRS retirement plan resources</a>.</p>
+
+      <!-- RULE OF 72 -->
+      <h3>The Rule of 72: A Quick Mental Math Shortcut</h3>
+      <p>Want to know how long it takes your money to double? Just divide 72 by your expected annual return rate:</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:var(--space-3);margin-bottom:var(--space-4)">
+        <div style="background:var(--color-surface-offset);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:var(--space-4);text-align:center">
+          <div style="font-size:var(--text-xs);color:var(--color-text-muted);font-weight:600">At 4%</div>
+          <div style="font-family:var(--font-display);font-size:var(--text-lg);font-weight:800;color:var(--color-text)">18 years</div>
+        </div>
+        <div style="background:var(--color-surface-offset);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:var(--space-4);text-align:center">
+          <div style="font-size:var(--text-xs);color:var(--color-text-muted);font-weight:600">At 6%</div>
+          <div style="font-family:var(--font-display);font-size:var(--text-lg);font-weight:800;color:var(--color-text)">12 years</div>
+        </div>
+        <div style="background:var(--color-surface-offset);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:var(--space-4);text-align:center">
+          <div style="font-size:var(--text-xs);color:var(--color-text-muted);font-weight:600">At 8%</div>
+          <div style="font-family:var(--font-display);font-size:var(--text-lg);font-weight:800;color:var(--color-success)">9 years</div>
+        </div>
+        <div style="background:var(--color-surface-offset);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:var(--space-4);text-align:center">
+          <div style="font-size:var(--text-xs);color:var(--color-text-muted);font-weight:600">At 12%</div>
+          <div style="font-family:var(--font-display);font-size:var(--text-lg);font-weight:800;color:var(--color-success)">6 years</div>
+        </div>
+      </div>
+      <p>The Rule of 72 also works in reverse: at 3% inflation, your money's purchasing power is <em>halved</em> in 24 years (72 ÷ 3 = 24). This underscores why sitting in cash long-term can actually cost you money.</p>
+
+      <!-- 5 COMMON MISTAKES -->
+      <h3>5 Common Investment Mistakes Beginners Make</h3>
+      <div style="display:grid;gap:var(--space-3);margin-bottom:var(--space-4)">
+        <div style="background:var(--color-surface-offset);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:var(--space-4)">
+          <p style="font-weight:700;color:var(--color-text);margin-bottom:var(--space-1);font-size:var(--text-sm)">1. Trying to time the market</p>
+          <p style="font-size:var(--text-xs);color:var(--color-text-muted);margin-bottom:0;line-height:1.5">Research consistently shows that "time <em>in</em> the market" beats "timing the market." Missing even the 10 best trading days over a 20-year period can cut your returns by more than half.</p>
+        </div>
+        <div style="background:var(--color-surface-offset);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:var(--space-4)">
+          <p style="font-weight:700;color:var(--color-text);margin-bottom:var(--space-1);font-size:var(--text-sm)">2. Ignoring fees and expense ratios</p>
+          <p style="font-size:var(--text-xs);color:var(--color-text-muted);margin-bottom:0;line-height:1.5">A 1% annual fee may sound small, but it can consume over 25% of your total returns over 30 years. Choose low-cost index funds with expense ratios under 0.20% whenever possible.</p>
+        </div>
+        <div style="background:var(--color-surface-offset);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:var(--space-4)">
+          <p style="font-weight:700;color:var(--color-text);margin-bottom:var(--space-1);font-size:var(--text-sm)">3. Not diversifying</p>
+          <p style="font-size:var(--text-xs);color:var(--color-text-muted);margin-bottom:0;line-height:1.5">Putting all your money in one stock, sector, or asset class exposes you to unnecessary risk. Broad index funds instantly give you exposure to hundreds or thousands of companies.</p>
+        </div>
+        <div style="background:var(--color-surface-offset);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:var(--space-4)">
+          <p style="font-weight:700;color:var(--color-text);margin-bottom:var(--space-1);font-size:var(--text-sm)">4. Panic-selling during downturns</p>
+          <p style="font-size:var(--text-xs);color:var(--color-text-muted);margin-bottom:0;line-height:1.5">Every major market crash in history has been followed by a full recovery and new highs. Selling during a crash locks in losses and means you miss the recovery. Stay the course.</p>
+        </div>
+        <div style="background:var(--color-surface-offset);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:var(--space-4)">
+          <p style="font-weight:700;color:var(--color-text);margin-bottom:var(--space-1);font-size:var(--text-sm)">5. Waiting to start until you "have enough"</p>
+          <p style="font-size:var(--text-xs);color:var(--color-text-muted);margin-bottom:0;line-height:1.5">There is no minimum amount needed to begin investing. Many brokerages have zero minimums and offer fractional shares. Even $50/month at 7% grows to over $26,000 in 20 years. The best time to start is always <em>now</em>.</p>
+        </div>
+      </div>
+
+      <!-- EXPANDED FAQ -->
+      <div class="faq-section">
+        <h3>Frequently Asked Questions (FAQ)</h3>
+        <div class="faq-grid">
+          <div class="faq-item">
+            <div class="faq-question">What is compound interest and how does it work?</div>
+            <div class="faq-answer">Compound interest is interest calculated on both the initial principal and all previously accumulated interest. Unlike simple interest (calculated only on the original amount), compound interest creates exponential growth because you earn interest on your interest. Over long periods, this snowball effect dramatically accelerates wealth growth.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">What is a realistic annual rate of return?</div>
+            <div class="faq-answer">The S&amp;P 500 has returned an average of about 10% per year (nominal) since 1928. Adjusted for inflation, the real return is approximately 7%. For conservative financial planning, many advisors recommend using 6%–8% to account for market fluctuations and investment fees.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">What is the Rule of 72?</div>
+            <div class="faq-answer">The Rule of 72 is a quick shortcut to estimate how long it takes your money to double. Divide 72 by your expected annual return rate. At 8%, your money doubles in approximately 9 years (72 ÷ 8 = 9). At 6%, it takes about 12 years. At 12%, roughly 6 years.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">How does compounding frequency matter?</div>
+            <div class="faq-answer">More frequent compounding (daily vs. monthly vs. annually) produces slightly higher returns because interest is reinvested sooner. On $10,000 at 7% over 20 years, annual compounding yields $38,697 while daily compounding yields $40,552 — a difference of $1,855. The effect is more pronounced with larger balances.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">What is dollar-cost averaging?</div>
+            <div class="faq-answer">Dollar-cost averaging (DCA) is investing a fixed amount at regular intervals, regardless of market conditions. When prices are low, you buy more shares; when high, you buy fewer. Over time, this lowers your average cost and removes the emotional pressure of market timing. It's exactly what regular monthly contributions achieve.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">Why is starting early so important?</div>
+            <div class="faq-answer">Because compounding is exponential, time is your most valuable asset. Starting 10 years earlier can more than double your final balance — even if the late starter contributes more money per month. For example, $300/month from age 25–65 at 7% yields ~$948,000, while the same contributions from 35–65 yield only ~$441,000.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">Should I use a Roth IRA or Traditional IRA?</div>
+            <div class="faq-answer">With a Traditional IRA, you get a tax deduction now but pay taxes on withdrawals in retirement. With a Roth IRA, you contribute after-tax dollars but all growth and withdrawals are tax-free. If you expect to be in a higher tax bracket in retirement (or are young with decades of growth ahead), a Roth IRA is generally the better choice.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">How does inflation affect my investment returns?</div>
+            <div class="faq-answer">Inflation erodes purchasing power. A 7% nominal return with 3% inflation gives you only about 4% in real returns. Over 25 years at 3% inflation, a $500,000 portfolio has the purchasing power of only ~$239,000 in today's dollars. Always consider "real" (inflation-adjusted) returns when planning long-term goals.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sources & Methodology -->
+      <div style="margin-top:var(--space-8);padding-top:var(--space-6);border-top:1px solid var(--color-divider)">
+        <h3 style="font-size:var(--text-sm);margin-top:0">Sources &amp; Methodology</h3>
+        <p style="font-size:var(--text-xs);line-height:1.6;color:var(--color-text-faint)">Calculations on this page use standard compound interest formulas. Historical S&amp;P 500 return data referenced from publicly available market records. For current interest rate data, visit the <a href="https://www.federalreserve.gov/" target="_blank" rel="noopener noreferrer">Federal Reserve</a>. For investing fundamentals, see <a href="https://www.investor.gov/introduction-investing" target="_blank" rel="noopener noreferrer">SEC Investor.gov</a>. For retirement account contribution limits, see the <a href="https://www.irs.gov/retirement-plans" target="_blank" rel="noopener noreferrer">IRS retirement plan resources</a>. This calculator is for educational purposes only — consult a qualified financial advisor before making investment decisions.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOTTOM AD -->
+  <div class="ad-banner ad-banner-wide" role="complementary" aria-label="Advertisement">Advertisement</div>
+</main>
+
+<!-- FOOTER -->
+<footer role="contentinfo">
+  <div class="container">
+    <div class="footer-logo" style="margin-bottom:var(--space-2)">Fin<span>Calc</span><span class="logo-free">Free</span></div>
+    <div class="footer-inner">
+      <p class="footer-text">Free financial calculators for everyone.</p>
+      <div class="footer-links">
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact Us</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="disclaimer.html">Avis légal</a>
+      </div>
+      <p class="footer-text">Results are estimates only. Consult a financial advisor for advice.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- SHARE MODAL -->
+<div class="modal-overlay" id="share-modal" role="dialog" aria-modal="true" aria-labelledby="share-title">
+  <div class="modal modal-position">
+    <button class="modal-close" onclick="closeShareModal()" aria-label="Close">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <h2 id="share-title">Share This Calculator</h2>
+    <p>Share FinCalc with friends and colleagues who need help with financial planning.</p>
+    <div class="share-options">
+      <button class="share-btn" onclick="shareVia('twitter')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
+        Twitter/X
+      </button>
+      <button class="share-btn" onclick="shareVia('linkedin')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </button>
+      <button class="share-btn" onclick="shareVia('whatsapp')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        WhatsApp
+      </button>
+      <button class="share-btn" onclick="shareVia('email')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Email
+      </button>
+    </div>
+    <div class="share-url-row">
+      <div class="share-url" id="share-url-display">https://fincalcfree.com/investment.html</div>
+      <button class="btn-copy" onclick="copyShareUrl()">Copier</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast" role="alert" aria-live="polite"></div>
+
+<script>
+// ===== THEME TOGGLE =====
+(function(){
+  const t=document.querySelector('[data-theme-toggle]'),r=document.documentElement;
+  let d=localStorage.getItem('theme') || 'light';
+  r.setAttribute('data-theme',d);
+  const sunIcon='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>';
+  const moonIcon='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+  if(t){
+    t.innerHTML=d==='dark'?sunIcon:moonIcon;
+    t.addEventListener('click',()=>{
+      d=d==='dark'?'light':'dark';
+      r.setAttribute('data-theme',d);
+      localStorage.setItem('theme',d);
+      t.innerHTML=d==='dark'?sunIcon:moonIcon;
+      updateAllCharts();
+    });
+  }
+})();
+
+// ===== MOBILE MENU =====
+document.getElementById('mobile-menu-btn').addEventListener('click',function(){
+  const nav=document.getElementById('main-nav');
+  nav.classList.toggle('open');
+  this.setAttribute('aria-expanded', nav.classList.contains('open'));
+});
+
+// ===== HELPERS =====
+const fmt = n => '$'+Math.round(n).toLocaleString('en-US');
+const fmtD = n => '$'+(+n.toFixed(2)).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+function getChartColors(){
+  const s=getComputedStyle(document.documentElement);
+  return {
+    primary:s.getPropertyValue('--color-primary').trim(),
+    success:s.getPropertyValue('--color-success').trim(),
+    warning:s.getPropertyValue('--color-warning').trim(),
+    gold:s.getPropertyValue('--color-gold').trim(),
+    blue:s.getPropertyValue('--color-blue').trim(),
+    text:s.getPropertyValue('--color-text').trim(),
+    textMuted:s.getPropertyValue('--color-text-muted').trim(),
+    border:s.getPropertyValue('--color-border').trim(),
+    surface:s.getPropertyValue('--color-surface').trim(),
+  };
+}
+const charts={};
+function destroyChart(id){if(charts[id]){charts[id].destroy();delete charts[id];}}
+function updateAllCharts(){
+  if(charts.investment) calcInvestment(true);
+}
+
+// ===== RANGE SYNC =====
+function syncRange(rangeId, inputId){
+  const range=document.getElementById(rangeId), input=document.getElementById(inputId);
+  range.addEventListener('input',()=>{ input.value=range.value; });
+  input.addEventListener('input',()=>{ range.value=Math.max(+range.min,Math.min(+range.max,+input.value||0)); });
+}
+syncRange('i-rate-range','i-rate');
+syncRange('i-inflation-range','i-inflation');
+
+// ===== INVESTMENT CALCULATOR =====
+function calcInvestment(silent){
+  const initial=+document.getElementById('i-initial').value||0,
+    monthly=+document.getElementById('i-monthly').value||0,
+    years=+document.getElementById('i-years').value||0,
+    annualRate=(+document.getElementById('i-rate').value||0)/100,
+    n=+document.getElementById('i-compound').value||12,
+    inflation=(+document.getElementById('i-inflation').value||0)/100;
+  if(years<=0||annualRate<=0) return;
+  const r=annualRate/n;
+  const labels=[], balances=[], contributions=[];
+  let bal=initial, totalContrib=initial;
+  const periodsPerYear=n, monthlyToContrib=monthly;
+  for(let y=1;y<=years;y++){
+    const monthlyRate=annualRate/12;
+    for(let m=0;m<12;m++){
+      bal=bal*(1+monthlyRate)+monthlyToContrib;
+      totalContrib+=monthlyToContrib;
+    }
+    labels.push('Yr '+y);
+    balances.push(+bal.toFixed(0));
+    contributions.push(+totalContrib.toFixed(0));
+  }
+  const finalBal=balances[balances.length-1];
+  const realVal=finalBal/Math.pow(1+inflation,years);
+  const totalContribFinal=contributions[contributions.length-1];
+  const earned=finalBal-totalContribFinal;
+
+  document.getElementById('i-final').textContent=fmt(finalBal);
+  document.getElementById('i-real').textContent=fmt(realVal);
+  document.getElementById('i-contributions').textContent=fmt(totalContribFinal);
+  document.getElementById('i-earned').textContent=fmt(earned);
+  document.getElementById('i-summary-text').textContent=years+' years at '+(annualRate*100).toFixed(1)+'% annual return';
+
+  if(!silent){
+    document.getElementById('investment-results-card').style.display='';
+    document.getElementById('investment-empty').style.display='none';
+  }
+
+  const c=getChartColors();
+  destroyChart('investment');
+  const ctx=document.getElementById('investment-chart').getContext('2d');
+  charts.investment=new Chart(ctx,{
+    type:'line',
+    data:{labels,datasets:[
+      {label:'Portfolio Balance',data:balances,borderColor:c.success,backgroundColor:c.success+'22',fill:true,tension:0.4,borderWidth:2.5,pointRadius:0},
+      {label:'Total des cotisations',data:contributions,borderColor:c.primary,backgroundColor:'transparent',borderDash:[6,3],tension:0.4,borderWidth:1.5,pointRadius:0}
+    ]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true,labels:{color:c.textMuted,font:{size:11},boxWidth:12}},tooltip:{callbacks:{label:ctx=>ctx.dataset.label+': '+fmt(ctx.parsed.y)}}},scales:{x:{ticks:{color:c.textMuted,font:{size:10}},grid:{color:c.border+'40'}},y:{ticks:{color:c.textMuted,font:{size:10},callback:v=>v>=1000000?(v/1000000).toFixed(1)+'M':(v/1000).toFixed(0)+'K'},grid:{color:c.border+'40'}}}}
+  });
+}
+
+// ===== SHARE MODAL =====
+document.getElementById('open-share').addEventListener('click',()=>{
+  if (navigator.share) {
+    navigator.share({
+      title: document.title,
+      text: 'Free Investment Calculator — project growth and compound returns!',
+      url: window.location.href
+    }).catch(err => console.log('Error sharing:', err));
+  } else {
+    const modal=document.getElementById('share-modal');
+    modal.classList.add('open');
+  }
+});
+function closeShareModal(){document.getElementById('share-modal').classList.remove('open');}
+document.getElementById('share-modal').addEventListener('click',e=>{if(e.target===document.getElementById('share-modal')) closeShareModal();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape') closeShareModal();});
+
+function shareVia(platform){
+  const url=encodeURIComponent('https://fincalcfree.com/investment.html'), text=encodeURIComponent('Free Investment Calculator — project growth!');
+  const urls={
+    twitter:'https://twitter.com/intent/tweet?text='+text+'&url='+url,
+    linkedin:'https://www.linkedin.com/sharing/share-offsite/?url='+url,
+    whatsapp:'https://wa.me/?text='+text+'%20'+url,
+    email:'mailto:?subject=Investment+Calculator&body='+text+'%20https://fincalcfree.com/investment.html'
+  };
+  if(urls[platform]) window.open(urls[platform],'_blank','noopener,noreferrer');
+}
+function copyShareUrl(){
+  const url='https://fincalcfree.com/investment.html';
+  navigator.clipboard.writeText(url).then(()=>showToast('Link copied!')).catch(()=>{
+    const el=document.createElement('textarea');el.value=url;document.body.appendChild(el);el.select();document.execCommand('copy');document.body.removeChild(el);showToast('Link copied!');
+  });
+}
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2800);
+}
+
+// Auto-run on change
+['i-initial','i-monthly','i-years','i-rate','i-compound','i-inflation'].forEach(id=>{
+  document.getElementById(id).addEventListener('change',()=>{if(document.getElementById('investment-results-card').style.display!=='none')calcInvestment();});
+});
+
+window.addEventListener('load',()=>{
+  calcInvestment();
+});
+</script>
+</body>
+</html>
