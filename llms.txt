@@ -1,0 +1,32 @@
+# FinCalcFree
+> Free interactive financial calculators for mortgage payments, investment growth, retirement planning, and loan payoff — with real-time amortization charts and schedules.
+
+## What We Offer
+- Mortgage calculator with PITI breakdown and amortization schedule
+- Investment calculator with compound interest visualization
+- Retirement savings planner with withdrawal projections
+- Loan payoff calculator with extra payment scenarios
+- Educational articles on personal finance topics
+
+## Key Pages
+- [Mortgage Calculator](https://fincalcfree.com/) — Home price, down payment, rates, taxes, insurance
+- [Investment Calculator](https://fincalcfree.com/investment.html) — Compound growth with contributions
+- [Retirement Calculator](https://fincalcfree.com/retirement.html) — Savings goals and withdrawal planning
+- [Loan Calculator](https://fincalcfree.com/loan.html) — Payoff timelines and extra payment effects
+- [Learning Hub](https://fincalcfree.com/learn.html) — Guides, comparisons, and financial literacy
+- [Financial Glossary](https://fincalcfree.com/blog-financial-glossary.html) — Terms defined in plain English
+
+## Blog Highlights
+- [Compound Interest Explained](https://fincalcfree.com/blog-compound-interest.html)
+- [Fixed vs ARM Mortgages](https://fincalcfree.com/blog-15-vs-30-year-mortgage.html)
+- [How PMI Works](https://fincalcfree.com/blog-how-pmi-works.html)
+- [401k vs IRA Comparison](https://fincalcfree.com/blog-401k-vs-ira.html)
+- [Rule of 72](https://fincalcfree.com/blog-rule-of-72.html)
+
+## About
+FinCalcFree provides free, ad-supported financial calculators with no account required and no data collected. All calculations run in your browser — nothing is sent to a server.
+
+## Site Structure
+- Static HTML site (no JavaScript frameworks)
+- All calculators run client-side
+- Updated regularly with new articles and calculator features

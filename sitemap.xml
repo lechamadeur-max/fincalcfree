@@ -1,47 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
   <!-- English Core Pages -->
   <url>
     <loc>https://fincalcfree.com/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://fincalcfree.com/index.html"/>
-    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://fincalcfree.com/fr/index.html"/>
-    <lastmod>2026-07-24</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://fincalcfree.com/index.html</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://fincalcfree.com/index.html"/>
-    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://fincalcfree.com/fr/index.html"/>
     <lastmod>2026-07-24</lastmod>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://fincalcfree.com/investment.html</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://fincalcfree.com/investment.html"/>
-    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://fincalcfree.com/fr/investment.html"/>
     <lastmod>2026-07-24</lastmod>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://fincalcfree.com/retirement.html</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://fincalcfree.com/retirement.html"/>
-    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://fincalcfree.com/fr/retirement.html"/>
     <lastmod>2026-07-24</lastmod>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://fincalcfree.com/loan.html</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://fincalcfree.com/loan.html"/>
-    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://fincalcfree.com/fr/loan.html"/>
     <lastmod>2026-07-24</lastmod>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://fincalcfree.com/learn.html</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://fincalcfree.com/learn.html"/>
-    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://fincalcfree.com/fr/learn.html"/>
     <lastmod>2026-07-24</lastmod>
     <priority>0.9</priority>
   </url>
@@ -58,33 +40,10 @@
   <url><loc>https://fincalcfree.com/blog-good-debt-vs-bad-debt.html</loc><priority>0.8</priority></url>
   <url><loc>https://fincalcfree.com/blog-financial-glossary.html</loc><priority>0.8</priority></url>
 
-  <!-- French (Quebec) Pages -->
-  <url><loc>https://fincalcfree.com/fr/index.html</loc><priority>0.9</priority></url>
-  <url><loc>https://fincalcfree.com/fr/investment.html</loc><priority>0.9</priority></url>
-  <url><loc>https://fincalcfree.com/fr/retirement.html</loc><priority>0.9</priority></url>
-  <url><loc>https://fincalcfree.com/fr/loan.html</loc><priority>0.9</priority></url>
-  <url><loc>https://fincalcfree.com/fr/learn.html</loc><priority>0.9</priority></url>
-
-  <!-- French Blog Articles -->
-  <url><loc>https://fincalcfree.com/fr/blog-mortgage-mistakes.html</loc><priority>0.8</priority></url>
-  <url><loc>https://fincalcfree.com/fr/blog-15-vs-30-year-mortgage.html</loc><priority>0.8</priority></url>
-  <url><loc>https://fincalcfree.com/fr/blog-how-pmi-works.html</loc><priority>0.8</priority></url>
-  <url><loc>https://fincalcfree.com/fr/blog-compound-interest.html</loc><priority>0.8</priority></url>
-  <url><loc>https://fincalcfree.com/fr/blog-rule-of-72.html</loc><priority>0.8</priority></url>
-  <url><loc>https://fincalcfree.com/fr/blog-retirement-savings.html</loc><priority>0.8</priority></url>
-  <url><loc>https://fincalcfree.com/fr/blog-401k-vs-ira.html</loc><priority>0.8</priority></url>
-  <url><loc>https://fincalcfree.com/fr/blog-loan-payoff.html</loc><priority>0.8</priority></url>
-  <url><loc>https://fincalcfree.com/fr/blog-good-debt-vs-bad-debt.html</loc><priority>0.8</priority></url>
-  <url><loc>https://fincalcfree.com/fr/blog-financial-glossary.html</loc><priority>0.8</priority></url>
-
   <!-- Informational Pages -->
   <url><loc>https://fincalcfree.com/about.html</loc><priority>0.4</priority></url>
   <url><loc>https://fincalcfree.com/contact.html</loc><priority>0.4</priority></url>
   <url><loc>https://fincalcfree.com/privacy.html</loc><priority>0.3</priority></url>
   <url><loc>https://fincalcfree.com/disclaimer.html</loc><priority>0.3</priority></url>
 
-  <url><loc>https://fincalcfree.com/fr/about.html</loc><priority>0.4</priority></url>
-  <url><loc>https://fincalcfree.com/fr/contact.html</loc><priority>0.4</priority></url>
-  <url><loc>https://fincalcfree.com/fr/privacy.html</loc><priority>0.3</priority></url>
-  <url><loc>https://fincalcfree.com/fr/disclaimer.html</loc><priority>0.3</priority></url>
 </urlset>
