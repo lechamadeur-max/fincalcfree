@@ -4,27 +4,27 @@
   <!-- English Core Pages -->
   <url>
     <loc>https://fincalcfree.com/</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-08-08</lastmod>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://fincalcfree.com/investment.html</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-08-08</lastmod>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://fincalcfree.com/retirement.html</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-08-08</lastmod>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://fincalcfree.com/loan.html</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-08-08</lastmod>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://fincalcfree.com/learn.html</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-08-08</lastmod>
     <priority>0.9</priority>
   </url>
 
@@ -39,6 +39,10 @@
   <url><loc>https://fincalcfree.com/blog-loan-payoff.html</loc><priority>0.8</priority></url>
   <url><loc>https://fincalcfree.com/blog-good-debt-vs-bad-debt.html</loc><priority>0.8</priority></url>
   <url><loc>https://fincalcfree.com/blog-financial-glossary.html</loc><priority>0.8</priority></url>
+  <url><loc>https://fincalcfree.com/blog-mortgage-payment-decoded.html</loc><priority>0.8</priority></url>
+  <url><loc>https://fincalcfree.com/blog-emotional-money.html</loc><priority>0.8</priority></url>
+  <url><loc>https://fincalcfree.com/blog-emergency-fund.html</loc><priority>0.8</priority></url>
+  <url><loc>https://fincalcfree.com/blog-credit-scores-explained.html</loc><priority>0.8</priority></url>
 
   <!-- Informational Pages -->
   <url><loc>https://fincalcfree.com/about.html</loc><priority>0.4</priority></url>
